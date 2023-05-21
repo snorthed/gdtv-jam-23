@@ -16,14 +16,19 @@ namespace Player
 
         private CharacterController _characterController;
 
-
+		
         private Vector2 _currentLookPosition;
 		private Vector2 _currentMoveInputVector = Vector2.zero;
 		private float _playerGrav;
 
 
-        #region Serialisation
-
+		#region Serialisation
+		[SerializeField] private bool _WeaponRanged;
+		[SerializeField] private bool _WeaponMelee;
+		[SerializeField] private float _MeleeLightAttackCooldown;
+		[SerializeField] private float _MeleeHeavyAttackCooldown;
+		[SerializeField] private float _RangedSecondaryAttackCooldown;
+		[SerializeField] private float _RangedPrimaryAttackCooldown;
 		[SerializeField] private float moveSpeed;
 		[SerializeField] private float gravityValue;
 		private Camera _camera;
@@ -76,7 +81,22 @@ namespace Player
 
 			_characterController.Move(temp);
 		}
+		private void PrimaryRangedAttack()
+        {
 
+        }
+		private void PrimaryMeleeAttack()
+        {
+
+        }
+		private void SecondaryRangedAttack()
+        {
+
+        }
+		private void SecondaryMeleeAttack()
+        {
+
+        }
 		private void UpdateLookDir()
 		{
 			//transform.forward = transform.position - worldMousePos;
@@ -112,7 +132,24 @@ namespace Player
 
 
 
-        public void OnFire(InputAction.CallbackContext context) { throw new System.NotImplementedException(); }
+		public void OnPrimary(InputAction.CallbackContext context)
+		{
+			if (context.performed && _WeaponRanged && _RangedPrimaryAttackCooldown <= 0)
+			{
+				PrimaryRangedAttack();
+			}
+			else if (context.performed&& _WeaponMelee && _MeleeLightAttackCooldown<= 0)
+            {
+				PrimaryMeleeAttack();
+            }
+			
+		}
+		public void OnSecondary(InputAction.CallbackContext context)
+        {
+
+        }
+		
+		
 		public void OnDodge(InputAction.CallbackContext context) { throw new System.NotImplementedException(); }
 	}
 }
