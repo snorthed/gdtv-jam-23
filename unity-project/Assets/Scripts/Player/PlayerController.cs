@@ -79,13 +79,21 @@ namespace Player
 
 		private void UpdateLookDir()
 		{
-            //transform.forward = transform.position - worldMousePos;
-			float lookAngle = Mathf.Atan2(_currentLookPosition.y, _currentLookPosition.x) * Mathf.Rad2Deg - 90f;
-			Debug.Log(lookAngle);
+			//transform.forward = transform.position - worldMousePos;
+			//float lookAngle = Mathf.Atan2(_currentLookPosition.y, _currentLookPosition.x) * Mathf.Rad2Deg - 90f;
+			//Debug.Log(lookAngle);
 
-            transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
-
-        }
+			//transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
+			Ray mouseRay = Camera.main.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
+			RaycastHit mouseRayHit;
+			if (Physics.Raycast(mouseRay, out mouseRayHit, Mathf.Infinity))
+			{
+				Vector3 mouseToGroundPoint = mouseRayHit.point;
+				Vector3 dir = transform.position - mouseToGroundPoint;
+				dir.y = 0;
+				transform.forward = -dir;
+			}
+		}
 
 
         public void OnMove(InputAction.CallbackContext context)
