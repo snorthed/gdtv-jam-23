@@ -53,13 +53,24 @@
     <UnityVersion>2021.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
+    <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
+    <Compile Include="Assets\Scripts\Player\Interfaces\BaseWeapon.cs" />
+    <Compile Include="Assets\Lazor.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
+    <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\EnemyMover.cs" />
+    <Compile Include="Assets\Lazor.cs" />
+    <Compile Include="Assets\Scripts\Player\Interfaces\BaseWeapon.cs" />
+    <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
+    <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
+    <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

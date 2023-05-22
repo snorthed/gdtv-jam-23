@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Helpers;
+using Player.Interfaces;
 using UnityEngine.Serialization;
+using System.Collections;
 
 namespace Player
 {
-	public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
+	public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions 
 	{
 		#region Input
 		private PlayerInput _controls;
 		private InputAction _moveAction;
 		private InputAction _lookAction;
+		private InputAction _dodgeAction;
 
         #endregion
 
@@ -23,20 +26,23 @@ namespace Player
 
 
 		#region Serialisation
-		[SerializeField] private bool _WeaponRanged;
-		[SerializeField] private bool _WeaponMelee;
-		[SerializeField] private float _MeleeLightAttackCooldown;
-		[SerializeField] private float _MeleeHeavyAttackCooldown;
-		[SerializeField] private float _RangedSecondaryAttackCooldown;
-		[SerializeField] private float _RangedPrimaryAttackCooldown;
+		[SerializeField] BaseWeapon _currentWeapon;
 		[SerializeField] private float moveSpeed;
 		[SerializeField] private float gravityValue;
 		private Camera _camera;
+		private Vector3 _lookDir;
+		private InputAction _primaryAction;
+        [SerializeField] private float _dodgePower;
+		[SerializeField] private float _dodgeCooldown;
+		[SerializeField] private bool _canDodge;
+		[SerializeField] private bool dodging;
+		[SerializeField] private float dodgingDuration;
+		[SerializeField] private float dodgeDuration;
 
 		#endregion
 
-        // Start is called before the first frame update
-        void Awake()
+		// Start is called before the first frame update
+		void Awake()
 		{
 			_camera = Camera.main;
 			GetComponent<Collider>();
@@ -46,11 +52,16 @@ namespace Player
 			_controls = new PlayerInput();
 			_moveAction = _controls.Player.Move;
 			_lookAction = _controls.Player.Look;
+			_primaryAction = _controls.Player.Primary;
+			_dodgeAction = _controls.Player.Dodge;
 
+			_dodgeAction.performed += OnDodge;
             _moveAction.performed += OnMove;
 			_lookAction.performed += OnLook;
-
+			_primaryAction.started += OnPrimary;
+			_primaryAction.canceled += OnPrimaryCancel;
 		}
+
 
 		private void OnEnable()
 		{
@@ -61,19 +72,45 @@ namespace Player
 		{
 			_controls.Enable();
 			_controls.Player.Enable();
+			_canDodge = true;
 		}
 
 
 		private void Update()
 		{
+			PlayerDodge();
 			PlayerMove();
 			UpdateLookDir();
 		}
+		IEnumerator DodgeCoolingDown()
+        {
+			_canDodge = false;
+			yield return new WaitForSeconds(_dodgeCooldown);
+			_canDodge = true;
+        }
+		private void PlayerDodge()
+        {
+			 if (dodging)
+            {
+				var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * _dodgePower);
+				_playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
 
+				temp.y = _playerGrav;
 
+				_characterController.Move(temp);
+				dodgingDuration -= Time.deltaTime;
+				dodging = dodgingDuration > 0f;
+			}
+			 else
+            {
+				dodgingDuration = dodgeDuration;
+			}
+			
+			
+		}
 		private void PlayerMove()
 		{
-			var temp = _currentMoveInputVector.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
+			var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
 
 			_playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
 
@@ -81,22 +118,7 @@ namespace Player
 
 			_characterController.Move(temp);
 		}
-		private void PrimaryRangedAttack()
-        {
-
-        }
-		private void PrimaryMeleeAttack()
-        {
-
-        }
-		private void SecondaryRangedAttack()
-        {
-
-        }
-		private void SecondaryMeleeAttack()
-        {
-
-        }
+	
 		private void UpdateLookDir()
 		{
 			//transform.forward = transform.position - worldMousePos;
@@ -104,14 +126,15 @@ namespace Player
 			//Debug.Log(lookAngle);
 
 			//transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
-			Ray mouseRay = Camera.main.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
-			RaycastHit mouseRayHit;
-			if (Physics.Raycast(mouseRay, out mouseRayHit, Mathf.Infinity))
+			var mouseRay = _camera.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
+			if (Physics.Raycast(mouseRay, out var mouseRayHit, Mathf.Infinity))
 			{
-				Vector3 mouseToGroundPoint = mouseRayHit.point;
-				Vector3 dir = transform.position - mouseToGroundPoint;
+				var mouseToGroundPoint = mouseRayHit.point;
+				var dir = transform.position - mouseToGroundPoint;
 				dir.y = 0;
-				transform.forward = -dir;
+				_lookDir = -dir;
+
+                transform.forward = _lookDir;
 			}
 		}
 
@@ -126,7 +149,8 @@ namespace Player
 		{
 
             _currentLookPosition = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
-			Debug.Log($"Look Vector From Object {_currentLookPosition}");
+
+			//Debug.Log($"Look Vector From Object {_currentLookPosition}");
 
         }
 
@@ -134,22 +158,30 @@ namespace Player
 
 		public void OnPrimary(InputAction.CallbackContext context)
 		{
-			if (context.performed && _WeaponRanged && _RangedPrimaryAttackCooldown <= 0)
-			{
-				PrimaryRangedAttack();
-			}
-			else if (context.performed&& _WeaponMelee && _MeleeLightAttackCooldown<= 0)
-            {
-				PrimaryMeleeAttack();
-            }
-			
+			_currentWeapon.BeginPrimaryAttack(_lookDir);
 		}
-		public void OnSecondary(InputAction.CallbackContext context)
+
+		private void OnPrimaryCancel(InputAction.CallbackContext obj)
+		{
+			_currentWeapon.CancelPrimaryAttack(_lookDir);
+		}
+
+        public void OnSecondary(InputAction.CallbackContext context)
         {
 
         }
 		
 		
-		public void OnDodge(InputAction.CallbackContext context) { throw new System.NotImplementedException(); }
+		public void OnDodge(InputAction.CallbackContext context) 
+		{
+			if (_canDodge)
+            {
+				dodging = true;
+				StartCoroutine(DodgeCoolingDown());
+				
+			}
+			
+			
+		}
 	}
 }
