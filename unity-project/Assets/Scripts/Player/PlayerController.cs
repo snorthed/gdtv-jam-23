@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Helpers;
+using Player.Interfaces;
 using UnityEngine.Serialization;
 
 namespace Player
 {
-	public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
+	public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions 
 	{
 		#region Input
 		private PlayerInput _controls;
@@ -23,6 +24,7 @@ namespace Player
 
 
 		#region Serialisation
+		[SerializeField] BaseWeapon _currentWeapon;
 		[SerializeField] private float moveSpeed;
 		[SerializeField] private float gravityValue;
 		private Camera _camera;
@@ -78,22 +80,7 @@ namespace Player
 
 			_characterController.Move(temp);
 		}
-		private void PrimaryRangedAttack()
-        {
-
-        }
-		private void PrimaryMeleeAttack()
-        {
-
-        }
-		private void SecondaryRangedAttack()
-        {
-
-        }
-		private void SecondaryMeleeAttack()
-        {
-
-        }
+	
 		private void UpdateLookDir()
 		{
 			//transform.forward = transform.position - worldMousePos;
@@ -133,11 +120,13 @@ namespace Player
 
 		public void OnPrimary(InputAction.CallbackContext context)
 		{
+			if (context.performed)
+            {
+				Debug.Log("Shooting");
+				_currentWeapon.PrimaryAttack(_lookDir);
+			}
 			if(!context.performed) return;
-
-
-
-
+			
 		}
 		public void OnSecondary(InputAction.CallbackContext context)
         {
