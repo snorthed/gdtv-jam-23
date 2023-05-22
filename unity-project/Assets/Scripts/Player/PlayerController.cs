@@ -48,8 +48,10 @@ namespace Player
 
             _moveAction.performed += OnMove;
 			_lookAction.performed += OnLook;
-			_primaryAction.performed += OnPrimary;
+			_primaryAction.started += OnPrimary;
+			_primaryAction.canceled += OnPrimaryCancel;
 		}
+
 
 		private void OnEnable()
 		{
@@ -120,11 +122,14 @@ namespace Player
 
 		public void OnPrimary(InputAction.CallbackContext context)
 		{
-			if(!context.performed) return;
-			_currentWeapon.PrimaryAttack(_lookDir);
+			_currentWeapon.BeginPrimaryAttack(_lookDir);
+		}
 
+		private void OnPrimaryCancel(InputAction.CallbackContext obj)
+		{
+			_currentWeapon.CancelPrimaryAttack(_lookDir);
+		}
 
-        }
         public void OnSecondary(InputAction.CallbackContext context)
         {
 

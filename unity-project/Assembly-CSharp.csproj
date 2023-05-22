@@ -62,7 +62,6 @@
     <Compile Include="Assets\Scripts\EnemyMover.cs" />
     <Compile Include="Assets\Lazor.cs" />
     <Compile Include="Assets\Scripts\Player\Interfaces\BaseWeapon.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />

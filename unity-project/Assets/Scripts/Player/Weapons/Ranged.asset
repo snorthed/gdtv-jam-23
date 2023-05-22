@@ -18,7 +18,7 @@ MonoBehaviour:
   _SecondaryRange: 0
   _PrimarySpeed: 20
   _SecondarySpeed: 0
-  _PrimaryCooldown: 0
+  _PrimaryCooldown: 0.5
   _SecondaryCooldown: 0
   _WeaponModel: {fileID: 0}
   _PrimaryProjectile: {fileID: 1460229639031828944, guid: 2e2a2be913bdd204fa95084f901963f2,

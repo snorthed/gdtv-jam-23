@@ -7,7 +7,7 @@ public class Melee : BaseWeapon
 {
     
 
-    public override void PrimaryAttack(Vector3 fireDirection)
+    public override void BeginPrimaryAttack(Vector3 fireDirection)
     {
         throw new System.NotImplementedException();
     }
