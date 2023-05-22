@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using Helpers;
 using Player.Interfaces;
 using UnityEngine.Serialization;
+using System.Collections;
 
 namespace Player
 {
@@ -12,6 +13,7 @@ namespace Player
 		private PlayerInput _controls;
 		private InputAction _moveAction;
 		private InputAction _lookAction;
+		private InputAction _dodgeAction;
 
         #endregion
 
@@ -30,11 +32,17 @@ namespace Player
 		private Camera _camera;
 		private Vector3 _lookDir;
 		private InputAction _primaryAction;
+        [SerializeField] private float _dodgePower;
+		[SerializeField] private float _dodgeCooldown;
+		[SerializeField] private bool _canDodge;
+		[SerializeField] private bool dodging;
+		[SerializeField] private float dodgingDuration;
+		[SerializeField] private float dodgeDuration;
 
 		#endregion
 
-        // Start is called before the first frame update
-        void Awake()
+		// Start is called before the first frame update
+		void Awake()
 		{
 			_camera = Camera.main;
 			GetComponent<Collider>();
@@ -45,7 +53,9 @@ namespace Player
 			_moveAction = _controls.Player.Move;
 			_lookAction = _controls.Player.Look;
 			_primaryAction = _controls.Player.Primary;
+			_dodgeAction = _controls.Player.Dodge;
 
+			_dodgeAction.performed += OnDodge;
             _moveAction.performed += OnMove;
 			_lookAction.performed += OnLook;
 			_primaryAction.started += OnPrimary;
@@ -62,16 +72,42 @@ namespace Player
 		{
 			_controls.Enable();
 			_controls.Player.Enable();
+			_canDodge = true;
 		}
 
 
 		private void Update()
 		{
+			PlayerDodge();
 			PlayerMove();
 			UpdateLookDir();
 		}
+		IEnumerator DodgeCoolingDown()
+        {
+			_canDodge = false;
+			yield return new WaitForSeconds(_dodgeCooldown);
+			_canDodge = true;
+        }
+		private void PlayerDodge()
+        {
+			 if (dodging)
+            {
+				var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * _dodgePower);
+				_playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
 
+				temp.y = _playerGrav;
 
+				_characterController.Move(temp);
+				dodgingDuration -= Time.deltaTime;
+				dodging = dodgingDuration > 0f;
+			}
+			 else
+            {
+				dodgingDuration = dodgeDuration;
+			}
+			
+			
+		}
 		private void PlayerMove()
 		{
 			var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
@@ -136,6 +172,16 @@ namespace Player
         }
 		
 		
-		public void OnDodge(InputAction.CallbackContext context) { throw new System.NotImplementedException(); }
+		public void OnDodge(InputAction.CallbackContext context) 
+		{
+			if (_canDodge)
+            {
+				dodging = true;
+				StartCoroutine(DodgeCoolingDown());
+				
+			}
+			
+			
+		}
 	}
 }
