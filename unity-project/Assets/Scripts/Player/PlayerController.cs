@@ -120,15 +120,12 @@ namespace Player
 
 		public void OnPrimary(InputAction.CallbackContext context)
 		{
-			if (context.performed)
-            {
-				Debug.Log("Shooting");
-				_currentWeapon.PrimaryAttack(_lookDir);
-			}
 			if(!context.performed) return;
-			
-		}
-		public void OnSecondary(InputAction.CallbackContext context)
+			_currentWeapon.PrimaryAttack(_lookDir);
+
+
+        }
+        public void OnSecondary(InputAction.CallbackContext context)
         {
 
         }
