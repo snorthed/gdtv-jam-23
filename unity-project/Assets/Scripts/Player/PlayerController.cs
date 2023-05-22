@@ -23,15 +23,11 @@ namespace Player
 
 
 		#region Serialisation
-		[SerializeField] private bool _WeaponRanged;
-		[SerializeField] private bool _WeaponMelee;
-		[SerializeField] private float _MeleeLightAttackCooldown;
-		[SerializeField] private float _MeleeHeavyAttackCooldown;
-		[SerializeField] private float _RangedSecondaryAttackCooldown;
-		[SerializeField] private float _RangedPrimaryAttackCooldown;
 		[SerializeField] private float moveSpeed;
 		[SerializeField] private float gravityValue;
 		private Camera _camera;
+		private Vector3 _lookDir;
+		private InputAction _primaryAction;
 
 		#endregion
 
@@ -46,10 +42,11 @@ namespace Player
 			_controls = new PlayerInput();
 			_moveAction = _controls.Player.Move;
 			_lookAction = _controls.Player.Look;
+			_primaryAction = _controls.Player.Primary;
 
             _moveAction.performed += OnMove;
 			_lookAction.performed += OnLook;
-
+			_primaryAction.performed += OnPrimary;
 		}
 
 		private void OnEnable()
@@ -73,7 +70,7 @@ namespace Player
 
 		private void PlayerMove()
 		{
-			var temp = _currentMoveInputVector.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
+			var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
 
 			_playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
 
@@ -104,14 +101,15 @@ namespace Player
 			//Debug.Log(lookAngle);
 
 			//transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
-			Ray mouseRay = Camera.main.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
-			RaycastHit mouseRayHit;
-			if (Physics.Raycast(mouseRay, out mouseRayHit, Mathf.Infinity))
+			var mouseRay = _camera.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
+			if (Physics.Raycast(mouseRay, out var mouseRayHit, Mathf.Infinity))
 			{
-				Vector3 mouseToGroundPoint = mouseRayHit.point;
-				Vector3 dir = transform.position - mouseToGroundPoint;
+				var mouseToGroundPoint = mouseRayHit.point;
+				var dir = transform.position - mouseToGroundPoint;
 				dir.y = 0;
-				transform.forward = -dir;
+				_lookDir = -dir;
+
+                transform.forward = _lookDir;
 			}
 		}
 
@@ -126,7 +124,8 @@ namespace Player
 		{
 
             _currentLookPosition = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
-			Debug.Log($"Look Vector From Object {_currentLookPosition}");
+
+			//Debug.Log($"Look Vector From Object {_currentLookPosition}");
 
         }
 
@@ -134,15 +133,11 @@ namespace Player
 
 		public void OnPrimary(InputAction.CallbackContext context)
 		{
-			if (context.performed && _WeaponRanged && _RangedPrimaryAttackCooldown <= 0)
-			{
-				PrimaryRangedAttack();
-			}
-			else if (context.performed&& _WeaponMelee && _MeleeLightAttackCooldown<= 0)
-            {
-				PrimaryMeleeAttack();
-            }
-			
+			if(!context.performed) return;
+
+
+
+
 		}
 		public void OnSecondary(InputAction.CallbackContext context)
         {
