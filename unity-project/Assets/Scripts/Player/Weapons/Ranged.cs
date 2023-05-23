@@ -39,7 +39,7 @@ namespace Player.Weapons
 			}
 		}
 
-		public override void SecondaryAttack(Vector3 fireDirection)
+		public override void BeginSecondaryAttack(Vector3 fireDirection)
 		{
 		}
 	}

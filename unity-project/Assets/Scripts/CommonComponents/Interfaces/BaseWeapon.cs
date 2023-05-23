@@ -12,7 +12,8 @@ namespace CommonComponents.Interfaces
 
 
 		public abstract void BeginPrimaryAttack(Vector3 fireDirection);
-		public abstract void SecondaryAttack(Vector3 fireDirection);
+		public abstract void BeginSecondaryAttack(Vector3 fireDirection);
 		public virtual void CancelPrimaryAttack(Vector3 lookDir) { }
+		public virtual void CancelSecondaryAttack(Vector3 lookDir) { }
 	}
 }
