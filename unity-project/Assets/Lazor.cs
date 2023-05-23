@@ -31,4 +31,7 @@ public class Lazor : MonoBehaviour
 			Destroy(this.gameObject);
         }
 	}
+
+	private void OnCollisionEnter(Collision other) => Destroy(this.gameObject);
+	private void OnTriggerEnter(Collider other) => Destroy(this.gameObject);
 }

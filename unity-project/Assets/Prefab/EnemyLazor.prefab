@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7331798215633157239}
   - component: {fileID: 4786119992038555376}
   - component: {fileID: 4774722314164436766}
-  m_Layer: 8
-  m_Name: Lazor
+  m_Layer: 9
+  m_Name: EnemyLazor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a684d609abe62144182125fbfa2c27c6, type: 2}
+  - {fileID: 2100000, guid: 93c55642035f8c54790c481330f67b5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

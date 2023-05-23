@@ -13,14 +13,26 @@ public class EnemyMover : MonoBehaviour
 		_navMeshAgent = GetComponent<NavMeshAgent>();
 	}
 
-	private float _timer = 2.0f;
-    // Update is called once per frame
+	[SerializeField] float _timer = 2.0f;
+
+	[SerializeField] private GameObject _bullet;
+
+	// Update is called once per frame
     void Update()
 	{
-		_timer = -Time.deltaTime;
+		_timer -=Time.deltaTime;
 		if (_timer < 0f)
 		{
-			_navMeshAgent.SetDestination(target.position);
-		}
-	}
+			var position = target.position;
+			_navMeshAgent.SetDestination(position);
+			_timer = 2.0f;
+
+			var myPos = transform.position;
+			var newShot = Instantiate(_bullet, myPos, Quaternion.identity);
+
+            var lazer = newShot.GetComponent<Lazor>();
+			lazer.Initialize(5, 5, 5);
+			lazer.Fire((position - myPos).normalized);
+        }
+    }
 }

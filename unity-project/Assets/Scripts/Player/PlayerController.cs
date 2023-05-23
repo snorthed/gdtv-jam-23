@@ -131,6 +131,9 @@ namespace Player
 				_lookDir = -dir;
 
 				transform.forward = _lookDir;
+
+				_currentWeapon.FireDirection = _lookDir;
+
 			}
 		}
 
