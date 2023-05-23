@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Helpers;
-using Player.Interfaces;
 using UnityEngine.Serialization;
 using System.Collections;
+using CommonComponents.Interfaces;
 
 namespace Player
 {

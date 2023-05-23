@@ -1,7 +1,8 @@
 ﻿
+using Player.Weapons;
 using UnityEngine;
 
-namespace Player.Interfaces
+namespace CommonComponents.Interfaces
 {
 	public abstract class BaseWeapon : MonoBehaviour
 	{
