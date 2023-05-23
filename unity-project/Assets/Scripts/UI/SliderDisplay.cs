@@ -18,7 +18,7 @@ namespace UI
         [SerializeField] private TextDisplayMode displayMode;
 
 
-        public float MaxValue { get; set; }
+        [field:SerializeField] public float MaxValue { get; set; }
 
         public void Awake()
         {

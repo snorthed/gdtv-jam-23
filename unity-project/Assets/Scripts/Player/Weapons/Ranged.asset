@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9aebb5acdb7ca44b4c453f02ac66e0, type: 3}
   m_Name: Ranged
   m_EditorClassIdentifier: 
-  _PrimaryDamage: 5
+  _PrimaryDamage: 1
   _SecondaryDamage: 0
   _PrimaryRange: 1.5
   _SecondaryRange: 0

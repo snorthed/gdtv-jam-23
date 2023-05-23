@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

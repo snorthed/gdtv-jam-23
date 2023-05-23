@@ -4,8 +4,8 @@ namespace CommonComponents.Interfaces
 {
 	public interface IHealth
 	{
-		float MaxHP { get; }
-		float CurrentHP { get; }
+		float MaxHP { get; set; }
+		float CurrentHP { get; set; }
 
 		event HPChanged HPChanged;
 		event Death HPEmpty;

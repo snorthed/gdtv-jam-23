@@ -1,22 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Helpers;
-using UnityEngine.Serialization;
 using System.Collections;
+using CommonComponents;
 using CommonComponents.Interfaces;
 
 namespace Player
 {
-	public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
+	[RequireComponent(typeof(Damagable))]
+	public class PlayerController : Damagable, PlayerInput.IPlayerActions
 	{
-		#region Input
-
-		private PlayerInput _controls;
-		private InputAction _moveAction;
-		private InputAction _lookAction;
-		private InputAction _dodgeAction;
-
-		#endregion
 
 		private CharacterController _characterController;
 
@@ -39,16 +32,34 @@ namespace Player
 		[SerializeField] private float dodgingDuration;
 		[SerializeField] private float dodgeDuration;
 
-		#endregion
+        #endregion
 
-		// Start is called before the first frame update
-		void Awake()
+        // Start is called before the first frame update
+		protected override void Awake()
 		{
 			_camera = Camera.main;
 			GetComponent<Collider>();
 			GetComponent<Rigidbody>();
 			_characterController = GetComponent<CharacterController>();
 
+			CacheControls();
+
+			base.Awake();
+			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
+			hpSlider.MaxValue = MaxHP;
+			hpSlider.SetToMax();
+			HPChanged += hpSlider.SetValues;
+		}
+
+
+		#region InputSetup
+		private PlayerInput _controls;
+		private InputAction _moveAction;
+		private InputAction _lookAction;
+		private InputAction _dodgeAction;
+
+		private void CacheControls()
+		{
 			_controls = new PlayerInput();
 			_moveAction = _controls.Player.Move;
 			_lookAction = _controls.Player.Look;
@@ -61,15 +72,16 @@ namespace Player
 			_primaryAction.started += OnPrimary;
 			_primaryAction.canceled += OnPrimaryCancel;
 		}
-
 		private void OnEnable() { EnableControls(); }
-
 		private void EnableControls()
 		{
 			_controls.Enable();
 			_controls.Player.Enable();
 			_canDodge = true;
 		}
+
+		#endregion
+
 
 		private void Update()
 		{
