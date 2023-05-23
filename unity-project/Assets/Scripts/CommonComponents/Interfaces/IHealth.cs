@@ -7,9 +7,10 @@ namespace CommonComponents.Interfaces
 		float MaxHP { get; }
 		float CurrentHP { get; }
 
-		event HPChanged DamageTaken;
-        event Action HPEmpty;
+		event HPChanged HPChanged;
+		event Death HPEmpty;
     }
 
 	public delegate void HPChanged(float changeBy, float newHP) ;
+	public delegate void Death();
 }

@@ -133,12 +133,12 @@ MonoBehaviour:
   _currentWeapon: {fileID: 2621708627630751363}
   moveSpeed: 6
   gravityValue: -9
-  _dodgePower: 0
-  _dodgeCooldown: 0
+  _dodgePower: 25
+  _dodgeCooldown: 1
   _canDodge: 0
   dodging: 0
   dodgingDuration: 0
-  dodgeDuration: 0
+  dodgeDuration: 0.1
 --- !u!143 &2621708627619808614
 CharacterController:
   m_ObjectHideFlags: 0

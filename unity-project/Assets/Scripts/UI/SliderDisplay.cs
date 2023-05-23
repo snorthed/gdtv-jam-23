@@ -18,32 +18,32 @@ namespace UI
         [SerializeField] private TextDisplayMode displayMode;
 
 
-        public int MaxValue { get; set; }
+        public float MaxValue { get; set; }
 
         public void Awake()
         {
-            _slider.maxValue = MaxValue;
+            if(_slider != null) _slider.maxValue = MaxValue;
         }
 
         public void SetToMax()
         {
-            SetValues(MaxValue);
+            SetValues(0f,MaxValue);
         }
 
-        public void SetValues(int newValue)
-        {
-            _slider.value = newValue;
+        public void SetValues(float amountChanged, float newValue)
+		{
+			if (_slider != null) _slider.value = newValue;
 
-            switch (displayMode)
+			switch (displayMode)
             {
                 case TextDisplayMode.SingleValue:
                 {
-                    _sliderValueText.text = newValue.ToString("#00");
+                    _sliderValueText.text = newValue.ToString("##0");
                     break;
                 }
                 case TextDisplayMode.Percentage:
                 {
-                    var percentageValue = ((float)newValue / (float)MaxValue) * 100f;
+                    var percentageValue = (newValue / MaxValue) * 100f;
                     _sliderValueText.text = newValue.ToString("#00%");
                     break;
                 }
@@ -54,6 +54,6 @@ namespace UI
                 }
                 default: throw new ArgumentOutOfRangeException();
             }
-        }
+		}
     }
 }
