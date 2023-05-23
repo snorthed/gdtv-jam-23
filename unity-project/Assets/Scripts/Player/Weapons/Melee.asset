@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9aebb5acdb7ca44b4c453f02ac66e0, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  _WeaponDamage: 0
-  _WeaponRange: 0
-  _ProjectileSpeed: 0
+  _PrimaryDamage: 0
+  _SecondaryDamage: 0
+  _PrimaryRange: 0
+  _SecondaryRange: 0
+  _PrimarySpeed: 0
+  _SecondarySpeed: 0
   _PrimaryCooldown: 0
   _SecondaryCooldown: 0
   _WeaponModel: {fileID: 0}
