@@ -25,6 +25,11 @@ namespace Enemy
 			HPEmpty += OnDeath;
 		}
 
+		public void SetTarget(Transform newPos)
+		{
+			_mover.Target = newPos;
+		}
+
 		private void OnDeath()
 		{
 			Destroy(this.gameObject);

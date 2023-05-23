@@ -9,7 +9,7 @@ namespace Enemy
 	{
 		private NavMeshAgent _navMeshAgent;
 
-		[SerializeField] private Transform target;
+		 public Transform Target { get => target; set => target = value; }
 
 		private void Awake()
 		{
@@ -19,6 +19,7 @@ namespace Enemy
 		[SerializeField] float _timer = 2.0f;
 
 		[SerializeField] private GameObject _bullet;
+		[SerializeField] private Transform target;
 
 		// Update is called once per frame
 		void Update()
@@ -26,7 +27,7 @@ namespace Enemy
 			_timer -=Time.deltaTime;
 			if (_timer < 0f)
 			{
-				var position = target.position;
+				var position = Target.position;
 				_navMeshAgent.SetDestination(position);
 				_timer = 2.0f;
 

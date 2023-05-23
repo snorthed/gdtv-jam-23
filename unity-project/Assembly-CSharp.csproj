@@ -56,32 +56,35 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
+    <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
+    <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IHealth.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Lazor.cs" />
+    <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
+    <Compile Include="Assets\Scripts\SingletonRepo.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\IRespawnClient.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
-    <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
-    <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
-    <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\IRespawnClient.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
-    <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
-    <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
-    <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+    <Compile Include="Assets\Scripts\SingletonActivator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -37,6 +37,8 @@ namespace Player
         // Start is called before the first frame update
 		protected override void Awake()
 		{
+			var repo = SingletonRepo.Instance;
+			repo.PlayerObject = this;
 			_camera = Camera.main;
 			GetComponent<Collider>();
 			GetComponent<Rigidbody>();
