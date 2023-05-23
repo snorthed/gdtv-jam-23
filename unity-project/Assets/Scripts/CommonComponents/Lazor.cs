@@ -8,7 +8,7 @@ namespace CommonComponents
 
 		private float _speed;
 		private float _timeToLive;
-		public int Damage { get; private set; }
+		public float Damage { get; private set; }
 		private Vector3 _moveDir;
 
 		public void Initialize(float speed ,float timeToLive,int damage )

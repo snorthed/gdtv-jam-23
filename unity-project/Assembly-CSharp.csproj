@@ -67,6 +67,17 @@
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\HealthPool.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
+    <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\IRespawnClient.cs" />
+    <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
+    <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
+    <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
