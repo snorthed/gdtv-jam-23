@@ -1,17 +1,17 @@
-﻿using System;
-using CommonComponents;
-using CommonComponents.Interfaces;
-using Environment;
+﻿using CommonComponents;
+using CommonComponents.StateMachine;
+using Enemy.States;
 using UI;
 using UnityEngine;
 
 namespace Enemy
 {
-	[RequireComponent(typeof(EnemyMover))]
 	[RequireComponent(typeof(SliderDisplay))]
 	public class EnemyManager : Damagable
 	{
+		private readonly StateMachine<EnemyState> _stateMachine;
 		private EnemyMover _mover;
+
 		private SliderDisplay _hpBar;
 
 		protected override void Awake()
@@ -34,5 +34,7 @@ namespace Enemy
 		{
 			Destroy(this.gameObject);
 		}
+
 	}
+
 }

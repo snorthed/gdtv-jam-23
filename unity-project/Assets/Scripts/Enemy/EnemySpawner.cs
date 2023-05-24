@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
 	private void Start()
 	{
 		StartSpawn();
-		_attackTarget = SingletonRepo.Instance.PlayerObject.transform;
+		_attackTarget = SingletonRepo.PlayerObject.transform;
 
 	}
 	

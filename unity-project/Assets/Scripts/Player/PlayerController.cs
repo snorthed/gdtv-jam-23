@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -39,8 +40,7 @@ namespace Player
         // Start is called before the first frame update
 		protected override void Awake()
 		{
-			var repo = SingletonRepo.Instance;
-			repo.PlayerObject = this;
+			SingletonRepo.PlayerObject = this;
 			_camera = Camera.main;
 			GetComponent<Collider>();
 			GetComponent<Rigidbody>();
@@ -49,6 +49,10 @@ namespace Player
 			CacheControls();
 
 			base.Awake();
+		}
+
+		public void Start()
+		{
 			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
 			hpSlider.MaxValue = MaxHP;
 			hpSlider.SetToMax();

@@ -8,21 +8,21 @@ public class SingletonRepo
 
 	public static SingletonRepo Instance => LazyRepo.Value;
 
-	public PlayerUIManager PlayerUI
+	public static PlayerUIManager PlayerUI
 	{
 		get
 		{
-			if (_playerUI == null)
+			if (Instance._playerUI == null)
 			{
-				_playerUI = PlayerUIManager.Instance;
+				Instance._playerUI = PlayerUIManager.Instance;
 			}
 
-			return _playerUI;
+			return Instance._playerUI;
 		}
 	}
 
 	private PlayerUIManager _playerUI = null;
 
-	public PlayerController PlayerObject { get; set; }
+	public static PlayerController PlayerObject { get; set; }
 }
 

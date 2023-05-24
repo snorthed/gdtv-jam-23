@@ -10,41 +10,29 @@ namespace Enemy
 	public class EnemyMover : MonoBehaviour
 	{
 		private NavMeshAgent _navMeshAgent;
-
+		[SerializeField] private float targetPositionUpdateFrequency = 2.0f;
 		public Transform Target { get => target; set => target = value; }
+		public Vector3 WalkPosition { get; set; }
 
-		[SerializeField] float timer = 2.0f;
+		float _timer = 2.0f;
 
 		[SerializeField] private Projectile bullet;
 		[SerializeField] private Transform target;
-		private ObjectCachePool<Projectile> _lazerPool;
 
 		private void Awake()
 		{
 			_navMeshAgent = GetComponent<NavMeshAgent>();
-			_lazerPool = new ObjectCachePool<Projectile>(bullet, 5);
+			_timer = targetPositionUpdateFrequency;
 		}
 		
 		// Update is called once per frame
 		void Update()
 		{
-			timer -= Time.deltaTime;
-			if (timer < 0f)
+			_timer -= Time.deltaTime;
+			if (_timer < 0f && target != null)
 			{
-				var position = Target.position;
-				_navMeshAgent.SetDestination(position);
-				timer = 2.0f;
-
-				var myPos = transform.position;
-				var shot = _lazerPool.PullObject();
-				shot.Initialize(transform.position, 10, 10, 5);
-				shot.Fire((position - myPos).normalized);
+				_navMeshAgent.SetDestination(target.position);
 			}
-		}
-
-		private void OnDestroy()
-		{
-			_lazerPool.Destroy();
 		}
 	}
 }
