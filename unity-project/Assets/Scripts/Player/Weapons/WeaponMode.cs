@@ -1,4 +1,5 @@
 using CommonComponents;
+using CommonComponents.Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,6 +13,7 @@ namespace Player.Weapons
 		public float range;
 		public float speed;
 		public float cooldown;
-		public Lazor projectile;
+		public Projectile projectile;
+		
 	}
 }

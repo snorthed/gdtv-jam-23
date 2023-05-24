@@ -15,14 +15,14 @@ namespace Enemy
 
 		[SerializeField] float timer = 2.0f;
 
-		[SerializeField] private Lazor bullet;
+		[SerializeField] private Projectile bullet;
 		[SerializeField] private Transform target;
-		private ObjectCachePool<Lazor> _lazerPool;
+		private ObjectCachePool<Projectile> _lazerPool;
 
 		private void Awake()
 		{
 			_navMeshAgent = GetComponent<NavMeshAgent>();
-			_lazerPool = new ObjectCachePool<Lazor>(bullet, 5);
+			_lazerPool = new ObjectCachePool<Projectile>(bullet, 5);
 		}
 		
 		// Update is called once per frame

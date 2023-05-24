@@ -13,7 +13,7 @@ namespace CommonComponents
 	}
 
 	[Serializable]
-	public class ObjectCachePool<T> : IObjectCachePool where T : PooledObject
+	public class ObjectCachePool<T> : IObjectCachePool where T: PooledObject
 	{
 		private readonly T _obj;
 		private readonly List<T> _pool;

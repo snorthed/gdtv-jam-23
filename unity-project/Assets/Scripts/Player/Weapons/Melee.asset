@@ -12,16 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9aebb5acdb7ca44b4c453f02ac66e0, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  _PrimaryDamage: 5
-  _SecondaryDamage: 15
-  _PrimaryRange: 2
-  _SecondaryRange: 4
-  _PrimarySpeed: 0.1
-  _SecondarySpeed: 0.3
-  _PrimaryCooldown: 0.5
-  _SecondaryCooldown: 2
-  _WeaponModel: {fileID: 0}
-  _PrimaryProjectile: {fileID: 5946740474565919704, guid: 7b88b2c1f593a1a4ba23ab0b7ce06b18,
-    type: 3}
-  _SecondaryProjectile: {fileID: 7579317563433758575, guid: d5a42e911b58c714b8fe96a2b87d3ac8,
-    type: 3}
+  weaponModel: {fileID: 0}
+  primary: {fileID: 11400000, guid: f112ccd9b5679a0468cfc57056c2b95d, type: 2}
+  secondary: {fileID: 11400000, guid: f112ccd9b5679a0468cfc57056c2b95d, type: 2}

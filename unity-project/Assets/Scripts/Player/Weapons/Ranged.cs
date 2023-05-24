@@ -36,7 +36,7 @@ namespace Player.Weapons
 			while (true)
 			{
 				var setup = weaponsSetup.primary;
-				var lazer = GetNextBullet(weaponsSetup.primary);
+				var lazer = GetNextBullet(weaponsSetup.primary, PrimaryShotPool);
 
 				lazer.Initialize(transform.position, setup.speed, setup.range, setup.damage);
 
@@ -71,7 +71,7 @@ namespace Player.Weapons
             StopCoroutine(_throwing);
 			var setup = weaponsSetup.secondary;
 
-			var grenade = Instantiate(setup.projectile);
+			var grenade = GetNextBullet(setup,SecondaryShotPool);
 			grenade.transform.position = (transform.position + transform.up * throwingPower);
 			StartCoroutine(SecondaryAttackCooldown());
 		}
