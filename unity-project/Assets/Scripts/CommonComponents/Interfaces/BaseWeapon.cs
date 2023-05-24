@@ -1,4 +1,6 @@
-﻿
+﻿using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+
 using System;
 using Player.Weapons;
 using UnityEngine;
@@ -25,8 +27,9 @@ namespace CommonComponents.Interfaces
 		}
 
 		public abstract void BeginPrimaryAttack(Vector3 fireDirection);
-		public abstract void SecondaryAttack(Vector3 fireDirection);
+		public abstract void BeginSecondaryAttack(Vector3 fireDirection, bool interaction);
 		public virtual void CancelPrimaryAttack(Vector3 lookDir) { }
+		public virtual void CancelSecondaryAttack(Vector3 lookDir) { }
 
 		public Lazor GetNextBullet(WeaponMode mode)
 		{
