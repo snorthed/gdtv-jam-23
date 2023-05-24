@@ -4,6 +4,7 @@ using Helpers;
 using System.Collections;
 using CommonComponents;
 using CommonComponents.Interfaces;
+using UnityEngine.InputSystem.Interactions;
 
 namespace Player
 {
@@ -73,6 +74,7 @@ namespace Player
 			_lookAction.performed += OnLook;
 			_primaryAction.started += OnPrimary;
 			_primaryAction.canceled += OnPrimaryCancel;
+
 		}
 		private void OnEnable() { EnableControls(); }
 		private void EnableControls()
@@ -167,7 +169,13 @@ namespace Player
 
 		private void OnPrimaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelPrimaryAttack(_lookDir); }
 
-		public void OnSecondary(InputAction.CallbackContext context) { }
+		public void OnSecondary(InputAction.CallbackContext context)
+		{
+			if (context.interaction is HoldInteraction hold)
+			{
+				
+			}
+		}
 
 		public void OnDodge(InputAction.CallbackContext context)
 		{

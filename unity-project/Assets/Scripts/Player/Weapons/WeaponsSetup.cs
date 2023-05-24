@@ -1,21 +1,14 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.Weapons
 {
-	[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WeaponsSetup", order = 1)]
+	[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WeaponSetup", order = 2)]
 	public class WeaponsSetup : ScriptableObject
 	{
-		public int _PrimaryDamage;
-		public int _SecondaryDamage;
-		public float _PrimaryRange;
-		public float _SecondaryRange;
-		public float _PrimarySpeed;
-		public float _SecondarySpeed;
-		public float _PrimaryCooldown;
-		public float _SecondaryCooldown;
-		public GameObject _WeaponModel;
-		public GameObject _PrimaryProjectile;
-		public GameObject _SecondaryProjectile;
-    
+		public GameObject weaponModel;
+		public WeaponMode primary;
+        public WeaponMode secondary;
+
 	}
 }

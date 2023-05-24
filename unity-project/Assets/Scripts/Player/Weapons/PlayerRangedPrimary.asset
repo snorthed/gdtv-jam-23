@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a9aebb5acdb7ca44b4c453f02ac66e0, type: 3}
-  m_Name: Ranged
+  m_Script: {fileID: 11500000, guid: e4b28b1895f803a408955e33f1eb78bb, type: 3}
+  m_Name: PlayerRangedPrimary
   m_EditorClassIdentifier: 
-  weaponModel: {fileID: 0}
-  primary: {fileID: 11400000, guid: 4ae8a175dc88de14ebd76d770d5cd4fc, type: 2}
-  secondary: {fileID: 0}
+  damage: 1
+  range: 2
+  speed: 20
+  cooldown: 0.3
+  projectile: {fileID: 4786119992038555376, guid: 2e2a2be913bdd204fa95084f901963f2,
+    type: 3}

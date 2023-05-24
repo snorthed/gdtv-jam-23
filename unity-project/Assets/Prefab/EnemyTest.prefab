@@ -392,9 +392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3809d11e838d7d54d90c24777a574bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 2
+  bullet: {fileID: 4786119992038555376, guid: 2f446eac191aee445add7b20bf2693eb, type: 3}
   target: {fileID: 0}
-  _timer: 2
-  _bullet: {fileID: 1460229639031828944, guid: 2f446eac191aee445add7b20bf2693eb, type: 3}
 --- !u!222 &5437708705542712043
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -418,6 +418,7 @@ MonoBehaviour:
   _sliderValueText: {fileID: 7811499732407619037}
   _slider: {fileID: 0}
   displayMode: 0
+  <MaxValue>k__BackingField: 0
 --- !u!114 &1199240187425447829
 MonoBehaviour:
   m_ObjectHideFlags: 0

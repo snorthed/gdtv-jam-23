@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CommonComponents
 {
-	public class Lazor : MonoBehaviour, IDamageDealer
+	public class Lazor : PooledObject, IDamageDealer
 	{
 
 		private float _speed;
@@ -11,8 +11,9 @@ namespace CommonComponents
 		[field:SerializeField] public float Damage { get; private set; }
 		private Vector3 _moveDir;
 
-		public void Initialize(float speed ,float timeToLive,int damage )
+		public void Initialize(Vector3 startPos, float speed ,float timeToLive,int damage )
 		{
+			SetStartPoint(startPos);
 			_speed = speed;
 			_timeToLive = timeToLive;
 			Damage = damage;
@@ -28,11 +29,13 @@ namespace CommonComponents
 			_timeToLive -= Time.deltaTime;
 			if (_timeToLive <0f)
 			{
-				Destroy(this.gameObject);
+				EndBullet();
 			}
 		}
 
-		private void OnCollisionEnter(Collision other) => Destroy(this.gameObject);
-		private void OnTriggerEnter(Collider other) => Destroy(this.gameObject);
+		private void EndBullet() { ReturnToPool(); }
+
+		private void OnCollisionEnter(Collision other) => EndBullet();
+		private void OnTriggerEnter(Collider other) => EndBullet();
 	}
 }
