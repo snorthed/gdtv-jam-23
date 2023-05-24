@@ -61,6 +61,7 @@ namespace Player
 		private InputAction _moveAction;
 		private InputAction _lookAction;
 		private InputAction _dodgeAction;
+		private InputAction _secondaryAction;
 
 		private void CacheControls()
 		{
