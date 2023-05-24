@@ -61,7 +61,9 @@
     <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Grenade.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IHealth.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\ObjectCachePool.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
     <Compile Include="Assets\Scripts\SingletonActivator.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Projectile.cs" />
@@ -89,9 +92,6 @@
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Grenade.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
