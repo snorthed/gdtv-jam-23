@@ -1,6 +1,4 @@
 using CommonComponents.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour , IDamageDealer
@@ -10,7 +8,7 @@ public class Explosion : MonoBehaviour , IDamageDealer
     private void Start()
     {
         explosionVFX.Play();
-        Destroy(this.gameObject, explosionVFX.time);
+        Destroy(this.gameObject, explosionVFX.main.duration);
     }
 
 

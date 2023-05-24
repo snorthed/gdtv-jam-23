@@ -58,9 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyAlertState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyBaseState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyStateMachine.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\IdleState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
     <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />

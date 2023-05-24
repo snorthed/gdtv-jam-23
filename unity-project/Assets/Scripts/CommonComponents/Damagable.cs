@@ -35,6 +35,8 @@ namespace CommonComponents
 			}
 		}
 
+		
+
 		[field: SerializeField] public float MaxHP { get; set; }
 		[field: SerializeField]public float CurrentHP { get; set; }
 		public event HPChanged HPChanged;

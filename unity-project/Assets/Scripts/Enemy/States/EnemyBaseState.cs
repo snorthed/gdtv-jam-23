@@ -9,6 +9,7 @@ namespace Enemy.States
 		public PlayerController PlayerRef { get; set; }
 		protected EnemyBaseState(GameObject obj, EnemyState state) : base(obj, state)
 		{
+
 		}
 	}
 }
