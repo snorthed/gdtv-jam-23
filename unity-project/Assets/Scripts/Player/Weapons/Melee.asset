@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Melee
   m_EditorClassIdentifier: 
   weaponModel: {fileID: 0}
-  primary: {fileID: 11400000, guid: f112ccd9b5679a0468cfc57056c2b95d, type: 2}
+  primary: {fileID: 11400000, guid: a4e02b7d6c630f1448c0c557c02c11b7, type: 2}
   secondary: {fileID: 11400000, guid: f112ccd9b5679a0468cfc57056c2b95d, type: 2}
