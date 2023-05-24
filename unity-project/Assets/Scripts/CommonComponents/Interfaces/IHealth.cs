@@ -1,12 +1,16 @@
-﻿namespace CommonComponents.Interfaces
+﻿using System;
+
+namespace CommonComponents.Interfaces
 {
 	public interface IHealth
 	{
-		int MaxHP { get; }
-		int CurrentHP { get; }
+		float MaxHP { get; set; }
+		float CurrentHP { get; set; }
 
-        DamageTaken OnDamageTaken { get; set; }
-	}
+		event HPChanged HPChanged;
+		event Death HPEmpty;
+    }
 
-	public delegate void DamageTaken(int amount) ;
+	public delegate void HPChanged(float changeBy, float newHP) ;
+	public delegate void Death();
 }

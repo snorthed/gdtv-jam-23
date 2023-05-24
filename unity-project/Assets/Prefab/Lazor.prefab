@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f818eac98f8bb574e8a89fcf69486c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 2
 --- !u!54 &4774722314164436766
 Rigidbody:
   m_ObjectHideFlags: 0

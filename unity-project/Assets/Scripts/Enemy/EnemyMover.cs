@@ -1,6 +1,8 @@
+using System;
 using CommonComponents;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
@@ -9,34 +11,40 @@ namespace Enemy
 	{
 		private NavMeshAgent _navMeshAgent;
 
+		public Transform Target { get => target; set => target = value; }
+
+		[SerializeField] float timer = 2.0f;
+
+		[SerializeField] private Lazor bullet;
 		[SerializeField] private Transform target;
+		private ObjectCachePool<Lazor> _lazerPool;
 
 		private void Awake()
 		{
 			_navMeshAgent = GetComponent<NavMeshAgent>();
+			_lazerPool = new ObjectCachePool<Lazor>(bullet, 5);
 		}
-
-		[SerializeField] float _timer = 2.0f;
-
-		[SerializeField] private GameObject _bullet;
-
+		
 		// Update is called once per frame
 		void Update()
 		{
-			_timer -=Time.deltaTime;
-			if (_timer < 0f)
+			timer -= Time.deltaTime;
+			if (timer < 0f)
 			{
-				var position = target.position;
+				var position = Target.position;
 				_navMeshAgent.SetDestination(position);
-				_timer = 2.0f;
+				timer = 2.0f;
 
 				var myPos = transform.position;
-				var newShot = Instantiate(_bullet, myPos, Quaternion.identity);
-
-				var lazer = newShot.GetComponent<Lazor>();
-				lazer.Initialize(5, 5, 5);
-				lazer.Fire((position - myPos).normalized);
+				var shot = _lazerPool.PullObject();
+				shot.Initialize(transform.position, 10, 10, 5);
+				shot.Fire((position - myPos).normalized);
 			}
+		}
+
+		private void OnDestroy()
+		{
+			_lazerPool.Destroy();
 		}
 	}
 }

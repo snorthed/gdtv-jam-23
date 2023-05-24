@@ -35,13 +35,13 @@ namespace Player.Weapons
 		{
 			while (true)
 			{
-				var newShot = Instantiate(weaponsSetup._PrimaryProjectile, transform.position, Quaternion.identity);
+				var setup = weaponsSetup.primary;
+				var lazer = GetNextBullet(weaponsSetup.primary);
 
-				var lazer = newShot.GetComponent<Lazor>();
-				lazer.Initialize(weaponsSetup._PrimarySpeed, weaponsSetup._PrimaryRange, weaponsSetup._PrimaryDamage);
-				Debug.Log($"Shot Created {FireDirection.normalized}");
+				lazer.Initialize(transform.position, setup.speed, setup.range, setup.damage);
+
 				lazer.Fire(FireDirection.normalized);
-				yield return new WaitForSeconds(weaponsSetup._PrimaryCooldown);
+				yield return new WaitForSeconds(setup.cooldown);
 			}
 		}
 
