@@ -57,24 +57,26 @@ namespace Player.Weapons
 			while (holding)
 			{
 				throwingPower += Time.deltaTime * weaponsSetup._SecondarySpeed;
+				Debug.Log(throwingPower);
 				yield return new WaitForEndOfFrame();
 			}
 			
-				Mathf.Clamp(throwingPower,weaponsSetup._PrimaryRange, weaponsSetup._SecondaryRange);
-			
+			Mathf.Clamp(throwingPower,weaponsSetup._PrimaryRange, weaponsSetup._SecondaryRange);
+			CancelSecondaryAttack(FireDirection);
         }
         public override void CancelSecondaryAttack(Vector3 lookDir)
         {
             StopCoroutine(_throwing);
 			
 			var grenade = Instantiate(weaponsSetup._SecondaryProjectile);
-			grenade.transform.position = (transform.position + transform.forward * throwingPower);
+			grenade.transform.position = (transform.position + transform.up * throwingPower);
 			StartCoroutine(SecondaryAttackCooldown());
 		}
 
         private IEnumerator SecondaryAttackCooldown()
         {
-            throw new NotImplementedException();
+			throwingPower = weaponsSetup._PrimaryRange;
+			yield return new WaitForSeconds(weaponsSetup._SecondaryCooldown);
         }
     }
 }
