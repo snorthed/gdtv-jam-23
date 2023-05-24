@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using Helpers;
 using UnityEngine.Serialization;
 using System.Collections;
@@ -81,6 +82,7 @@ namespace Player
 			PlayerDodge();
 			PlayerMove();
 			UpdateLookDir();
+			
 		}
 
 		IEnumerator DodgeCoolingDown()
@@ -159,7 +161,15 @@ namespace Player
 		private void OnPrimaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelPrimaryAttack(_lookDir); }
 		
 
-		public void OnSecondary(InputAction.CallbackContext context) { _currentWeapon.BeginSecondaryAttack(_lookDir); }
+		public void OnSecondary(InputAction.CallbackContext context) {
+			if (context.interaction is HoldInteraction)
+            {
+				bool holding = true;
+				_currentWeapon.BeginSecondaryAttack(_lookDir, holding);
+			}
+				
+         
+		}
 
 		private void OnSecondaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelSecondaryAttack(_lookDir); }
 		public void OnDodge(InputAction.CallbackContext context)

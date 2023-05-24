@@ -15,12 +15,13 @@ MonoBehaviour:
   _PrimaryDamage: 5
   _SecondaryDamage: 0
   _PrimaryRange: 1.5
-  _SecondaryRange: 0
+  _SecondaryRange: 5
   _PrimarySpeed: 20
-  _SecondarySpeed: 0
+  _SecondarySpeed: 5
   _PrimaryCooldown: 0.5
-  _SecondaryCooldown: 0
+  _SecondaryCooldown: 5
   _WeaponModel: {fileID: 0}
   _PrimaryProjectile: {fileID: 1460229639031828944, guid: 2e2a2be913bdd204fa95084f901963f2,
     type: 3}
-  _SecondaryProjectile: {fileID: 0}
+  _SecondaryProjectile: {fileID: 7579317563433758575, guid: d5a42e911b58c714b8fe96a2b87d3ac8,
+    type: 3}

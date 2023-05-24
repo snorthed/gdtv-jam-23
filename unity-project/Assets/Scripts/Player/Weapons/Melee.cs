@@ -34,7 +34,7 @@ namespace Player.Weapons
 			}
 		}
 		
-		public override void BeginSecondaryAttack(Vector3 fireDirection)
+		public override void BeginSecondaryAttack(Vector3 fireDirection,bool holding)
 		{
 			Debug.Log("Start Smashing");
 			FireDirection = fireDirection;
