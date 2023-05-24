@@ -25,12 +25,13 @@ namespace Player.Weapons
 		{
 			while (true)
 			{
-				var primaryAttackCheck = Instantiate(weaponsSetup._PrimaryProjectile,this.transform);
-				primaryAttackCheck.transform.position = (transform.position+transform.forward*weaponsSetup._PrimaryRange);
-				primaryAttackCheck.GetComponent<SphereCollider>().radius = weaponsSetup._PrimaryRange;
-				Destroy(primaryAttackCheck,weaponsSetup._PrimarySpeed);
+				var setup = weaponsSetup.primary;
+				var primaryAttackCheck = Instantiate(setup.projectile,this.transform);
+				primaryAttackCheck.transform.position = (transform.position+transform.forward*setup.range);
+				primaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
+				Destroy(primaryAttackCheck,setup.speed);
 				
-				yield return new WaitForSeconds(weaponsSetup._PrimaryCooldown);
+				yield return new WaitForSeconds(setup.cooldown);
 			}
 		}
 		
@@ -50,16 +51,18 @@ namespace Player.Weapons
 		{
 			while (true)
 			{
-				var _secondaryAttackCheck = Instantiate(weaponsSetup._SecondaryProjectile, this.transform);
+				var setup = weaponsSetup.secondary;
+
+				var _secondaryAttackCheck = Instantiate(setup.projectile, this.transform);
 				
-				_secondaryAttackCheck.transform.position = (transform.position + transform.forward * weaponsSetup._SecondaryRange);
-				_secondaryAttackCheck.GetComponent<SphereCollider>().radius = weaponsSetup._SecondaryRange;
+				_secondaryAttackCheck.transform.position = (transform.position + transform.forward * setup.range);
+				_secondaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
 				_secondaryAttackCheck.GetComponent<ParticleSystem>().Play();
 				//var explosionPrefab = Instantiate(_explosionVFXPrefab);
 				//explosionPrefab.transform.position = _secondaryAttackCheck.transform.position;
-				Destroy(_secondaryAttackCheck, weaponsSetup._SecondarySpeed);
+				Destroy(_secondaryAttackCheck, setup.speed);
 
-				yield return new WaitForSeconds(weaponsSetup._SecondaryCooldown);
+				yield return new WaitForSeconds(setup.cooldown);
 			}
 		}
 
