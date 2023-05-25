@@ -15,6 +15,6 @@ MonoBehaviour:
   damage: 10
   range: 5
   speed: 1.5
-  cooldown: 5
-  projectile: {fileID: -2610955162761540205, guid: 7b88b2c1f593a1a4ba23ab0b7ce06b18,
+  cooldown: 1
+  projectile: {fileID: 2749955979786975264, guid: c755083f3bb8487479dd80dc6e5f4838,
     type: 3}

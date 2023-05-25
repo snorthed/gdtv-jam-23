@@ -6,8 +6,8 @@ namespace CommonComponents
 	public class Projectile : PooledObject
 	{
 
-		protected float _speed;
-		protected float _timeToLive;
+		 protected float _speed;
+		 protected float _timeToLive;
 		[field:SerializeField] public float Damage { get; private set; }
 		protected Vector3 _moveDir;
 
@@ -25,6 +25,7 @@ namespace CommonComponents
 
 		public virtual void Update()
 		{
+			
 			this.transform.position += (_moveDir * (_speed * Time.deltaTime));
 			_timeToLive -= Time.deltaTime;
 			if (_timeToLive <0f)

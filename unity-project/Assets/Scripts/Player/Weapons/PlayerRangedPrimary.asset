@@ -16,5 +16,5 @@ MonoBehaviour:
   range: 2
   speed: 20
   cooldown: 0.3
-  projectile: {fileID: 4786119992038555376, guid: 2e2a2be913bdd204fa95084f901963f2,
+  projectile: {fileID: -3172093380479723194, guid: 2e2a2be913bdd204fa95084f901963f2,
     type: 3}

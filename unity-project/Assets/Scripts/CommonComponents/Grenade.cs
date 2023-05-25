@@ -5,25 +5,36 @@ using UnityEngine;
 
 namespace CommonComponents
 {
-	public class Grenade : Projectile
+	public class Grenade : Projectile 
 	{
 
 		[SerializeField] GameObject explosion;
-		
-		
-		public override void Update()
+		bool isCoroutineStarted;
+
+        private void Start()
+        {
+			isCoroutineStarted = false;
+        }
+        public override void Update()
 		{
-			_timeToLive -= Time.deltaTime;
 			
-			if (_timeToLive <0f)
+			_timeToLive -= Time.deltaTime;
+			Debug.Log(_timeToLive);
+			if (_timeToLive<0)
+            {
+				_timeToLive = 0;
+            }
+			if (_timeToLive <= 0f&& !isCoroutineStarted)
 			{
+				
 				StartCoroutine(Explode());
 			}
 		}
 
         private IEnumerator Explode()
         {
-			Instantiate(explosion);
+			isCoroutineStarted = true;
+			Instantiate(explosion,this.transform.position,Quaternion.identity);
 			yield return new WaitForSeconds(_speed);
 			EndBullet();
         }
