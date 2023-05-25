@@ -10,7 +10,7 @@ namespace Enemy.States
 
 		public override EnemyState Tick()
 		{
-
+			return State;
 		}
 	}
 }

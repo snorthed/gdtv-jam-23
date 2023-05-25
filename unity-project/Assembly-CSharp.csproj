@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{44996401-0BC2-05A4-C38E-06E316D044A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,13 +56,6 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyAlertState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyBaseState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyStateMachine.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
-    <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\StateMachine\StateMachine.cs" />
@@ -73,15 +65,19 @@
     <Compile Include="Assets\Scripts\CommonComponents\Grenade.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IHealth.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\ObjectCachePool.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Debugger.cs" />
     <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyBaseState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
@@ -96,10 +92,36 @@
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\StateMachine\BaseState.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyAlertState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -883,7 +905,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

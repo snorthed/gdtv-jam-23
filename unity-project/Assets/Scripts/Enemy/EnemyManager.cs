@@ -9,7 +9,7 @@ namespace Enemy
 	[RequireComponent(typeof(SliderDisplay))]
 	public class EnemyManager : Damagable
 	{
-		private readonly StateMachine<EnemyState> _stateMachine;
+		private readonly StateMachine<EnemyState, EnemyBaseState> _stateMachine;
 		private EnemyMover _mover;
 
 		private SliderDisplay _hpBar;
