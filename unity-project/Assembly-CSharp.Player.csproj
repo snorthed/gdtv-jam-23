@@ -789,6 +789,14 @@
       <Project>{04DBC491-9BDB-A559-1570-E95DF5C64D5D}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.Player.csproj">
+      <Project>{48F48E43-5FBF-A3ED-75A9-5A688E3A8C57}</Project>
+      <Name>Unity.Recorder.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.Base.Player.csproj">
+      <Project>{283A8F68-D4AA-3153-3188-BF6DB275201F}</Project>
+      <Name>Unity.Recorder.Base.Player</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

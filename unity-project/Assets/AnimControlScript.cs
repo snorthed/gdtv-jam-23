@@ -17,6 +17,8 @@ namespace Player
         bool isPunching;
         bool isSmashing;
         bool isDodging;
+        bool isShooting;
+        public bool isCurrentWeaponRanged;
         Vector2 currentLookPosition;
         Vector2 currentMoveInput;
         Vector2 directionCurrentMove;
@@ -41,18 +43,39 @@ namespace Player
 
         public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            
+            if (playerController._currentWeapon == playerController.weapons[0])
+            {
+                playerAnimator.SetTrigger("primaryRangedShot");
+                
+            }
+            else
+            {
+                playerAnimator.SetInteger("primaryMeleePunchVaration", Random.Range(1, 3));
+                playerAnimator.SetTrigger("primaryMeleePunch");
+            }
         }
 
         public void OnSecondary(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            if (playerController._currentWeapon == playerController.weapons[0])
+            {
+                playerAnimator.ResetTrigger("secondaryRangedShot");
+            }
+            else
+            {
+                playerAnimator.ResetTrigger("secondaryMeleeBlast");
+            }
         }
 
         public void OnPrimaryCancel(InputAction.CallbackContext obj) {
             
         }
         public void OnSecondaryCancel(InputAction.CallbackContext obj)
+        {
+
+        }
+        public void OnSwapWeapon(InputAction.CallbackContext context)
         {
 
         }
@@ -73,6 +96,8 @@ namespace Player
             playerAnimator.SetFloat("moveY", directionCurrentMove.y);
             
         }
+
+        
     }
 }
 

@@ -21,7 +21,7 @@ namespace Player
 		private float _playerGrav;
 
 		#region Serialisation
-
+		public BaseWeapon[] weapons;
 		public BaseWeapon _currentWeapon;
 		[SerializeField] private float moveSpeed;
 		[SerializeField] private float gravityValue;
@@ -50,22 +50,24 @@ namespace Player
 			GetComponent<Collider>();
 			GetComponent<Rigidbody>();
 			_characterController = GetComponent<CharacterController>();
-
+			
 			CacheControls();
 
 			base.Awake();
 			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
 			hpSlider.MaxValue = MaxHP;
 			hpSlider.SetToMax();
-			HPChanged += hpSlider.SetValues;
+            HPChanged += hpSlider.SetValues;
+			_currentWeapon = weapons[0];
 		}
 
 
 		#region InputSetup
-		private PlayerInput _controls;
+        private PlayerInput _controls;
 		private InputAction _moveAction;
 		private InputAction _lookAction;
 		private InputAction _dodgeAction;
+		private InputAction _swapWeaponsAction;
 		private InputAction _secondaryAction;
 
 		private void CacheControls()
@@ -77,6 +79,7 @@ namespace Player
 			_primaryAction = _controls.Player.Primary;
 			_dodgeAction = _controls.Player.Dodge;
 			_secondaryAction = _controls.Player.Secondary;
+			_swapWeaponsAction = _controls.Player.SwapWeapon;
 
 			_moveAction.performed += AnimControlScript.OnMove;
 			_lookAction.performed += AnimControlScript.OnLook;
@@ -92,6 +95,7 @@ namespace Player
 			_primaryAction.canceled += OnPrimaryCancel;
 			_secondaryAction.started += OnSecondary;
 			_secondaryAction.canceled += OnSecondaryCancel;
+			_swapWeaponsAction.started += OnSwapWeapon;
 			
 		}
 
@@ -175,6 +179,19 @@ namespace Player
 			}
 		}
 
+		public void OnSwapWeapon(InputAction.CallbackContext context)
+        {
+			if (_currentWeapon == weapons[0])
+            {
+				_currentWeapon = weapons[1];
+				AnimControlScript.isCurrentWeaponRanged = false;
+            }
+			else
+            {
+				_currentWeapon = weapons[0];
+				AnimControlScript.isCurrentWeaponRanged = true;
+            }
+        }
 		public void OnMove(InputAction.CallbackContext context)
 		{
 			_currentMoveInputVector = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
@@ -211,5 +228,7 @@ namespace Player
 				StartCoroutine(DodgeCoolingDown());
 			}
 		}
-	}
+
+        
+    }
 }
