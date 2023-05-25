@@ -148,7 +148,7 @@ namespace Player
 			_playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
 
 			temp.y = _playerGrav;
-			playerMoveTarget.transform.position = temp*2;
+			//playerMoveTarget.transform.position = this.transform.position+_currentMoveInputVector.ToVector3TopDown()*(Time.deltaTime*moveSpeed);
 			_characterController.Move(temp);
 		}
 
