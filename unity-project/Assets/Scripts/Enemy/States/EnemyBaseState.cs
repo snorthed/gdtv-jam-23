@@ -6,10 +6,13 @@ namespace Enemy.States
 {
 	public abstract class EnemyBaseState : BaseState<EnemyState>
 	{
-		public PlayerController PlayerRef { get; set; }
+		protected EnemyStateContext Context;
 		protected EnemyBaseState(GameObject obj, EnemyState state) : base(obj, state)
 		{
 
 		}
+
+		public virtual EnemyState DamageTaken(float amount) => State;
+		public void SetContext(EnemyStateContext context) => Context = context;
 	}
 }

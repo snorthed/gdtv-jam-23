@@ -43,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
 
 	public void StopSpawn() => _isSpawning = false;
 
+	// ReSharper disable Unity.PerformanceAnalysis
 	private IEnumerator DoSpawn(int? number, float delay)
 	{
 		_isSpawning = true;

@@ -18,5 +18,9 @@ namespace CommonComponents.StateMachine
         }
 
 		public abstract E Tick();
+
+		public abstract void Activate();
+
+		public abstract void Deactivate();
 	}
 }

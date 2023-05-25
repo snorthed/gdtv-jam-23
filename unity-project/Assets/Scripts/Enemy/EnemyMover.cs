@@ -11,13 +11,24 @@ namespace Enemy
 	{
 		private NavMeshAgent _navMeshAgent;
 		[SerializeField] private float targetPositionUpdateFrequency = 2.0f;
-		public Transform Target { get => target; set => target = value; }
+		public Transform Target
+		{
+			get => target;
+			set
+			{
+				target = value;
+				hasTarget = target != null;
+			}
+		}
+
 		public Vector3 WalkPosition { get; set; }
 
 		float _timer = 2.0f;
 
 		[SerializeField] private Projectile bullet;
 		[SerializeField] private Transform target;
+		private bool hasTarget;
+
 
 		private void Awake()
 		{
@@ -29,7 +40,7 @@ namespace Enemy
 		void Update()
 		{
 			_timer -= Time.deltaTime;
-			if (_timer < 0f && target != null)
+			if (_timer < 0f && hasTarget && target.gameObject.activeInHierarchy)
 			{
 				_navMeshAgent.SetDestination(target.position);
 			}

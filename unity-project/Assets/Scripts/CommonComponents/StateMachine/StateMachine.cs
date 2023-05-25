@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Enemy.States;
 using UnityEngine;
 
 namespace CommonComponents.StateMachine
@@ -7,8 +8,8 @@ namespace CommonComponents.StateMachine
 	public abstract class StateMachine<E, T> : MonoBehaviour where E : Enum 
 																where T : BaseState<E>
 	{
-		private Dictionary<E, T> _stateDictionary;
-		private BaseState<E> _currentState;
+		protected Dictionary<E, T> _stateDictionary;
+		protected BaseState<E> CurrentState;
 
 		protected virtual void Awake()
 		{
@@ -22,19 +23,31 @@ namespace CommonComponents.StateMachine
 
 		public void Update()
 		{
-			var newStateEnum = _currentState.Tick();
-			if (!newStateEnum.Equals(_currentState.State))
+			var newStateEnum = CurrentState.Tick();
+			if (!newStateEnum.Equals(CurrentState.State))
 			{
-				SwapState(newStateEnum);
+				TrySwapState(newStateEnum);
 			}
+
+		}
+		protected virtual T TrySwapState(E newStateEnum)
+		{
+			if (!newStateEnum.Equals(CurrentState.State))
+			{
+				return SwapState(newStateEnum);
+			}
+			return (T)CurrentState;
 
 		}
 
 		protected virtual T SwapState(E newStateEnum)
 		{
-			_currentState = _stateDictionary[newStateEnum];
-			return (T)_currentState;
+			CurrentState.Deactivate();
+			CurrentState = _stateDictionary[newStateEnum];
+			CurrentState.Activate();
+			return (T)CurrentState;
 		}
+
 	}
 
 }

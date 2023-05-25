@@ -12,5 +12,12 @@ namespace Enemy.States
 		{
 			return State;
 		}
+
+		public override void Activate()
+		{
+			Context.Mover.Target = Context.PlayerCache.transform;
+		}
+
+		public override void Deactivate() { }
 	}
 }

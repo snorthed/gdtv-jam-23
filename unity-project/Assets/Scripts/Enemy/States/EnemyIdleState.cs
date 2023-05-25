@@ -14,11 +14,22 @@ namespace Enemy.States
 
         public override EnemyState Tick()
 		{
-			
-			var canSeePlayer = _gameObject.CanSeeTarget(PlayerRef.gameObject, 30f, 30f, LayerMask.GetMask("Player", "Terrain", "PlayerBullets"), PlayerRef.GetType());
+			var canSeePlayer = _gameObject.CanSeeTarget(Context.PlayerCache.gameObject,
+                                               30f,
+                                               30f,
+                                               LayerMask.GetMask("Player", "Terrain", "PlayerBullets"),
+                                               Context.PlayerCache.GetType());
 			
 			return canSeePlayer ? EnemyState.Alert : EnemyState.Idle;
 		}
 
-	}
+		public override void Activate()
+		{
+			Context.Mover.Target = null;
+		}
+
+		public override void Deactivate() {}
+
+		public override EnemyState DamageTaken(float amount) => EnemyState.Attack;
+    }
 }

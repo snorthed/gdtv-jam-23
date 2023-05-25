@@ -9,14 +9,20 @@ namespace Enemy
 	[RequireComponent(typeof(SliderDisplay))]
 	public class EnemyManager : Damagable
 	{
-		private readonly StateMachine<EnemyState, EnemyBaseState> _stateMachine;
+		private EnemyStateMachine _stateMachine;
 		private EnemyMover _mover;
 
 		private SliderDisplay _hpBar;
 
 		protected override void Awake()
 		{
+			_stateMachine = GetComponent<EnemyStateMachine>();
+			DamageTaken += _stateMachine.DamageTaken;
+			_stateMachine.AddState(new EnemyIdleState(gameObject));
+			_stateMachine.AddState(new EnemyAttackState(gameObject));
 			base.Awake();
+
+
 			_hpBar = GetComponent<SliderDisplay>();
 			HPChanged += _hpBar.SetValues;
 

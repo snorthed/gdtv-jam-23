@@ -14,20 +14,38 @@ namespace Enemy.States
 	}
 
     public class EnemyStateMachine : StateMachine<EnemyState, EnemyBaseState>
-    {
-		private PlayerController _playerCache;
+	{
+		private EnemyStateContext _context;
+		protected EnemyBaseState GetCurrentState => CurrentState as EnemyBaseState;
+
 
 		protected override void Awake()
 		{
-			_playerCache = SingletonRepo.PlayerObject;
+			_context = new EnemyStateContext()
+					   {
+						   EnemyManager = GetComponent<EnemyManager>(),
+						   PlayerCache = SingletonRepo.PlayerObject,
+						   Mover = GetComponent<EnemyMover>()
+					   };
 			base.Awake();
 		}
 
 		protected override EnemyBaseState SwapState(EnemyState newStateEnum)
 		{
-			var newState = base.SwapState(newStateEnum);
-			newState.PlayerRef = _playerCache;
+			var oldState = GetCurrentState;
+			oldState.Deactivate();
+			var newState = _stateDictionary[newStateEnum];
+			newState.SetContext(_context);
+			newState.Activate();
+			CurrentState = newState;
 			return newState;
+		}
+
+		
+		public void DamageTaken(float amount)
+		{
+			var newStateEnum = GetCurrentState.DamageTaken(amount);
+			TrySwapState(newStateEnum);
 		}
 	}
 }

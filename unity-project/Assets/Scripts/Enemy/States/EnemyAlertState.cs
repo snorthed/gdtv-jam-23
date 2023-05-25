@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Animations;
+using UnityEngine;
 
 namespace Enemy.States
 {
@@ -12,5 +13,12 @@ namespace Enemy.States
 		{
 			return State;
 		}
+
+		public override void Activate()
+		{
+
+		}
+
+		public override void Deactivate() {}
 	}
 }
