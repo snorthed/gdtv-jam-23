@@ -25,7 +25,6 @@ namespace Enemy
 
 		float _timer = 2.0f;
 
-		[SerializeField] private Projectile bullet;
 		[SerializeField] private Transform target;
 		private bool hasTarget;
 

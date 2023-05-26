@@ -44,8 +44,7 @@ namespace Player
 		{
 			AnimControlScript = GetComponent<AnimControlScript>();
 			animator = GetComponent<Animator>();
-			var repo = SingletonRepo.Instance;
-			repo.PlayerObject = this;
+			SingletonRepo.PlayerObject = this;
 			_camera = Camera.main;
 			GetComponent<Collider>();
 			GetComponent<Rigidbody>();
