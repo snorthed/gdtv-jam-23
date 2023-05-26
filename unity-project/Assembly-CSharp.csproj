@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
+    <Compile Include="Assets\Scripts\Management\GlobalMusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
@@ -73,12 +74,14 @@
     <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Management\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\SingletonActivator.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
     <Compile Include="Assets\Scripts\SingletonRepo.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IRespawnClient.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
@@ -86,17 +89,15 @@
     <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
+    <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
-    <Compile Include="Assets\Scripts\Management\GlobalMusicPlayer.cs" />
-    <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
-    <Compile Include="Assets\Scripts\Management\LevelLoader.cs" />
-    <Compile Include="Assets\Scripts\SingletonActivator.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\Map.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\MapModuleContact.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

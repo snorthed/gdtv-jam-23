@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
+    <Compile Include="Assets\Scripts\Management\GlobalMusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
@@ -73,12 +74,14 @@
     <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Management\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\SingletonActivator.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
     <Compile Include="Assets\Scripts\SingletonRepo.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IRespawnClient.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
@@ -86,12 +89,15 @@
     <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
+    <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\Map.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\MapModuleContact.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -99,8 +105,11 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Fonts\bigmacca\read me.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Fonts\sector_017\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Fonts\sector_017\read me.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
@@ -108,8 +117,11 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Fonts\potra\read-me.txt" />
+    <None Include="Assets\Fonts\multivac\multivac.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Fonts\bigmacca\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
