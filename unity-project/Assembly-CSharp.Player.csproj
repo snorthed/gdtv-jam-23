@@ -96,13 +96,12 @@
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\Level Generation\Map.cs" />
-    <Compile Include="Assets\Scripts\Level Generation\MapModuleContact.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Tiles.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Fonts\bigmacca\read me.txt" />
@@ -788,6 +787,10 @@
     <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
       <Project>{04DBC491-9BDB-A559-1570-E95DF5C64D5D}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Extras.Player.csproj">
+      <Project>{E913D1B9-230F-1877-1299-9E5B42AB0FF7}</Project>
+      <Name>Unity.2D.Tilemap.Extras.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
