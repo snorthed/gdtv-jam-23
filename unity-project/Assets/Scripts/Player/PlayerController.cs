@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using Helpers;
 using System.Collections;
 using CommonComponents;
 using CommonComponents.Interfaces;
-using UnityEngine.InputSystem.Interactions;
+
 
 namespace Player
 {
@@ -60,6 +61,7 @@ namespace Player
 		private InputAction _moveAction;
 		private InputAction _lookAction;
 		private InputAction _dodgeAction;
+		private InputAction _secondaryAction;
 
 		private void CacheControls()
 		{
@@ -68,14 +70,18 @@ namespace Player
 			_lookAction = _controls.Player.Look;
 			_primaryAction = _controls.Player.Primary;
 			_dodgeAction = _controls.Player.Dodge;
-
+			_secondaryAction = _controls.Player.Secondary;
+			
 			_dodgeAction.performed += OnDodge;
 			_moveAction.performed += OnMove;
 			_lookAction.performed += OnLook;
 			_primaryAction.started += OnPrimary;
 			_primaryAction.canceled += OnPrimaryCancel;
-
+			_secondaryAction.started += OnSecondary;
+			_secondaryAction.canceled += OnSecondaryCancel;
+			
 		}
+
 		private void OnEnable() { EnableControls(); }
 		private void EnableControls()
 		{
@@ -92,6 +98,7 @@ namespace Player
 			PlayerDodge();
 			PlayerMove();
 			UpdateLookDir();
+			
 		}
 
 		IEnumerator DodgeCoolingDown()
@@ -168,15 +175,19 @@ namespace Player
 		public void OnPrimary(InputAction.CallbackContext context) { _currentWeapon.BeginPrimaryAttack(_lookDir); }
 
 		private void OnPrimaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelPrimaryAttack(_lookDir); }
+		
 
-		public void OnSecondary(InputAction.CallbackContext context)
-		{
-			if (context.interaction is HoldInteraction hold)
-			{
-				
+		public void OnSecondary(InputAction.CallbackContext context) {
+			if (context.interaction is HoldInteraction)
+            {
+				bool holding = true;
+				_currentWeapon.BeginSecondaryAttack(_lookDir, holding);
 			}
+				
+         
 		}
 
+		private void OnSecondaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelSecondaryAttack(_lookDir); }
 		public void OnDodge(InputAction.CallbackContext context)
 		{
 			if (_canDodge)

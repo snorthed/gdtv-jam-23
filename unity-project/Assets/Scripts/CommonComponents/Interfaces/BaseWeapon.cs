@@ -1,4 +1,6 @@
-﻿
+﻿using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+
 using System;
 using Player.Weapons;
 using UnityEngine;
@@ -11,26 +13,29 @@ namespace CommonComponents.Interfaces
 
         [SerializeField] protected WeaponsSetup weaponsSetup;
 
-		protected ObjectCachePool<Lazor> PrimaryShotPool;
-		protected ObjectCachePool<Lazor> SecondaryShotPool;
+		 protected ObjectCachePool<Projectile> PrimaryShotPool;
+		 protected ObjectCachePool<Projectile> SecondaryShotPool;
 
 		public void Awake()
 		{
-			PrimaryShotPool = new ObjectCachePool<Lazor>(weaponsSetup.primary.projectile, 30);
+			PrimaryShotPool = new ObjectCachePool<Projectile>((Projectile)weaponsSetup.primary.projectile, 30);
+			SecondaryShotPool = new ObjectCachePool<Projectile>((Projectile)weaponsSetup.secondary.projectile, 30);
 		}
 
 		private void OnDestroy()
 		{
 			PrimaryShotPool.Destroy();
+			SecondaryShotPool.Destroy();
 		}
 
 		public abstract void BeginPrimaryAttack(Vector3 fireDirection);
-		public abstract void SecondaryAttack(Vector3 fireDirection);
+		public abstract void BeginSecondaryAttack(Vector3 fireDirection, bool interaction);
 		public virtual void CancelPrimaryAttack(Vector3 lookDir) { }
+		public virtual void CancelSecondaryAttack(Vector3 lookDir) { }
 
-		public Lazor GetNextBullet(WeaponMode mode)
+		public Projectile GetNextBullet(WeaponMode mode , ObjectCachePool<Projectile> objectCachePool)
 		{
-			var shot = PrimaryShotPool.PullObject();
+			var shot = objectCachePool.PullObject();
 			shot.Initialize(transform.position, mode.speed, mode.range, mode.damage);
 			return shot;
 		}
