@@ -1,4 +1,5 @@
-﻿using CommonComponents;
+﻿using System;
+using CommonComponents;
 using CommonComponents.StateMachine;
 using Enemy.States;
 using UI;
@@ -17,11 +18,9 @@ namespace Enemy
 		protected override void Awake()
 		{
 			_stateMachine = GetComponent<EnemyStateMachine>();
-			DamageTaken += _stateMachine.DamageTaken;
-			_stateMachine.AddState(new EnemyIdleState(gameObject));
-			_stateMachine.AddState(new EnemyAttackState(gameObject));
-			base.Awake();
 
+
+			base.Awake();
 
 			_hpBar = GetComponent<SliderDisplay>();
 			HPChanged += _hpBar.SetValues;
@@ -31,9 +30,19 @@ namespace Enemy
 			HPEmpty += OnDeath;
 		}
 
+		private void Start()
+		{
+			DamageTaken += _stateMachine.DamageTaken;
+			_stateMachine.AddState(new EnemyIdleState(gameObject));
+			_stateMachine.AddState(new EnemyAttackState(gameObject));
+
+
+		}
+
 		public void SetTarget(Transform newPos)
 		{
 			_mover.Target = newPos;
+
 		}
 
 		private void OnDeath()

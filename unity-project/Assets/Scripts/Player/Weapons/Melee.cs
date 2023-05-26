@@ -27,8 +27,8 @@ namespace Player.Weapons
 			{
 				var setup = weaponsSetup.primary;
 				var primaryAttackCheck = GetNextBullet(setup,PrimaryShotPool);
-				primaryAttackCheck.Initialize(transform.position + transform.forward * setup.range, setup.range, setup.speed, setup.damage);
-				primaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
+				primaryAttackCheck.Initialize(transform.position + transform.forward * setup.timeToLive, setup.timeToLive, setup.speed, setup.damage);
+				primaryAttackCheck.GetComponent<SphereCollider>().radius = setup.timeToLive;
 				
 				
 				yield return new WaitForSeconds(setup.cooldown);
@@ -54,8 +54,8 @@ namespace Player.Weapons
 				var setup = weaponsSetup.secondary;
 
 				var _secondaryAttackCheck = GetNextBullet(setup,SecondaryShotPool);
-				_secondaryAttackCheck.Initialize(transform.position + transform.forward * setup.range, setup.range, setup.speed, setup.damage);
-				_secondaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
+				_secondaryAttackCheck.Initialize(transform.position + transform.forward * setup.timeToLive, setup.timeToLive, setup.speed, setup.damage);
+				_secondaryAttackCheck.GetComponent<SphereCollider>().radius = setup.timeToLive;
 				_secondaryAttackCheck.GetComponent<ParticleSystem>().Play();
 				//var explosionPrefab = Instantiate(_explosionVFXPrefab);
 				//explosionPrefab.transform.position = _secondaryAttackCheck.transform.position;

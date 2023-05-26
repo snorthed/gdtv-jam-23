@@ -15,12 +15,13 @@ namespace Enemy.States
         public override EnemyState Tick()
 		{
 			var canSeePlayer = _gameObject.CanSeeTarget(Context.PlayerCache.gameObject,
-                                               30f,
-                                               30f,
-                                               LayerMask.GetMask("Player", "Terrain", "PlayerBullets"),
-                                               Context.PlayerCache.GetType());
-			
-			return canSeePlayer ? EnemyState.Alert : EnemyState.Idle;
+														30f,
+														30f,
+														LayerMask.GetMask("Player", "Terrain", "PlayerBullets"),
+														Context.PlayerCache.GetType(),
+														true);
+
+			return canSeePlayer ? EnemyState.Attack : EnemyState.Idle;
 		}
 
 		public override void Activate()

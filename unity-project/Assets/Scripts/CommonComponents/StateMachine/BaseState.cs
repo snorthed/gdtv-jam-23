@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CommonComponents.StateMachine
 {
-	public abstract class BaseState<E>
+	public abstract class BaseState<E> where E : Enum
 	{
 		protected readonly GameObject _gameObject;
 		protected readonly Transform _transform;

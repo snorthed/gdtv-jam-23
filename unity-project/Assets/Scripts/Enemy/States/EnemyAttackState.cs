@@ -18,6 +18,9 @@ namespace Enemy.States
 			Context.Mover.Target = Context.PlayerCache.transform;
 		}
 
-		public override void Deactivate() { }
+		public override void Deactivate()
+		{
+			Context.Mover.Target = null;
+		}
 	}
 }

@@ -38,7 +38,7 @@ namespace Player.Weapons
 				var setup = weaponsSetup.primary;
 				var lazer = GetNextBullet(weaponsSetup.primary, PrimaryShotPool);
 
-				lazer.Initialize(transform.position, setup.speed, setup.range, setup.damage);
+				lazer.Initialize(transform.position, setup.speed, setup.timeToLive, setup.damage);
 
 				lazer.Fire(FireDirection.normalized);
 				yield return new WaitForSeconds(setup.cooldown);
@@ -63,7 +63,7 @@ namespace Player.Weapons
 				yield return new WaitForEndOfFrame();
 			}
 
-            Mathf.Clamp(throwingPower, weaponsSetup.primary.range, setup.range);
+            Mathf.Clamp(throwingPower, weaponsSetup.primary.timeToLive, setup.timeToLive);
 			CancelSecondaryAttack(FireDirection);
         }
 		public override void CancelSecondaryAttack(Vector3 lookDir)
@@ -96,7 +96,7 @@ namespace Player.Weapons
 
 		private IEnumerator SecondaryAttackCooldown()
         {			
-			throwingPower = weaponsSetup.primary.range;
+			throwingPower = weaponsSetup.primary.timeToLive;
 			yield return new WaitForSeconds(weaponsSetup.secondary.cooldown);
         }
     }

@@ -1,4 +1,5 @@
-﻿using CommonComponents.StateMachine;
+﻿using System;
+using CommonComponents.StateMachine;
 using Player;
 
 namespace Enemy.States
@@ -16,7 +17,7 @@ namespace Enemy.States
     public class EnemyStateMachine : StateMachine<EnemyState, EnemyBaseState>
 	{
 		private EnemyStateContext _context;
-		protected EnemyBaseState GetCurrentState => CurrentState as EnemyBaseState;
+        protected EnemyBaseState GetCurrentState => CurrentState as EnemyBaseState;
 
 
 		protected override void Awake()
@@ -30,11 +31,25 @@ namespace Enemy.States
 			base.Awake();
 		}
 
+		protected void Start()
+		{
+			_context.PlayerCache = SingletonRepo.PlayerObject;
+		}
+
+		public override bool AddState(EnemyBaseState newState)
+		{
+			var result = base.AddState(newState);
+			newState.SetContext(_context);
+			return result;
+
+		}
+
 		protected override EnemyBaseState SwapState(EnemyState newStateEnum)
 		{
 			var oldState = GetCurrentState;
-			oldState.Deactivate();
-			var newState = _stateDictionary[newStateEnum];
+			oldState?.Deactivate();
+
+			var newState = StateDictionary[newStateEnum];
 			newState.SetContext(_context);
 			newState.Activate();
 			CurrentState = newState;

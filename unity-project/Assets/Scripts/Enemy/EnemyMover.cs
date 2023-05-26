@@ -9,8 +9,8 @@ namespace Enemy
 	[RequireComponent(typeof(NavMeshAgent))]
 	public class EnemyMover : MonoBehaviour
 	{
-		private NavMeshAgent _navMeshAgent;
-		[SerializeField] private float targetPositionUpdateFrequency = 2.0f;
+		protected NavMeshAgent _navMeshAgent;
+		[SerializeField] protected float targetPositionUpdateFrequency = 2.0f;
 		public Transform Target
 		{
 			get => target;
@@ -23,26 +23,32 @@ namespace Enemy
 
 		public Vector3 WalkPosition { get; set; }
 
-		float _timer = 2.0f;
+		protected float _moveAdjustmentTimer = 2.0f;
 
 		[SerializeField] private Transform target;
-		private bool hasTarget;
+		protected bool hasTarget;
 
 
-		private void Awake()
+		protected virtual void Awake()
 		{
 			_navMeshAgent = GetComponent<NavMeshAgent>();
-			_timer = targetPositionUpdateFrequency;
+			_moveAdjustmentTimer = targetPositionUpdateFrequency;
 		}
 		
 		// Update is called once per frame
-		void Update()
+		protected virtual void Update()
 		{
-			_timer -= Time.deltaTime;
-			if (_timer < 0f && hasTarget && target.gameObject.activeInHierarchy)
+			_moveAdjustmentTimer -= Time.deltaTime;
+			if (_moveAdjustmentTimer < 0f && hasTarget && target.gameObject.activeInHierarchy)
 			{
-				_navMeshAgent.SetDestination(target.position);
+				SetNavDestination(target.position);
 			}
+		}
+
+		protected void SetNavDestination(Vector3 targetPosition)
+		{
+			_navMeshAgent.SetDestination(targetPosition);
+			_moveAdjustmentTimer = targetPositionUpdateFrequency;
 		}
 	}
 }
