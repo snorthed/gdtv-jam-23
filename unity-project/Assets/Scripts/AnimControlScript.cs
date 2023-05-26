@@ -69,9 +69,9 @@ namespace Player
         }
         public void OnSwapWeapon(InputAction.CallbackContext context)
         {
+            Debug.Log("Weapon Swap animation should happen");
             if (playerController._currentWeapon == playerController.weapons[0])
             {
-                
                 playerAnimator.SetBool("isMelee", true);
             }
             else

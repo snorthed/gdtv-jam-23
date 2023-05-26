@@ -57,29 +57,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Grenade.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSTest.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\MeleeHit.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IHealth.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\ObjectCachePool.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
     <Compile Include="Assets\Scripts\Debugger.cs" />
     <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
-    <Compile Include="Assets\Scripts\AnimControlScript.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\OneshotParticleSystemsManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
     <Compile Include="Assets\Scripts\SingletonActivator.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
@@ -95,14 +87,22 @@
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\LoopingParticleSystemsManager.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\MouseFollow.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\MeleeHit.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\MouseFollow.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSDisplay.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\LoopingParticleSystemsManager.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSTest.cs" />
+    <Compile Include="Assets\Scripts\AnimControlScript.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\OneshotParticleSystemsManager.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\HandCannon.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -750,10 +750,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.Recorder.Editor.csproj">
-      <Project>{DBE41FFF-048F-B651-E8D1-D54F5A115450}</Project>
-      <Name>Unity.Recorder.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{29613A4B-E1A8-37C5-0D90-F8093376EE22}</Project>
       <Name>Unity.VSCode.Editor</Name>
@@ -858,17 +854,9 @@
       <Project>{6FD330D3-6435-7179-B98E-A47C3A6FEFD9}</Project>
       <Name>Unity.Animation.Rigging.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Recorder.csproj">
-      <Project>{1154844D-4E87-2222-7646-95D7BA43C74E}</Project>
-      <Name>Unity.Recorder</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
       <Project>{79F95D55-6622-212B-D52B-D12773221F04}</Project>
       <Name>Unity.VisualScripting.Flow.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Recorder.Base.csproj">
-      <Project>{15BC07CA-A2AA-5777-AB2B-8071EA002DA3}</Project>
-      <Name>Unity.Recorder.Base</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
       <Project>{B178F88C-16A6-41DF-C198-145D1F138C99}</Project>
@@ -989,6 +977,18 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{F67577C0-CD28-06F3-0B09-8407027F2EA1}</Project>
       <Name>Unity.VisualScripting.State</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.Editor.csproj">
+      <Project>{DBE41FFF-048F-B651-E8D1-D54F5A115450}</Project>
+      <Name>Unity.Recorder.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.csproj">
+      <Project>{1154844D-4E87-2222-7646-95D7BA43C74E}</Project>
+      <Name>Unity.Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Recorder.Base.csproj">
+      <Project>{15BC07CA-A2AA-5777-AB2B-8071EA002DA3}</Project>
+      <Name>Unity.Recorder.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
