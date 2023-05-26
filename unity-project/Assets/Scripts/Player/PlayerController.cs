@@ -172,7 +172,7 @@ namespace Player
 				dir.y = 0;
 				_lookDir = -dir;
 
-				//transform.forward = _lookDir;
+				transform.forward = _lookDir;
 
 				_currentWeapon.FireDirection = _lookDir;
 
@@ -184,12 +184,12 @@ namespace Player
 			if (_currentWeapon == weapons[0])
             {
 				_currentWeapon = weapons[1];
-				AnimControlScript.isCurrentWeaponRanged = false;
+				
             }
 			else
             {
 				_currentWeapon = weapons[0];
-				AnimControlScript.isCurrentWeaponRanged = true;
+				
             }
         }
 		public void OnMove(InputAction.CallbackContext context)
