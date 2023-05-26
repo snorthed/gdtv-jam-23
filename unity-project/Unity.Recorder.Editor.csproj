@@ -142,8 +142,8 @@
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\Recorders\_Inputs\Camera360\Camera360InputPropertyDrawer.cs" />
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\IAccumulation.cs" />
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\OutputPathDrawer.cs" />
-    <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\Recorders\_Legacy\PNG\PNGRecorder.cs" />
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\BaseTextureRecorder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\Recorders\_Legacy\PNG\PNGRecorder.cs" />
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\Recorders\_Inputs\RenderTexture\RenderTextureInputSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\Recorders\_Legacy\WEBM\WEBMRecorderSettingsEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.recorder@3.0.3\Editor\Sources\Recorders\_Inputs\Animation\AnimationInput.cs" />

@@ -26,10 +26,10 @@ namespace Player.Weapons
 			while (true)
 			{
 				var setup = weaponsSetup.primary;
-				var primaryAttackCheck = Instantiate(setup.projectile,this.transform);
-				primaryAttackCheck.transform.position = (transform.position+transform.forward*setup.range);
+				var primaryAttackCheck = GetNextBullet(setup,PrimaryShotPool);
+				primaryAttackCheck.Initialize(transform.position + transform.forward * setup.range, setup.range, setup.speed, setup.damage);
 				primaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
-				Destroy(primaryAttackCheck,setup.speed);
+				
 				
 				yield return new WaitForSeconds(setup.cooldown);
 			}
@@ -53,14 +53,13 @@ namespace Player.Weapons
 			{
 				var setup = weaponsSetup.secondary;
 
-				var _secondaryAttackCheck = Instantiate(setup.projectile, this.transform);
-				
-				_secondaryAttackCheck.transform.position = (transform.position + transform.forward * setup.range);
+				var _secondaryAttackCheck = GetNextBullet(setup,SecondaryShotPool);
+				_secondaryAttackCheck.Initialize(transform.position + transform.forward * setup.range, setup.range, setup.speed, setup.damage);
 				_secondaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
 				_secondaryAttackCheck.GetComponent<ParticleSystem>().Play();
 				//var explosionPrefab = Instantiate(_explosionVFXPrefab);
 				//explosionPrefab.transform.position = _secondaryAttackCheck.transform.position;
-				Destroy(_secondaryAttackCheck, setup.speed);
+				
 
 				yield return new WaitForSeconds(setup.cooldown);
 			}

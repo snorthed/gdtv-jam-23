@@ -57,15 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IKnockbackReaction.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Grenade.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSTest.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\MeleeHit.cs" />
@@ -77,7 +74,6 @@
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
     <Compile Include="Assets\Scripts\Debugger.cs" />
     <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyStateMachine.cs" />
@@ -100,7 +96,6 @@
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\StateMachine\BaseState.cs" />
@@ -108,9 +103,20 @@
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyAlertState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
-    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\MouseFollow.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\MeleeHit.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\MouseFollow.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSDisplay.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\LoopingParticleSystemsManager.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSTest.cs" />
+    <Compile Include="Assets\Scripts\AnimControlScript.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\OneshotParticleSystemsManager.cs" />
+    <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\ParticleManager.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\HandCannon.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Management\GlobalMusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
