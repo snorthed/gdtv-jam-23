@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da99d15ac3dd39e458d4e2e34c14a4ab
+guid: 6bce0bee1fd53ae4aa124026e9e49182
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Grenade Throw
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -62,11 +62,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: mixamo.com (1)
+      name: Grenade Throw (1)
       takeName: mixamo.com
-      internalID: -4469183485442372851
-      firstFrame: 60
-      lastFrame: 134
+      internalID: 3526523758429215521
+      firstFrame: 105
+      lastFrame: 165
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

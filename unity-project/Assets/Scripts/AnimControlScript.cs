@@ -38,6 +38,7 @@ namespace Player
 
         public void OnMove(InputAction.CallbackContext context)
         {
+            playerAnimator.SetBool("isRunning", true);
             currentMoveInput = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
         }
 
@@ -60,12 +61,16 @@ namespace Player
         {
             if (playerController._currentWeapon == playerController.weapons[0])
             {
-                playerAnimator.SetTrigger("secondaryRangedShot");
+                playerAnimator.SetTrigger("isHolding");
+                playerAnimator.ResetTrigger("isThrowing");
             }
             else
             {
-                playerAnimator.SetTrigger("secondaryMeleeBlast");
+                playerAnimator.SetTrigger("isHoldingMelee");
+                playerAnimator.ResetTrigger("isExplodingMelee");
             }
+                
+           
         }
         public void OnSwapWeapon(InputAction.CallbackContext context)
         {
@@ -97,11 +102,14 @@ namespace Player
         {
             if (playerController._currentWeapon == playerController.weapons[0])
             {
-                playerAnimator.ResetTrigger("secondaryRangedShot");
+                playerAnimator.ResetTrigger("isHolding");
+                playerAnimator.SetTrigger("isThrowing");
             }
             else
             {
-                playerAnimator.ResetTrigger("secondaryMeleeBlast");
+                playerAnimator.ResetTrigger("isHoldingMelee");
+                playerAnimator.SetTrigger("isExplodingMelee");
+                
             }
         }
         
@@ -116,7 +124,10 @@ namespace Player
         {
             
             directionCurrentMove = currentMoveInput.normalized - currentLookPosition.normalized;
-            
+            if (currentMoveInput == Vector2.zero)
+            {
+                playerAnimator.SetBool("isRunning", false);
+            }
             playerAnimator.SetFloat("moveX", directionCurrentMove.x);
             playerAnimator.SetFloat("moveY", directionCurrentMove.y);
             
