@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""419a0c22-b6c1-43f3-961b-a78ec95cffc0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -377,6 +386,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwapWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c2cbcc4-06e9-46d3-9a4d-69b94e7d91df"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -970,6 +990,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Secondary = m_Player.FindAction("Secondary", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_SwapWeapon = m_Player.FindAction("SwapWeapon", throwIfNotFound: true);
+        m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1049,6 +1070,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Secondary;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_SwapWeapon;
+    private readonly InputAction m_Player_Action;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -1059,6 +1081,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Secondary => m_Wrapper.m_Player_Secondary;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @SwapWeapon => m_Wrapper.m_Player_SwapWeapon;
+        public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1086,6 +1109,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SwapWeapon.started += instance.OnSwapWeapon;
             @SwapWeapon.performed += instance.OnSwapWeapon;
             @SwapWeapon.canceled += instance.OnSwapWeapon;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1108,6 +1134,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SwapWeapon.started -= instance.OnSwapWeapon;
             @SwapWeapon.performed -= instance.OnSwapWeapon;
             @SwapWeapon.canceled -= instance.OnSwapWeapon;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1296,6 +1325,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSecondary(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnSwapWeapon(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

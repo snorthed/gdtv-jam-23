@@ -23,11 +23,11 @@ namespace Enemy
 			base.Awake();
 
 			_hpBar = GetComponent<SliderDisplay>();
-			HPChanged += _hpBar.SetValues;
+			HPChangedEvent += _hpBar.SetValues;
+			HPEmpty += OnDeath;
 
 			_mover = GetComponent<EnemyMover>();
 
-			HPEmpty += OnDeath;
 		}
 
 		private void Start()
@@ -45,7 +45,7 @@ namespace Enemy
 
 		}
 
-		private void OnDeath()
+		private void OnDeath(Damagable damagable)
 		{
 			Destroy(this.gameObject);
 		}

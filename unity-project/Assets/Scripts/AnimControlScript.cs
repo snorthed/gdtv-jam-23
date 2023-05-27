@@ -24,8 +24,13 @@ namespace Player
         Vector2 directionCurrentMove;
         PlayerController playerController;
         [SerializeField]Animator playerAnimator;
-        
-        public void OnDodge(InputAction.CallbackContext context)
+
+
+		private static readonly int IsMelee = Animator.StringToHash("isMelee");
+		private static readonly int MoveX = Animator.StringToHash("moveX");
+		private static readonly int MoveY = Animator.StringToHash("moveY");
+
+		public void OnDodge(InputAction.CallbackContext context)
         {
             isDodging = true ;
 
@@ -68,42 +73,28 @@ namespace Player
             }
         }
         public void OnSwapWeapon(InputAction.CallbackContext context)
-        {
-            Debug.Log("Weapon Swap animation should happen");
-            if (playerController._currentWeapon == playerController.weapons[0])
-            {
-                playerAnimator.SetBool("isMelee", true);
-            }
-            else
-            {
-                playerAnimator.SetBool("isMelee",false);
-            }
-        }
+		{
+			Debug.Log("Weapon Swap animation should happen");
+			playerAnimator.SetBool(IsMelee, playerController._currentWeapon == playerController.weapons[0]);
+		}
 
-        public void OnPrimaryCancel(InputAction.CallbackContext obj)
-        {
-            if (playerController._currentWeapon == playerController.weapons[0])
-            {
-                playerAnimator.ResetTrigger("primaryRangedShot");
+		public void OnAction(InputAction.CallbackContext context)
+		{
+            // do nothing
+		}
 
-            }
-            else
-            {
-                
-                playerAnimator.ResetTrigger("primaryMeleePunch");
-            }
-        }
+		public void OnPrimaryCancel(InputAction.CallbackContext obj)
+		{
+			playerAnimator.ResetTrigger(playerController._currentWeapon == playerController.weapons[0]
+											? "primaryRangedShot"
+											: "primaryMeleePunch");
+		}
         public void OnSecondaryCancel(InputAction.CallbackContext obj)
-        {
-            if (playerController._currentWeapon == playerController.weapons[0])
-            {
-                playerAnimator.ResetTrigger("secondaryRangedShot");
-            }
-            else
-            {
-                playerAnimator.ResetTrigger("secondaryMeleeBlast");
-            }
-        }
+		{
+			playerAnimator.ResetTrigger(playerController._currentWeapon == playerController.weapons[0]
+											? "secondaryRangedShot"
+											: "secondaryMeleeBlast");
+		}
         
 
         private void Awake()
@@ -117,8 +108,8 @@ namespace Player
             
             directionCurrentMove = currentMoveInput.normalized - currentLookPosition.normalized;
             
-            playerAnimator.SetFloat("moveX", directionCurrentMove.x);
-            playerAnimator.SetFloat("moveY", directionCurrentMove.y);
+            playerAnimator.SetFloat(MoveX, directionCurrentMove.x);
+            playerAnimator.SetFloat(MoveY, directionCurrentMove.y);
             
         }
 
