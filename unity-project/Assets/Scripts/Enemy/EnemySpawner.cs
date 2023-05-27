@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
+using CommonComponents;
 using Enemy;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Damagable
 {
 	[SerializeField] private EnemyManager spawnObject;
 	[SerializeField] private Transform spawnPoint;
@@ -15,13 +16,14 @@ public class EnemySpawner : MonoBehaviour
 
 	private Transform _attackTarget;
 
-	private void Awake()
+	protected override void Awake()
 	{
 		if (spawnPoint == null)
 		{
 			spawnPoint = transform;
 		}
 
+		base.Awake();
 	}
 
 	private void Start()
