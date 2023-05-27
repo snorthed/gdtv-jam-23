@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
 	private void Start()
 	{
 		StartSpawn();
-		_attackTarget = SingletonRepo.Instance.PlayerObject.transform;
+		_attackTarget = SingletonRepo.PlayerObject.transform;
 
 	}
 	
@@ -43,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
 
 	public void StopSpawn() => _isSpawning = false;
 
+	// ReSharper disable Unity.PerformanceAnalysis
 	private IEnumerator DoSpawn(int? number, float delay)
 	{
 		_isSpawning = true;

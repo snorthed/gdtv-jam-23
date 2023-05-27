@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommonComponents.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CommonComponents
@@ -45,8 +46,11 @@ namespace CommonComponents
 		{
 			foreach (var pooledObject in _pool)
 			{
-				pooledObject.gameObject.SetActive(false);
-				MonoBehaviour.Destroy(pooledObject.gameObject, 0.1f);
+				if (!pooledObject.IsDestroyed())
+				{
+					pooledObject.gameObject.SetActive(false);
+					MonoBehaviour.Destroy(pooledObject.gameObject, 0.1f);
+				}
 			}
 			_pool.Clear();
 		}

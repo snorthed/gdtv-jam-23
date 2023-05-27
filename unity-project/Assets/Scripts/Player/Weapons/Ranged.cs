@@ -13,7 +13,7 @@ namespace Player.Weapons
 		private Coroutine _firing;
 		private Coroutine _throwing;
 		public float throwingPower;
-		IInputInteraction interaction;
+		//IInputInteraction interaction;
 		
 
 
@@ -38,7 +38,7 @@ namespace Player.Weapons
 				var setup = weaponsSetup.primary;
 				var lazer = GetNextBullet(weaponsSetup.primary, PrimaryShotPool);
 
-				lazer.Initialize(transform.position, setup.speed, setup.range, setup.damage);
+				lazer.Initialize(transform.position, setup.speed, setup.timeToLive, setup.damage);
 
 				lazer.Fire(FireDirection.normalized);
 				yield return new WaitForSeconds(setup.cooldown);
@@ -47,7 +47,8 @@ namespace Player.Weapons
 
 		public override void BeginSecondaryAttack(Vector3 fireDirection, bool interaction )
 		{
-			Debug.Log("Charging Throw");
+			
+			
 			FireDirection = fireDirection;
 			_throwing = StartCoroutine(ThrowingGrenade(interaction));
 			
@@ -59,26 +60,43 @@ namespace Player.Weapons
 			while (holding)
 			{
 				throwingPower += Time.deltaTime * setup.speed;
-				Debug.Log(throwingPower);
 				yield return new WaitForEndOfFrame();
 			}
 
-            Mathf.Clamp(throwingPower, weaponsSetup.primary.range, setup.range);
+            Mathf.Clamp(throwingPower, weaponsSetup.primary.timeToLive, setup.timeToLive);
 			CancelSecondaryAttack(FireDirection);
         }
-        public override void CancelSecondaryAttack(Vector3 lookDir)
-        {
-            StopCoroutine(_throwing);
+		public override void CancelSecondaryAttack(Vector3 lookDir)
+		{
+			StopCoroutine(_throwing);
 			var setup = weaponsSetup.secondary;
 
-			var grenade = GetNextBullet(setup,SecondaryShotPool);
-			grenade.transform.position = (transform.position + transform.up * throwingPower);
+			var grenade = GetNextBullet(setup, SecondaryShotPool);
+			Vector3 targetPosition = transform.position + transform.up * throwingPower;
+			grenade.Initialize(grenade.transform.position, setup.speed, setup.speed, setup.damage);
+			Rigidbody grenadeRigidbody = grenade.GetComponent<Rigidbody>();
+			
+			grenadeRigidbody.velocity = CalculateThrowVelocity(grenade.transform.position, targetPosition, 1.5f); // Adjust the multiplier as desired
+
 			StartCoroutine(SecondaryAttackCooldown());
 		}
 
-        private IEnumerator SecondaryAttackCooldown()
+		private Vector3 CalculateThrowVelocity(Vector3 start, Vector3 target, float timeMultiplier)
+		{
+			float maxHeight = 5f; // Adjust this value to control the maximum height of the throw
+			float timeToTarget = Mathf.Sqrt( 0.5f * maxHeight / Mathf.Abs(Physics.gravity.y)) / timeMultiplier; // Adjust the timeToTarget using the multiplier
+			float distanceToTarget = Vector3.Distance(start, target);
+			Vector3 velocityY = Vector3.up * Mathf.Abs(Physics.gravity.y) * timeToTarget;
+			Vector3 velocityXZ = (target - start) / timeToTarget;
+
+			return velocityXZ + velocityY;
+		}
+
+
+
+		private IEnumerator SecondaryAttackCooldown()
         {			
-			throwingPower = weaponsSetup.primary.range;
+			throwingPower = weaponsSetup.primary.timeToLive;
 			yield return new WaitForSeconds(weaponsSetup.secondary.cooldown);
         }
     }

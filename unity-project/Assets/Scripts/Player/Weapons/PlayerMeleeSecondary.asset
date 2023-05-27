@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerMeleeSecondary
   m_EditorClassIdentifier: 
   damage: 10
-  range: 5
-  speed: 5
+  range: 2
+  speed: 2
   cooldown: 5
-  projectile: {fileID: -3935744653669377292, guid: d5a42e911b58c714b8fe96a2b87d3ac8,
+  projectile: {fileID: 4987770809020089104, guid: d5a42e911b58c714b8fe96a2b87d3ac8,
     type: 3}

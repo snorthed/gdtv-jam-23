@@ -36,7 +36,7 @@ namespace CommonComponents.Interfaces
 		public Projectile GetNextBullet(WeaponMode mode , ObjectCachePool<Projectile> objectCachePool)
 		{
 			var shot = objectCachePool.PullObject();
-			shot.Initialize(transform.position, mode.speed, mode.range, mode.damage);
+			shot.Initialize(transform.position, mode.speed, mode.timeToLive, mode.damage);
 			return shot;
 		}
 	}

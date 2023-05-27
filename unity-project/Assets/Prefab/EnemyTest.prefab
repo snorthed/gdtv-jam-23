@@ -262,10 +262,10 @@ GameObject:
   - component: {fileID: 6421232978733109791}
   - component: {fileID: 6421232978733109776}
   - component: {fileID: 6421232978733109777}
-  - component: {fileID: 6421232978733109778}
-  - component: {fileID: 5437708705542712043}
+  - component: {fileID: 6421232977956512985}
   - component: {fileID: 6171795914165235460}
   - component: {fileID: 1199240187425447829}
+  - component: {fileID: 6421232977956512995}
   m_Layer: 7
   m_Name: EnemyTest
   m_TagString: Untagged
@@ -380,7 +380,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6421232978733109778
+--- !u!114 &6421232977956512985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,20 +389,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6421232978733109779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3809d11e838d7d54d90c24777a574bd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9953bc3d565572e4b83009a6f6d69e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
-  bullet: {fileID: 4786119992038555376, guid: 2f446eac191aee445add7b20bf2693eb, type: 3}
-  target: {fileID: 0}
---- !u!222 &5437708705542712043
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6421232978733109779}
-  m_CullTransparentMesh: 1
 --- !u!114 &6171795914165235460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,3 +422,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHP>k__BackingField: 10
   <CurrentHP>k__BackingField: 10
+--- !u!114 &6421232977956512995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421232978733109779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4eba6936df88d479ff761a9e0c7511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPositionUpdateFrequency: 2
+  target: {fileID: 0}
+  weaponSetup: {fileID: 11400000, guid: 3c6c9d4823352f745839d2eb4c33248d, type: 2}
+  takeShotRange: 20
+  StopMovingAtRange: 1
+  FireIfNotInRange: 1
