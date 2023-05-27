@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7331798215633157239}
   - component: {fileID: 4774722314164436766}
   - component: {fileID: -3172093380479723194}
+  - component: {fileID: 4786119992038555376}
   m_Layer: 8
   m_Name: Lazor
   m_TagString: Untagged
@@ -126,6 +127,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b9655d915390b44aa96e74b7e1dfef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 2
+--- !u!114 &4786119992038555376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460229639031828944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f818eac98f8bb574e8a89fcf69486c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 2
