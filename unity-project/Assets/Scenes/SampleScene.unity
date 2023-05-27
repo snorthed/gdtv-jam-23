@@ -1811,7 +1811,7 @@ PrefabInstance:
     - target: {fileID: 1402803385206640245, guid: 4c16fabc10a7a3d419aa1b67a4bf1df5,
         type: 3}
       propertyPath: orthographic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1402803385206640245, guid: 4c16fabc10a7a3d419aa1b67a4bf1df5,
         type: 3}
@@ -1826,7 +1826,7 @@ PrefabInstance:
     - target: {fileID: 1402803385345529717, guid: 4c16fabc10a7a3d419aa1b67a4bf1df5,
         type: 3}
       propertyPath: m_Lens.ModeOverride
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1402803385345529717, guid: 4c16fabc10a7a3d419aa1b67a4bf1df5,
         type: 3}
