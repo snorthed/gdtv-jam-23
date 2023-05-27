@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommonComponents;
+using CommonComponents.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
+using static CommonComponents.Damagable;
 
 namespace Environment
 {
@@ -12,6 +15,7 @@ namespace Environment
 		[SerializeField] private List<Damagable> keyEnemies;
 		[SerializeField] private bool requireAllConditions;
 		private bool _locked;
+		private int startNumEnemies;
 
 		private void Start()
 		{
@@ -24,24 +28,34 @@ namespace Environment
 			{
 				enemy.HPEmpty += OnKeyChange;
 			}
+
+			startNumEnemies = keyEnemies.Count;
 		}
 
 		private void OnKeyChange()
 		{
-			if (keys.Count > 0 )
+			bool canUnlock = false;
+			if (keys.Count > 0)
 			{
-				_locked |= keys.Any(console => !console.ActiveState);
-			}
-			
-			if(keyEnemies.Count > 0 && (requireAllConditions || keys.Count == 0) )
-			{
-				_locked |= keyEnemies.Any(d => d.CurrentHP < 0);
+				canUnlock |= keys.All(console => console.ActiveState);
 			}
 
-			if (!_locked)
+			if (startNumEnemies > 0 && (requireAllConditions || keys.Count == 0))
 			{
+				canUnlock |= keyEnemies.Count == 0;
+			}
+
+			if (canUnlock)
+			{
+				_locked = false;
 				this.gameObject.SetActive(false);
 			}
+		}
+
+		private void OnKeyChange(Damagable health)
+		{
+			keyEnemies.Remove(health);
+			OnKeyChange();
 		}
 	}
 }

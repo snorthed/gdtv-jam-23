@@ -1,13 +1,14 @@
 ﻿using System;
 using CommonComponents.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CommonComponents
 {
 	public abstract class Interactable : MonoBehaviour
 	{
 		[SerializeField] private string actionText;
-		[SerializeField] private string name;
+		[SerializeField] private string ItemName;
 
 		private void OnTriggerEnter(Collider other)
 		{

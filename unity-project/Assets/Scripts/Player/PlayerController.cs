@@ -61,7 +61,7 @@ namespace Player
 			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
 			hpSlider.MaxValue = MaxHP;
 			hpSlider.SetToMax();
-            HPChanged += hpSlider.SetValues;
+            HPChangedEvent += hpSlider.SetValues;
 			_currentWeapon = weapons[0];
 		}
 
