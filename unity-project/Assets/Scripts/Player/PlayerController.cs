@@ -45,11 +45,8 @@ namespace Player
 		protected override void Awake()
 		{
 			AnimControlScript = GetComponent<AnimControlScript>();
-			GetComponent<Animator>();
 			SingletonRepo.PlayerObject = this;
 			_camera = Camera.main;
-			GetComponent<Collider>();
-			GetComponent<Rigidbody>();
 			_characterController = GetComponent<CharacterController>();
 
 
@@ -105,13 +102,31 @@ namespace Player
 			_activateAction.performed += OnAction;
 		}
 
-		private void OnEnable() { EnableControls(); }
+		private void OnEnable()
+		{
+			EnableControls();
+			_characterController.enabled = true;
+		}
+
+		private void OnDisable()
+		{
+			EnableControls();
+			_characterController.enabled = false;
+		}
 		private void EnableControls()
 		{
 			_controls.Enable();
 			_controls.Player.Enable();
 			_canDodge = true;
 		}
+
+		private void DisableControls()
+		{
+			_controls.Disable();
+			_controls.Player.Disable();
+			_canDodge = false;
+		}
+
 
 		#endregion
 

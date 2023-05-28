@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6171795914165235460}
   - component: {fileID: 1199240187425447829}
   - component: {fileID: 6421232977956512995}
-  - component: {fileID: 1922951784616783420}
+  - component: {fileID: 4322283114775500304}
   m_Layer: 7
   m_Name: EnemyTest
   m_TagString: Untagged
@@ -441,7 +441,7 @@ MonoBehaviour:
   takeShotRange: 20
   StopMovingAtRange: 1
   FireIfNotInRange: 1
---- !u!114 &1922951784616783420
+--- !u!114 &4322283114775500304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -450,12 +450,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6421232978733109779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4eba6936df88d479ff761a9e0c7511, type: 3}
+  m_Script: {fileID: 11500000, guid: a0efce46666e1ae4b9a2dc421a0dccf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPositionUpdateFrequency: 2
-  target: {fileID: 0}
-  weaponSetup: {fileID: 11400000, guid: 3c6c9d4823352f745839d2eb4c33248d, type: 2}
-  takeShotRange: 20
-  StopMovingAtRange: 1
-  FireIfNotInRange: 1
+  activeStateList: 00000000

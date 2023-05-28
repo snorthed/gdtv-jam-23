@@ -50,5 +50,16 @@ namespace Enemy
 			_navMeshAgent.SetDestination(targetPosition);
 			_moveAdjustmentTimer = targetPositionUpdateFrequency;
 		}
+
+		public void OnEnable()
+		{
+			_navMeshAgent.enabled = true;
+		}
+
+		public void OnDisable()
+		{
+			_navMeshAgent.enabled = false;
+		}
+
 	}
 }
