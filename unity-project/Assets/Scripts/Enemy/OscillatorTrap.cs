@@ -19,7 +19,7 @@ public class OscillatorTrap : MonoBehaviour , IDamageDealer
 
 	float movementFactor;
 
-    public float Damage => throw new System.NotImplementedException();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -77,4 +77,6 @@ public class OscillatorTrap : MonoBehaviour , IDamageDealer
 		//keyEnemies.Remove(health);
 		OnKeyChange();
 	}
+
+	[field: SerializeField]public float Damage { get; set; }
 }
