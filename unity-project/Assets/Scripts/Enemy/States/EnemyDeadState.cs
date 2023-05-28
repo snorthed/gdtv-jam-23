@@ -2,9 +2,9 @@
 
 namespace Enemy.States
 {
-	public class EnemyAttackState : EnemyBaseState
+	public class EnemyDeadState : EnemyBaseState
 	{
-		public EnemyAttackState(GameObject obj, EnemyState state = EnemyState.Attack) : base(obj, state)
+		public EnemyDeadState(GameObject obj, EnemyState state = EnemyState.Dead) : base(obj, state)
 		{
 		}
 
@@ -15,13 +15,12 @@ namespace Enemy.States
 
 		public override void Activate()
 		{
-			Context.animator.SetBool("isRunning",true);
+			Context.animator.SetTrigger("isDead");
 			Context.Mover.Target = Context.PlayerCache.transform;
 		}
 
 		public override void Deactivate()
 		{
-			Context.animator.SetBool("isRunning", false);
 			Context.Mover.Target = null;
 		}
 	}

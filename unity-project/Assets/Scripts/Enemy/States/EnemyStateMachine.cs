@@ -1,6 +1,7 @@
 ﻿using System;
 using CommonComponents.StateMachine;
 using Player;
+using UnityEngine;
 
 namespace Enemy.States
 {
@@ -23,11 +24,13 @@ namespace Enemy.States
 		protected override void Awake()
 		{
 			_context = new EnemyStateContext()
-					   {
+			{
+				
 						   EnemyManager = GetComponent<EnemyManager>(),
 						   PlayerCache = SingletonRepo.PlayerObject,
-						   Mover = GetComponent<EnemyMover>()
-					   };
+						   Mover = GetComponent<EnemyMover>(),
+						   animator = GetComponent<Animator>(),
+			};
 			base.Awake();
 		}
 

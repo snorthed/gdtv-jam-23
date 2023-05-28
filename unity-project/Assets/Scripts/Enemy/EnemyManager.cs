@@ -26,7 +26,7 @@ namespace Enemy
 			_hpBar = GetComponent<SliderDisplay>();
 			HPChangedEvent += _hpBar.SetValues;
 			HPEmpty += OnDeath;
-
+			
 			_mover = GetComponent<EnemyMover>();
 
 		}
@@ -36,11 +36,11 @@ namespace Enemy
 			DamageTaken += _stateMachine.DamageTaken;
 			_stateMachine.AddState(new EnemyIdleState(gameObject));
 			_stateMachine.AddState(new EnemyAttackState(gameObject));
-
+			
 
 		}
 
-		public void SetTarget(Transform newPos)
+        public void SetTarget(Transform newPos)
 		{
 			_mover.Target = newPos;
 
