@@ -1,18 +1,38 @@
+using CommonComponents.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OscillatorTrap : MonoBehaviour
+public class OscillatorTrap : MonoBehaviour , IDamageDealer
 {
     Vector3 startingPosition;
     [SerializeField] Vector3 movementVector;
     [SerializeField] float period = 2f;
-    float movementFactor;
+	[SerializeField] private List<HackingConsole> keys;
+	//[SerializeField] private List<Damagable> keyEnemies;
+	[SerializeField] private bool requireAllConditions;
+	private bool _locked;
+	//private int startNumEnemies;
+
+	float movementFactor;
+
+    public float Damage => throw new System.NotImplementedException();
 
     // Start is called before the first frame update
     void Start()
     {
-        startingPosition = transform.position;
+		foreach (var interactable in keys)
+		{
+			interactable.Subscribe(OnKeyChange);
+		}
+
+		/*foreach (var enemy in keyEnemies)
+		{
+			enemy.HPEmpty += OnKeyChange;
+		}*/
+
+		startNumEnemies = keyEnemies.Count;
+		startingPosition = transform.position;
 
     }
 
@@ -27,4 +47,31 @@ public class OscillatorTrap : MonoBehaviour
         Vector3 offset = movementVector * movementFactor;
         transform.position = startingPosition + offset;
     }
+	
+
+	private void OnKeyChange()
+	{
+		bool canUnlock = false;
+		if (keys.Count > 0)
+		{
+			canUnlock |= keys.All(console => console.ActiveState);
+		}
+
+		/*if (startNumEnemies > 0 && (requireAllConditions || keys.Count == 0))
+		{
+			canUnlock |= keyEnemies.Count == 0;
+		}*/
+
+		if (canUnlock)
+		{
+			_locked = false;
+			this.gameObject.SetActive(false);
+		}
+	}
+
+	private void OnKeyChange(Damagable health)
+	{
+		keyEnemies.Remove(health);
+		OnKeyChange();
+	}
 }
