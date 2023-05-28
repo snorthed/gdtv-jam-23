@@ -27,8 +27,8 @@ namespace Player.Weapons
 			{
 				var setup = weaponsSetup.primary;
 				var primaryAttackCheck = GetNextBullet(setup,PrimaryShotPool);
-				primaryAttackCheck.Initialize(transform.position + transform.forward * setup.timeToLive, setup.timeToLive, setup.speed, setup.damage);
-				primaryAttackCheck.GetComponent<SphereCollider>().radius = setup.timeToLive;
+				primaryAttackCheck.Initialize(transform.position + transform.forward * setup.range, setup.range, setup.speed, setup.damage);
+				primaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
 				
 				
 				yield return new WaitForSeconds(setup.cooldown);
@@ -39,29 +39,31 @@ namespace Player.Weapons
 		{
 			Debug.Log("Start Smashing");
 			FireDirection = fireDirection;
-			_smashing = StartCoroutine(SmashingRepeater());
+			_smashing = StartCoroutine(SmashingRepeater(holding));
 		}
 		public override void CancelSecondaryAttack(Vector3 lookDir)
 		{
 			StopCoroutine(_smashing);
+			var setup = weaponsSetup.secondary;
+			var _secondaryAttackCheck = GetNextBullet(setup, SecondaryShotPool);
+			_secondaryAttackCheck.Initialize(transform.position + transform.forward * setup.range, setup.range, setup.speed, setup.damage);
+			_secondaryAttackCheck.GetComponent<SphereCollider>().radius = setup.range;
+			_secondaryAttackCheck.GetComponent<ParticleSystem>().Play();
 
 		}
 
-		private IEnumerator SmashingRepeater()
+		private IEnumerator SmashingRepeater(bool holding)
 		{
-			while (true)
+			
+			while (holding)
 			{
-				var setup = weaponsSetup.secondary;
 
-				var _secondaryAttackCheck = GetNextBullet(setup,SecondaryShotPool);
-				_secondaryAttackCheck.Initialize(transform.position + transform.forward * setup.timeToLive, setup.timeToLive, setup.speed, setup.damage);
-				_secondaryAttackCheck.GetComponent<SphereCollider>().radius = setup.timeToLive;
-				_secondaryAttackCheck.GetComponent<ParticleSystem>().Play();
+				
 				//var explosionPrefab = Instantiate(_explosionVFXPrefab);
 				//explosionPrefab.transform.position = _secondaryAttackCheck.transform.position;
 				
 
-				yield return new WaitForSeconds(setup.cooldown);
+				yield return new WaitForEndOfFrame();
 			}
 		}
 

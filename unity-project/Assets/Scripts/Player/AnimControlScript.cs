@@ -41,6 +41,7 @@ namespace Player
 
         public void OnMove(InputAction.CallbackContext context)
         {
+            playerAnimator.SetBool("isRunning", true);
             currentMoveInput = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
         }
 
@@ -63,12 +64,16 @@ namespace Player
         {
             if (playerController._currentWeapon == playerController.weapons[0])
             {
-                playerAnimator.SetTrigger("secondaryRangedShot");
+                playerAnimator.SetTrigger("isHolding");
+                playerAnimator.ResetTrigger("isThrowing");
             }
             else
             {
-                playerAnimator.SetTrigger("secondaryMeleeBlast");
+                playerAnimator.SetTrigger("isHoldingMelee");
+                playerAnimator.ResetTrigger("isExplodingMelee");
             }
+                
+           
         }
         public void OnSwapWeapon(InputAction.CallbackContext context)
 		{
@@ -88,11 +93,19 @@ namespace Player
 											: "primaryMeleePunch");
 		}
         public void OnSecondaryCancel(InputAction.CallbackContext obj)
-		{
-			playerAnimator.ResetTrigger(playerController._currentWeapon == playerController.weapons[0]
-											? "secondaryRangedShot"
-											: "secondaryMeleeBlast");
-		}
+        {
+            if (playerController._currentWeapon == playerController.weapons[0])
+            {
+                playerAnimator.ResetTrigger("isHolding");
+                playerAnimator.SetTrigger("isThrowing");
+            }
+            else
+            {
+                playerAnimator.ResetTrigger("isHoldingMelee");
+                playerAnimator.SetTrigger("isExplodingMelee");
+                
+            }
+        }
         
 
         private void Awake()
@@ -105,9 +118,12 @@ namespace Player
         {
             
             directionCurrentMove = currentMoveInput.normalized - currentLookPosition.normalized;
-            
-            playerAnimator.SetFloat(MoveX, directionCurrentMove.x);
-            playerAnimator.SetFloat(MoveY, directionCurrentMove.y);
+            if (currentMoveInput == Vector2.zero)
+            {
+                playerAnimator.SetBool("isRunning", false);
+            }
+            playerAnimator.SetFloat("moveX", directionCurrentMove.x);
+            playerAnimator.SetFloat("moveY", directionCurrentMove.y);
             
         }
 

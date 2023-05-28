@@ -11,6 +11,7 @@ namespace Enemy
 	public class EnemyManager : Damagable
 	{
 		private EnemyStateMachine _stateMachine;
+		public Animator enemyAnimator;
 		private EnemyMover _mover;
 
 		private SliderDisplay _hpBar;
