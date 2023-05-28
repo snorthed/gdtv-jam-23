@@ -18,8 +18,8 @@ namespace CommonComponents.Interfaces
 
 		public void Awake()
 		{
-			PrimaryShotPool = new ObjectCachePool<Projectile>((Projectile)weaponsSetup.primary.projectile, 30);
-			SecondaryShotPool = new ObjectCachePool<Projectile>((Projectile)weaponsSetup.secondary.projectile, 30);
+			PrimaryShotPool = new ObjectCachePool<Projectile>(weaponsSetup.primary.projectile, 30);
+			SecondaryShotPool = new ObjectCachePool<Projectile>(weaponsSetup.secondary.projectile, 30);
 		}
 
 		private void OnDestroy()

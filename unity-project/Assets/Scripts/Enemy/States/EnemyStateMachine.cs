@@ -29,8 +29,8 @@ namespace Enemy.States
 						   EnemyManager = GetComponent<EnemyManager>(),
 						   PlayerCache = SingletonRepo.PlayerObject,
 						   Mover = GetComponent<EnemyMover>(),
-						   animator = GetComponent<Animator>(),
 			};
+
 			base.Awake();
 		}
 

@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Enemy
 {
 	[RequireComponent(typeof(SliderDisplay))]
+	[RequireComponent(typeof(EnemyStateMachine))]
 	public class EnemyManager : Damagable
 	{
 		private EnemyStateMachine _stateMachine;

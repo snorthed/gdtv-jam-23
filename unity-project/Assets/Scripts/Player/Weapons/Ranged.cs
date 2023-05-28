@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using CommonComponents;
 using CommonComponents.Interfaces;
-using UnityEngine.InputSystem.Interactions;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 namespace Player.Weapons
