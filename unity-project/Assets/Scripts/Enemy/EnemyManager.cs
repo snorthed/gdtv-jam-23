@@ -11,6 +11,7 @@ namespace Enemy
 	[RequireComponent(typeof(SliderDisplay))]
 	public class EnemyManager : Damagable
 	{
+		public Animator enemyAnimator;
 		private EnemyMover _mover;
 		private SliderDisplay _hpBar;
 
