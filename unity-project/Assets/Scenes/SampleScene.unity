@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af71a9a8bdf45d44e8ac7f2c600ce500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MaxHP>k__BackingField: 0
+  <CurrentHP>k__BackingField: 0
   spawnObject: {fileID: 1199240187425447829, guid: 353502e9db2828e4fb474b1ca8921c03,
     type: 3}
   spawnPoint: {fileID: 1860444226}
