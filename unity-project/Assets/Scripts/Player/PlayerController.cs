@@ -15,7 +15,9 @@ namespace Player
 
 		private CharacterController _characterController;
 		AnimControlScript AnimControlScript;
-		Animator animator;
+		private InteractableActor _actor;
+
+
 		private Vector2 _currentLookPosition;
 		private Vector2 _currentMoveInputVector = Vector2.zero;
 		private float _playerGrav;
@@ -43,21 +45,20 @@ namespace Player
 		protected override void Awake()
 		{
 			AnimControlScript = GetComponent<AnimControlScript>();
-			animator = GetComponent<Animator>();
-			var repo = SingletonRepo.Instance;
-			repo.PlayerObject = this;
+			SingletonRepo.PlayerObject = this;
 			_camera = Camera.main;
-			GetComponent<Collider>();
-			GetComponent<Rigidbody>();
 			_characterController = GetComponent<CharacterController>();
-			
+
+
+			_actor = GetComponent<InteractableActor>();
+
 			CacheControls();
 
 			base.Awake();
 			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
 			hpSlider.MaxValue = MaxHP;
 			hpSlider.SetToMax();
-            HPChanged += hpSlider.SetValues;
+            HPChangedEvent += hpSlider.SetValues;
 			_currentWeapon = weapons[0];
 		}
 
@@ -69,6 +70,7 @@ namespace Player
 		private InputAction _dodgeAction;
 		private InputAction _swapWeaponsAction;
 		private InputAction _secondaryAction;
+		private InputAction _activateAction;
 
 		private void CacheControls()
 		{
@@ -80,6 +82,7 @@ namespace Player
 			_dodgeAction = _controls.Player.Dodge;
 			_secondaryAction = _controls.Player.Secondary;
 			_swapWeaponsAction = _controls.Player.SwapWeapon;
+			_activateAction = _controls.Player.Action;
 
 			_moveAction.performed += AnimControlScript.OnMove;
 			_lookAction.performed += AnimControlScript.OnLook;
@@ -96,16 +99,34 @@ namespace Player
 			_secondaryAction.started += OnSecondary;
 			_secondaryAction.canceled += OnSecondaryCancel;
 			_swapWeaponsAction.started += OnSwapWeapon;
-			
+			_activateAction.performed += OnAction;
 		}
 
-		private void OnEnable() { EnableControls(); }
+		private void OnEnable()
+		{
+			EnableControls();
+			_characterController.enabled = true;
+		}
+
+		private void OnDisable()
+		{
+			EnableControls();
+			_characterController.enabled = false;
+		}
 		private void EnableControls()
 		{
 			_controls.Enable();
 			_controls.Player.Enable();
 			_canDodge = true;
 		}
+
+		private void DisableControls()
+		{
+			_controls.Disable();
+			_controls.Player.Disable();
+			_canDodge = false;
+		}
+
 
 		#endregion
 
@@ -180,18 +201,15 @@ namespace Player
 		}
 
 		public void OnSwapWeapon(InputAction.CallbackContext context)
-        {
-			if (_currentWeapon == weapons[0])
-            {
-				_currentWeapon = weapons[1];
-				
-            }
-			else
-            {
-				_currentWeapon = weapons[0];
-				
-            }
-        }
+		{
+			_currentWeapon = _currentWeapon == weapons[0] ? weapons[1] : weapons[0];
+		}
+
+		public void OnAction(InputAction.CallbackContext context)
+		{
+			_actor.ActionCurrent();
+		}
+
 		public void OnMove(InputAction.CallbackContext context)
 		{
 			_currentMoveInputVector = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;

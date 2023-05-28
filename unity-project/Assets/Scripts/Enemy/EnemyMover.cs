@@ -9,42 +9,57 @@ namespace Enemy
 	[RequireComponent(typeof(NavMeshAgent))]
 	public class EnemyMover : MonoBehaviour
 	{
-		private NavMeshAgent _navMeshAgent;
-
-		public Transform Target { get => target; set => target = value; }
-
-		[SerializeField] float timer = 2.0f;
-
-		[SerializeField] private Projectile bullet;
-		[SerializeField] private Transform target;
-		private ObjectCachePool<Projectile> _lazerPool;
-
-		private void Awake()
+		protected NavMeshAgent _navMeshAgent;
+		[SerializeField] protected float targetPositionUpdateFrequency = 2.0f;
+		public Transform Target
 		{
-			_navMeshAgent = GetComponent<NavMeshAgent>();
-			_lazerPool = new ObjectCachePool<Projectile>(bullet, 5);
-		}
-		
-		// Update is called once per frame
-		void Update()
-		{
-			timer -= Time.deltaTime;
-			if (timer < 0f)
+			get => target;
+			set
 			{
-				var position = Target.position;
-				_navMeshAgent.SetDestination(position);
-				timer = 2.0f;
-
-				var myPos = transform.position;
-				var shot = _lazerPool.PullObject();
-				shot.Initialize(transform.position, 10, 10, 5);
-				shot.Fire((position - myPos).normalized);
+				target = value;
+				hasTarget = target != null;
 			}
 		}
 
-		private void OnDestroy()
+		public Vector3 WalkPosition { get; set; }
+
+		protected float _moveAdjustmentTimer = 2.0f;
+
+		[SerializeField] private Transform target;
+		protected bool hasTarget;
+
+
+		protected virtual void Awake()
 		{
-			_lazerPool.Destroy();
+			_navMeshAgent = GetComponent<NavMeshAgent>();
+			_moveAdjustmentTimer = targetPositionUpdateFrequency;
 		}
+		
+		// Update is called once per frame
+		protected virtual void Update()
+		{
+			_moveAdjustmentTimer -= Time.deltaTime;
+			if (_moveAdjustmentTimer < 0f && hasTarget && target.gameObject.activeInHierarchy)
+			{
+				SetNavDestination(target.position);
+			}
+		}
+
+		protected void SetNavDestination(Vector3 targetPosition)
+		{
+			_navMeshAgent.SetDestination(targetPosition);
+			_moveAdjustmentTimer = targetPositionUpdateFrequency;
+		}
+
+		public void OnEnable()
+		{
+			_navMeshAgent.enabled = true;
+		}
+
+		public void OnDisable()
+		{
+			_navMeshAgent.enabled = false;
+		}
+
 	}
 }

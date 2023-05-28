@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using Helpers;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -24,8 +22,13 @@ namespace Player
         Vector2 directionCurrentMove;
         PlayerController playerController;
         [SerializeField]Animator playerAnimator;
-        
-        public void OnDodge(InputAction.CallbackContext context)
+
+
+		private static readonly int IsMelee = Animator.StringToHash("isMelee");
+		private static readonly int MoveX = Animator.StringToHash("moveX");
+		private static readonly int MoveY = Animator.StringToHash("moveY");
+
+		public void OnDodge(InputAction.CallbackContext context)
         {
             isDodging = true ;
 
@@ -73,31 +76,22 @@ namespace Player
            
         }
         public void OnSwapWeapon(InputAction.CallbackContext context)
-        {
-            Debug.Log("Weapon Swap animation should happen");
-            if (playerController._currentWeapon == playerController.weapons[0])
-            {
-                playerAnimator.SetBool("isMelee", true);
-            }
-            else
-            {
-                playerAnimator.SetBool("isMelee",false);
-            }
-        }
+		{
+			Debug.Log("Weapon Swap animation should happen");
+			playerAnimator.SetBool(IsMelee, playerController._currentWeapon == playerController.weapons[0]);
+		}
 
-        public void OnPrimaryCancel(InputAction.CallbackContext obj)
-        {
-            if (playerController._currentWeapon == playerController.weapons[0])
-            {
-                playerAnimator.ResetTrigger("primaryRangedShot");
+		public void OnAction(InputAction.CallbackContext context)
+		{
+            // do nothing
+		}
 
-            }
-            else
-            {
-                
-                playerAnimator.ResetTrigger("primaryMeleePunch");
-            }
-        }
+		public void OnPrimaryCancel(InputAction.CallbackContext obj)
+		{
+			playerAnimator.ResetTrigger(playerController._currentWeapon == playerController.weapons[0]
+											? "primaryRangedShot"
+											: "primaryMeleePunch");
+		}
         public void OnSecondaryCancel(InputAction.CallbackContext obj)
         {
             if (playerController._currentWeapon == playerController.weapons[0])
@@ -133,7 +127,16 @@ namespace Player
             
         }
 
-        
-    }
+
+		private void OnEnable()
+		{
+			playerAnimator.enabled = true;
+		}
+
+		private void OnDisable()
+		{
+			playerAnimator.enabled = false;
+		}
+	}
 }
 

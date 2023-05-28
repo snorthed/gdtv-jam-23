@@ -5,8 +5,13 @@ using UnityEngine;
 namespace CommonComponents
 {
 	public delegate void DamageTaken(float amount);
-	public class Damagable : MonoBehaviour, IHealth
+	public class Damagable : MonoBehaviour
 	{
+
+		
+		public delegate void HPChanged(float changeBy, float newHP) ;
+		public delegate void Death(Damagable obj);
+
 		protected virtual void Awake()
 		{
 			DamageTaken += OnDamageTaken;
@@ -17,11 +22,11 @@ namespace CommonComponents
 			CurrentHP -= amount;
 			if (CurrentHP > 0.0f)
 			{
-				HPChanged?.Invoke(amount, CurrentHP);
+				HPChangedEvent?.Invoke(amount, CurrentHP);
 			}
 			else
 			{
-				HPEmpty?.Invoke();
+				HPEmpty?.Invoke(this);
 			}
 		}
 
@@ -35,9 +40,11 @@ namespace CommonComponents
 			}
 		}
 
+		
+
 		[field: SerializeField] public float MaxHP { get; set; }
 		[field: SerializeField]public float CurrentHP { get; set; }
-		public event HPChanged HPChanged;
+		public event HPChanged HPChangedEvent;
 		public event Death HPEmpty;
 	}
 }

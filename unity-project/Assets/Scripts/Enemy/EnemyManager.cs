@@ -1,39 +1,56 @@
 ﻿using System;
 using CommonComponents;
-using CommonComponents.Interfaces;
-using Environment;
+using CommonComponents.StateMachine;
+using Enemy.States;
 using UI;
 using UnityEngine;
 
 namespace Enemy
 {
-	[RequireComponent(typeof(EnemyMover))]
 	[RequireComponent(typeof(SliderDisplay))]
 	public class EnemyManager : Damagable
 	{
+		private EnemyStateMachine _stateMachine;
 		public Animator enemyAnimator;
 		private EnemyMover _mover;
+
 		private SliderDisplay _hpBar;
 
 		protected override void Awake()
 		{
+			_stateMachine = GetComponent<EnemyStateMachine>();
+
+
 			base.Awake();
+
 			_hpBar = GetComponent<SliderDisplay>();
-			HPChanged += _hpBar.SetValues;
+			HPChangedEvent += _hpBar.SetValues;
+			HPEmpty += OnDeath;
 
 			_mover = GetComponent<EnemyMover>();
 
-			HPEmpty += OnDeath;
+		}
+
+		private void Start()
+		{
+			DamageTaken += _stateMachine.DamageTaken;
+			_stateMachine.AddState(new EnemyIdleState(gameObject));
+			_stateMachine.AddState(new EnemyAttackState(gameObject));
+
+
 		}
 
 		public void SetTarget(Transform newPos)
 		{
 			_mover.Target = newPos;
+
 		}
 
-		private void OnDeath()
+		private void OnDeath(Damagable damagable)
 		{
 			Destroy(this.gameObject);
 		}
+
 	}
+
 }
