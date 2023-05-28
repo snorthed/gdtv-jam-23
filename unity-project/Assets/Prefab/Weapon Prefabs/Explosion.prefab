@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9077586666200928548}
   - component: {fileID: 2737702115211932691}
   - component: {fileID: 1949879946280391584}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7579317563433758575}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: -722165715685417703}
-  explosionVFX: {fileID: 2737702115211932691}
 --- !u!198 &2737702115211932691
 ParticleSystem:
   m_ObjectHideFlags: 0

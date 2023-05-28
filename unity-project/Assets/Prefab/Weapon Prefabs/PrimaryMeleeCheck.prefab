@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -89248119692412305}
   - component: {fileID: 5286124137464500427}
   - component: {fileID: -3964527361250560107}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: PrimaryMeleeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5946740474565919704}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
