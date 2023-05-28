@@ -26,6 +26,7 @@ namespace Enemy.States
 
 		public override void Activate()
 		{
+			
 			Context.Mover.Target = null;
 		}
 

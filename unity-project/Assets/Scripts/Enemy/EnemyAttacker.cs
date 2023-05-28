@@ -1,16 +1,14 @@
 ﻿using CommonComponents;
 using Player.Weapons;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Enemy
 {
-	public class EnemyAttacker : EnemyMover
+    public class EnemyAttacker : EnemyMover
 	{
 		[SerializeField] private WeaponMode weaponSetup;
 		[SerializeField] private float takeShotRange;
-
+		Animator animator;
 		[SerializeField] private bool StopMovingAtRange;
 		[SerializeField] private bool FireIfNotInRange;
 
@@ -21,6 +19,7 @@ namespace Enemy
 		protected override void Awake()
 		{
 			base.Awake();
+
 			_bulletPool = new ObjectCachePool<Projectile>(weaponSetup.projectile, 5);
 		}
 
@@ -38,6 +37,8 @@ namespace Enemy
 				var bullet = _bulletPool.PullObject();
 				var position = transform.position;
 				bullet.Initialize(position, weaponSetup.speed, weaponSetup.timeToLive, weaponSetup.damage);
+				animator = GetComponent<EnemyManager>().enemyAnimator;
+				animator.SetTrigger("isShooting");
 				bullet.Fire((Target.position - position).normalized);
 				_shotCooldown = weaponSetup.cooldown;
 			}
