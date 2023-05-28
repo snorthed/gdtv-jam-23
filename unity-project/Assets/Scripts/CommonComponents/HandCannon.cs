@@ -19,5 +19,9 @@ namespace CommonComponents
             yield return new WaitForSeconds(_timeToLive);
             EndBullet();
         }
+        public override void OnTriggerEnter(Collider other)
+        {
+            Debug.Log(other.name);
+        }
     }
 }
