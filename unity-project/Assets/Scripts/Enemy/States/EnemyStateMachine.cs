@@ -47,7 +47,7 @@ namespace Enemy.States
 
 		}
 
-		protected override EnemyBaseState SwapState(EnemyState newStateEnum)
+		public override EnemyBaseState SwapState(EnemyState newStateEnum)
 		{
 			var oldState = GetCurrentState;
 			oldState?.Deactivate();

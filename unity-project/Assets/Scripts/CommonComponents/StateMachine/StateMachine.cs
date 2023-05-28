@@ -28,7 +28,7 @@ namespace CommonComponents.StateMachine
 			TrySwapState(newStateEnum);
 
 		}
-		protected virtual T TrySwapState(E newStateEnum)
+		public virtual T TrySwapState(E newStateEnum)
 		{
 			if (!newStateEnum.Equals(CurrentState.State))
 			{
@@ -38,7 +38,7 @@ namespace CommonComponents.StateMachine
 
 		}
 
-		protected virtual T SwapState(E newStateEnum)
+		public virtual T SwapState(E newStateEnum)
 		{
 			CurrentState.Deactivate();
 			CurrentState = StateDictionary[newStateEnum];

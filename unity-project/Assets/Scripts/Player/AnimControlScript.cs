@@ -1,3 +1,4 @@
+using CommonComponents;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -126,7 +127,12 @@ namespace Player
             playerAnimator.SetFloat("moveY", directionCurrentMove.y);
             
         }
-
+        public void OnDeath(Damagable damagable)
+        {
+            playerAnimator.SetTrigger("isDead");
+            playerAnimator.SetLayerWeight(1, 0f);
+            playerAnimator.SetLayerWeight(2, 0f);
+        }
 
 		private void OnEnable()
 		{
