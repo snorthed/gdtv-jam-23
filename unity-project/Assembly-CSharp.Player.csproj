@@ -59,6 +59,9 @@
     <Compile Include="Assets\Scripts\UI\PlayerUIManager.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Behaviors\KnockbackTrigger.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\StateMachine\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Management\GlobalMusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IGameStateSubscriber.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Environment\RespawnPoint.cs" />
     <Compile Include="Assets\Scripts\Enemy\FloorTrap.cs" />
@@ -68,65 +71,62 @@
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
+    <Compile Include="Assets\Scripts\Management\GameStateManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\MeleeHit.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IHealth.cs" />
     <Compile Include="Assets\Scripts\Enemy\OscillatorTrap.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Ranged.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\ObjectCachePool.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAttacker.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
     <Compile Include="Assets\Scripts\Debugger.cs" />
     <Compile Include="Assets\Scripts\Behaviors\RespawnBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Damagable.cs" />
+    <Compile Include="Assets\Scripts\Environment\HackingConsole.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
     <Compile Include="Assets\Scripts\Player\AnimControlScript.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\OneshotParticleSystemsManager.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\HandCannon.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Interfaces\InteractableActor.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Management\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyDeadState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyBaseState.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\GameStateModifier.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
+    <Compile Include="Assets\Scripts\Environment\ObjectiveDoor.cs" />
     <Compile Include="Assets\Scripts\SingletonRepo.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\Interactable.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\Melee.cs" />
     <Compile Include="Assets\Scripts\Behaviors\IRespawnClient.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\PooledObject.cs" />
     <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyStateContext.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
+    <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\LoopingParticleSystemsManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
+    <Compile Include="Assets\Scripts\CommonComponents\StateMachine\BaseState.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\Enemy\States\EnemyAlertState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IDamageDealer.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\MouseFollow.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyStateMachine.cs" />
-    <Compile Include="Assets\Scripts\Management\GlobalMusicPlayer.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\GameStateModifier.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Interfaces\InteractableActor.cs" />
-    <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAttacker.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
-    <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Interactable.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyAlertState.cs" />
-    <Compile Include="Assets\Scripts\Management\LevelLoader.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyStateContext.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\Interfaces\IGameStateSubscriber.cs" />
-    <Compile Include="Assets\Scripts\Management\GameStateManager.cs" />
-    <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
-    <Compile Include="Assets\Scripts\Environment\HackingConsole.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\StateMachine\BaseState.cs" />
-    <Compile Include="Assets\Scripts\CommonComponents\StateMachine\StateMachine.cs" />
-    <Compile Include="Assets\Scripts\Environment\ObjectiveDoor.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyBaseState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\EnemyDeadState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -819,6 +819,10 @@
       <Project>{0D41E55D-0628-36CB-C382-D656362058B9}</Project>
       <Name>Unity.Burst.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.Player.csproj">
+      <Project>{CC77EF1C-7889-917C-5774-6977BC8E18A0}</Project>
+      <Name>Unity.Postprocessing.Runtime.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player.csproj">
       <Project>{41DF36AE-A3F8-4BD7-E1BC-A3AE10389B3B}</Project>
       <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player</Name>
@@ -826,10 +830,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
       <Project>{04DBC491-9BDB-A559-1570-E95DF5C64D5D}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Postprocessing.Runtime.Player.csproj">
-      <Project>{CC77EF1C-7889-917C-5774-6977BC8E18A0}</Project>
-      <Name>Unity.Postprocessing.Runtime.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
