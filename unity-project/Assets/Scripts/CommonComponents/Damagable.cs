@@ -39,10 +39,17 @@ namespace CommonComponents
 				DamageTaken?.Invoke(damage.Damage);
 			}
 		}
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+			if (collision.gameObject.TryGetComponent<IDamageDealer>(out var damage))
+			{
+				DamageTaken?.Invoke(damage.Damage);
+			}
+		}
 
-		
 
-		[field: SerializeField] public float MaxHP { get; set; }
+
+        [field: SerializeField] public float MaxHP { get; set; }
 		[field: SerializeField]public float CurrentHP { get; set; }
 		public event HPChanged HPChangedEvent;
 		public event Death HPEmpty;

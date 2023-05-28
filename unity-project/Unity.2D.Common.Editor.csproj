@@ -56,12 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\TextureGenerator\TextureGeneratorHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\InspectorUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\ImagePacker\ImagePacker.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\TextureGenerator\TextureGeneratorHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\ImagePacker\Jobs\FindTightRectJob.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\ImagePacker\ImagePackNode.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\ImagePacker\Jobs\FindTightRectJob.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\InspectorUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.common@6.0.6\Editor\ImagePacker\ImagePackerDebugEditor.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -347,14 +347,14 @@
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.4\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.4\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.3\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.4\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

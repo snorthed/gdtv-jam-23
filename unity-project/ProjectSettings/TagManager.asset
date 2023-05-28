@@ -19,10 +19,10 @@ TagManager:
   - Interactables
   - Traps
   - Hacking
-  - 
-  - 
-  - 
-  - 
+  - HackingEnemyProjectiles
+  - HackingPlayerProjectiles
+  - HackingPlayer
+  - HackingEnemy
   - 
   - 
   - 

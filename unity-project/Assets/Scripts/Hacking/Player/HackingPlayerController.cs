@@ -8,18 +8,20 @@ using UnityEngine.InputSystem;
 public class HackingPlayerController :  Damagable, PlayerInput.IPlayerActions
 {
 
-	private CharacterController _characterController;
+	
 
-
-	private Vector2 _currentLookPosition;
+    
+    public Vector2 _currentLookPosition;
 	private Vector2 _currentMoveInputVector = Vector2.zero;
 	private float _playerGrav;
 
 	#region Serialisation
+	public HackingBullet hackingBullet;
+	public HackingGrenade hackingGrenade;
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private float gravityValue;
 	private Camera _camera;
-	private Vector3 _lookDir;
+	
 	private InputAction _primaryAction;
 	[SerializeField] private float _dodgePower;
 	[SerializeField] private float _dodgeCooldown;
@@ -29,25 +31,24 @@ public class HackingPlayerController :  Damagable, PlayerInput.IPlayerActions
 	[SerializeField] private float dodgeDuration;
 	[SerializeField] GameObject playerAimTarget;
 	[SerializeField] GameObject playerMoveTarget;
-
+	Vector2 lookDir;
 	#endregion
 
 	// Start is called before the first frame update
-	public  void Awake()
+	public new void Awake()
 	{
 		
 		
 		_camera = Camera.main;
-		_characterController = GetComponent<CharacterController>();
 
-
+		base.Awake();
 		CacheControls();
 
 		
-		var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
-		hpSlider.MaxValue = MaxHP;
-		hpSlider.SetToMax();
-		HPChangedEvent += hpSlider.SetValues;
+		//var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
+		//hpSlider.MaxValue = MaxHP;
+		//hpSlider.SetToMax();
+		//HPChangedEvent += hpSlider.SetValues;
 		
 	}
 
@@ -60,6 +61,10 @@ public class HackingPlayerController :  Damagable, PlayerInput.IPlayerActions
 	private InputAction _swapWeaponsAction;
 	private InputAction _secondaryAction;
 	private InputAction _activateAction;
+
+    public HackingPlayerController()
+    {
+    }
     #endregion
     private void CacheControls()
 	{
@@ -87,7 +92,7 @@ public class HackingPlayerController :  Damagable, PlayerInput.IPlayerActions
 
     private void OnPrimaryCancel(InputAction.CallbackContext obj)
     {
-        throw new NotImplementedException();
+		Debug.Log("primaryCancel");
     }
 
     private void OnSecondaryCancel(InputAction.CallbackContext obj)
@@ -98,13 +103,13 @@ public class HackingPlayerController :  Damagable, PlayerInput.IPlayerActions
     private void OnEnable()
 	{
 		EnableControls();
-		_characterController.enabled = true;
+		
 	}
 
 	private void OnDisable()
 	{
 		EnableControls();
-		_characterController.enabled = false;
+		
 	}
 	private void EnableControls()
 	{
@@ -113,63 +118,80 @@ public class HackingPlayerController :  Damagable, PlayerInput.IPlayerActions
 		_canDodge = true;
 	}
 
-	private void DisableControls()
+	public void DisableControls()
 	{
 		_controls.Disable();
 		_controls.Player.Disable();
 		_canDodge = false;
 	}
-	void Start()
-    {
-        inputActions = GetComponent<PlayerInput>();
-    }
+	
 
     // Update is called once per frame
     void Update()
     {
+
+		//PlayerDodge();
+		PlayerMove();
+		UpdateLookDir();
+	}
+    public void PlayerMove()
+    {
+        var temp = _currentMoveInputVector.normalized * (Time.deltaTime * moveSpeed);
+
         
+        transform.Translate(temp);
     }
-    private void PlayerMove()
+	private void UpdateLookDir()
     {
-        var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
+		lookDir = Camera.main.ScreenToWorldPoint(_currentLookPosition) - transform.position;
+		//Debug.Log(lookAngle);
+		playerAimTarget.transform.position = Camera.main.ScreenToWorldPoint(_currentLookPosition);
+		float lookAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
-        _playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
-
-        temp.y = _playerGrav;
-        //playerMoveTarget.transform.position = this.transform.position+_currentMoveInputVector.ToVector3TopDown()*(Time.deltaTime*moveSpeed);
-        _characterController.Move(temp);
+		transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.forward);
     }
-    public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
+	
+		
+
+
+
+	
+	public void OnMove(InputAction.CallbackContext context)
+    {
+		_currentMoveInputVector = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
+	}
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+		_currentLookPosition = !context.canceled ? context.ReadValue<Vector2>() : Vector2.zero;
+	}
+
+    public void OnPrimary(InputAction.CallbackContext context)
+    {
+		var newBullet = Instantiate(hackingBullet,transform.position,Quaternion.identity);
+		newBullet.moveVector = lookDir.normalized;
+		Debug.Log(newBullet.moveVector);
+
+	}
+
+    public void OnSecondary(InputAction.CallbackContext context)
+    {
+		var newGrenade = Instantiate(hackingGrenade, transform.position, Quaternion.identity);
+		
+		
+	}
+
+    public void OnDodge(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
     }
 
-    public void OnLook(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnSwapWeapon(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
     }
 
-    public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnSecondary(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnDodge(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnSwapWeapon(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnAction(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnAction(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
     }
