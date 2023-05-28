@@ -1,6 +1,9 @@
 using CommonComponents.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using CommonComponents;
+using Environment;
 using UnityEngine;
 
 public class OscillatorTrap : MonoBehaviour , IDamageDealer
@@ -31,7 +34,7 @@ public class OscillatorTrap : MonoBehaviour , IDamageDealer
 			enemy.HPEmpty += OnKeyChange;
 		}*/
 
-		startNumEnemies = keyEnemies.Count;
+		//startNumEnemies = keyEnemies.Count;
 		startingPosition = transform.position;
 
     }
@@ -71,7 +74,7 @@ public class OscillatorTrap : MonoBehaviour , IDamageDealer
 
 	private void OnKeyChange(Damagable health)
 	{
-		keyEnemies.Remove(health);
+		//keyEnemies.Remove(health);
 		OnKeyChange();
 	}
 }
