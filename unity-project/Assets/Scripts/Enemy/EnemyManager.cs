@@ -1,6 +1,4 @@
-﻿using System;
-using CommonComponents;
-using CommonComponents.StateMachine;
+﻿using CommonComponents;
 using Enemy.States;
 using UI;
 using UnityEngine;

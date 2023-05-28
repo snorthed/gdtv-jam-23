@@ -1,7 +1,6 @@
 ﻿using System;
 using CommonComponents;
 using CommonComponents.Interfaces;
-using UnityEngine;
 
 namespace Environment
 {

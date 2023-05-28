@@ -1,7 +1,5 @@
 using CommonComponents;
 using CommonComponents.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : Damagable, IDamageDealer

@@ -1,6 +1,4 @@
-﻿using System;
-using CommonComponents.StateMachine;
-using Helpers;
+﻿using Helpers;
 using UnityEngine;
 
 namespace Enemy.States

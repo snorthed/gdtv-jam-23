@@ -1,5 +1,3 @@
-using CommonComponents.Interfaces;
-using System;
 using System.Collections;
 using UnityEngine;
 

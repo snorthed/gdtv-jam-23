@@ -1,8 +1,4 @@
-﻿using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
-
-using System;
-using Player.Weapons;
+﻿using Player.Weapons;
 using UnityEngine;
 
 namespace CommonComponents.Interfaces
