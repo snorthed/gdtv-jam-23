@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2407672064470738347}
   - component: {fileID: 6611570230266306622}
   - component: {fileID: 4987770809020089104}
+  - component: {fileID: -7148492630181270837}
   m_Layer: 6
   m_Name: SecondaryMeleeCheck
   m_TagString: Untagged
@@ -4755,3 +4756,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 5
+--- !u!114 &-7148492630181270837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579317563433758575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0efce46666e1ae4b9a2dc421a0dccf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeStateList: 00000000

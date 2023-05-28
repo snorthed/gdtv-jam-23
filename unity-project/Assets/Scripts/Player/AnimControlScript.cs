@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using Helpers;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -113,7 +111,16 @@ namespace Player
             
         }
 
-        
-    }
+
+		private void OnEnable()
+		{
+			playerAnimator.enabled = true;
+		}
+
+		private void OnDisable()
+		{
+			playerAnimator.enabled = false;
+		}
+	}
 }
 

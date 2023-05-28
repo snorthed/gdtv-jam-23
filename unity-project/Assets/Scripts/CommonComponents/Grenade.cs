@@ -10,8 +10,9 @@ namespace CommonComponents
 
 		[SerializeField] GameObject explosion;
 		bool isCoroutineStarted;
+		private Coroutine _co = null;
 
-        private void Start()
+		private void Start()
         {
 			isCoroutineStarted = false;
         }
@@ -27,7 +28,7 @@ namespace CommonComponents
 			if (_timeToLive <= 0f&& !isCoroutineStarted)
 			{
 				
-				StartCoroutine(Explode());
+				_co = StartCoroutine(Explode());
 			}
 		}
 

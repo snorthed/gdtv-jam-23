@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1125855037149518287}
   - component: {fileID: -89248119692412305}
   - component: {fileID: 5286124137464500427}
+  - component: {fileID: -3964527361250560107}
   m_Layer: 6
   m_Name: PrimaryMeleeCheck
   m_TagString: Untagged
@@ -111,3 +112,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 5
+--- !u!114 &-3964527361250560107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946740474565919704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0efce46666e1ae4b9a2dc421a0dccf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeStateList: 00000000
