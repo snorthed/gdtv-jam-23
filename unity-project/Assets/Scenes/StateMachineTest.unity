@@ -1225,12 +1225,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!1 &709218709 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2928263119166708932, guid: 4282b8abc53fc6c43a54de5f566fcb79,
-    type: 3}
-  m_PrefabInstance: {fileID: 2621708627060715720}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &714311899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,7 +2039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionText: hack
-  ItemName: 
+  ItemName: Console
 --- !u!135 &1526856038
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2553,7 +2547,7 @@ MonoBehaviour:
     m_Keys:
     - d6a01d28195de6d49bb6797c16913baa
     m_Values:
-    - {fileID: 709218709}
+    - {fileID: 0}
 --- !u!4 &1745050829
 Transform:
   m_ObjectHideFlags: 1

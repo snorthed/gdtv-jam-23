@@ -1,5 +1,6 @@
 using Management;
 using Player;
+using UnityEngine;
 
 public class SingletonRepo
 {
@@ -14,8 +15,7 @@ public class SingletonRepo
 			{
 				_instance = new SingletonRepo();
 			}
-
-			return null;
+			return _instance;
 		}
 	}
 
