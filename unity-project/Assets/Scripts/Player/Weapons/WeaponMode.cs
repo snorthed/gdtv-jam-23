@@ -1,5 +1,4 @@
 using CommonComponents;
-using CommonComponents.Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 

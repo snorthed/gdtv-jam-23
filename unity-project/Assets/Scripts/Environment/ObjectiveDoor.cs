@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CommonComponents;
-using CommonComponents.Interfaces;
-using Unity.VisualScripting;
 using UnityEngine;
-using static CommonComponents.Damagable;
 
 namespace Environment
 {

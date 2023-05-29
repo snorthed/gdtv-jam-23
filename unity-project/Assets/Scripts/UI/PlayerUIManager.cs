@@ -1,6 +1,5 @@
 using TMPro;
 using UI;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerUIManager : MonoBehaviour

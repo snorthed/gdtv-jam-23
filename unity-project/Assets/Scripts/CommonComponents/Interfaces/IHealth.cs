@@ -1,5 +1,3 @@
-﻿using System;
-
-namespace CommonComponents.Interfaces{
+﻿namespace CommonComponents.Interfaces{
 
 }

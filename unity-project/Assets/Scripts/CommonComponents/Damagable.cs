@@ -1,5 +1,4 @@
-﻿using System;
-using CommonComponents.Interfaces;
+﻿using CommonComponents.Interfaces;
 using UnityEngine;
 
 namespace CommonComponents
@@ -47,6 +46,13 @@ namespace CommonComponents
 				DamageTaken?.Invoke(damage.Damage);
             }
         }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+			if (collision.gameObject.TryGetComponent<IDamageDealer>(out var damage))
+			{
+				DamageTaken?.Invoke(damage.Damage);
+			}
+		}
 
 
 

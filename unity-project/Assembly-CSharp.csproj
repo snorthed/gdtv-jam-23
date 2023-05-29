@@ -70,6 +70,7 @@
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSTest.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
+    <Compile Include="Assets\Scripts\Hacking\HackingBullet.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
     <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Management\GameStateManager.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\CommonComponents\ObjectCachePool.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttacker.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
+    <Compile Include="Assets\Scripts\Hacking\Player\HackingPlayerController.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
@@ -97,8 +99,10 @@
     <Compile Include="Assets\Scripts\Management\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyDeadState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyBaseState.cs" />
+    <Compile Include="Assets\Scripts\Hacking\HackingGrenade.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\GameStateModifier.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Interfaces\BaseWeapon.cs" />
+    <Compile Include="Assets\Scripts\Hacking\HackingSpawner.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Projectile.cs" />
     <Compile Include="Assets\Scripts\UI\SliderDisplay.cs" />
     <Compile Include="Assets\Scripts\Environment\ObjectiveDoor.cs" />
@@ -113,12 +117,14 @@
     <Compile Include="Assets\Scripts\Helpers\FadingHelperFunction.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStateContext.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponsSetup.cs" />
+    <Compile Include="Assets\Scripts\Hacking\HackingEnemyController.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAt.cs" />
     <Compile Include="Assets\Scripts\Management\Jukebox.cs" />
     <Compile Include="Assets\Scripts\Player\Weapons\WeaponMode.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Helpers\Vector2Extensions.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\LoopingParticleSystemsManager.cs" />
+    <Compile Include="Assets\Scripts\Hacking\Asteroid.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyAttackState.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\StateMachine\BaseState.cs" />
     <Compile Include="Assets\Scripts\Player\Input\PlayerInput.cs" />
@@ -131,6 +137,7 @@
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\kenney_simple-space\Spritesheet\simpleSpace_sheet@2.xml" />
     <None Include="Assets\Mirza Beig\_DOCS\README - Inferno VFX.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -150,6 +157,7 @@
     <None Include="Assets\Fonts\potra\read-me.txt" />
     <None Include="Assets\Fonts\multivac\multivac.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\kenney_simple-space\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Fonts\bigmacca\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -157,6 +165,7 @@
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\kenney_simple-space\Spritesheet\simpleSpace_sheet.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

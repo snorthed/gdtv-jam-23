@@ -19,12 +19,11 @@ TagManager:
   - Obstacles
   - Interactables
   - Traps
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Hacking
+  - HackingEnemyProjectiles
+  - HackingPlayerProjectiles
+  - HackingPlayer
+  - HackingEnemy
   - 
   - 
   - 

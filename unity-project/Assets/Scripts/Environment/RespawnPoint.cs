@@ -1,7 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-using UnityEditor.Build;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Environment
 {
