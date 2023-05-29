@@ -70,7 +70,6 @@
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\FPSTest.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Behaviors\DataStructs\CollisionDetectionRay.cs" />
-    <Compile Include="Assets\Scripts\Hacking\HackingBullet.cs" />
     <Compile Include="Assets\Scripts\CommonComponents\Bullet.cs" />
     <Compile Include="Assets\Scripts\Helpers\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Management\GameStateManager.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Assets\Scripts\CommonComponents\ObjectCachePool.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttacker.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\EnemyIdleState.cs" />
-    <Compile Include="Assets\Scripts\Hacking\Player\HackingPlayerController.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\AnimatedLight.cs" />
     <Compile Include="Assets\Scripts\Behaviors\LookAtCamera.cs" />
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\DemoManager.cs" />
@@ -129,15 +127,10 @@
     <Compile Include="Assets\Mirza Beig\Particle Systems\_Common\Scripts\_Demo\MouseFollow.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMover.cs" />
-    <Compile Include="Assets\Scripts\Hacking\Asteroid.cs" />
-    <Compile Include="Assets\Scripts\Hacking\HackingEnemyController.cs" />
-    <Compile Include="Assets\Scripts\Hacking\HackingSpawner.cs" />
-    <Compile Include="Assets\Scripts\Hacking\HackingGrenade.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\kenney_simple-space\Spritesheet\simpleSpace_sheet@2.xml" />
     <None Include="Assets\Mirza Beig\_DOCS\README - Inferno VFX.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -157,7 +150,6 @@
     <None Include="Assets\Fonts\potra\read-me.txt" />
     <None Include="Assets\Fonts\multivac\multivac.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\kenney_simple-space\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Fonts\bigmacca\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -165,7 +157,6 @@
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\kenney_simple-space\Spritesheet\simpleSpace_sheet.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -740,10 +731,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.InternalAPIEngineBridge.001.Player.csproj">
-      <Project>{D090A877-47A6-F844-EB2B-C3CDC1315C87}</Project>
-      <Name>Unity.InternalAPIEngineBridge.001.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.Player.csproj">
       <Project>{93622C0F-C8CB-11FC-0779-1BD71B07D2DF}</Project>
       <Name>Unity.RenderPipelines.Universal.Shaders.Player</Name>
@@ -756,10 +743,6 @@
       <Project>{D7822626-61FF-50EC-F7D3-6DA280772880}</Project>
       <Name>Unity.InputSystem.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Autodesk.Fbx.Player.csproj">
-      <Project>{158DB81B-813A-1BD4-305C-19370D5DCED0}</Project>
-      <Name>Autodesk.Fbx.Player</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.Player.csproj">
       <Project>{CDC7EC4F-66DE-8632-94A6-339B5CF02D10}</Project>
       <Name>Unity.RenderPipelines.Core.ShaderLibrary.Player</Name>
@@ -768,9 +751,9 @@
       <Project>{4831C948-A251-FD1A-AF15-0D78695C852E}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.2D.IK.Runtime.Player.csproj">
-      <Project>{E3893488-B394-29A4-289F-65779AD5B73E}</Project>
-      <Name>Unity.2D.IK.Runtime.Player</Name>
+    <ProjectReference Include="Autodesk.Fbx.Player.csproj">
+      <Project>{158DB81B-813A-1BD4-305C-19370D5DCED0}</Project>
+      <Name>Autodesk.Fbx.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Cinemachine.Player.csproj">
       <Project>{740926A5-F0CF-965F-1ACC-03122FF6492B}</Project>
@@ -839,14 +822,6 @@
     <ProjectReference Include="Unity.Postprocessing.Runtime.Player.csproj">
       <Project>{CC77EF1C-7889-917C-5774-6977BC8E18A0}</Project>
       <Name>Unity.Postprocessing.Runtime.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.Animation.Runtime.Player.csproj">
-      <Project>{00B669F3-13EF-00CC-17FA-7C5330F2B9E5}</Project>
-      <Name>Unity.2D.Animation.Runtime.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.2D.Common.Runtime.Player.csproj">
-      <Project>{B61473F9-9692-04CE-77FA-852B201E509D}</Project>
-      <Name>Unity.2D.Common.Runtime.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.Player.csproj">
       <Project>{41DF36AE-A3F8-4BD7-E1BC-A3AE10389B3B}</Project>

@@ -35,6 +35,7 @@ namespace Enemy
 			DamageTaken += _stateMachine.DamageTaken;
 			_stateMachine.AddState(new EnemyIdleState(gameObject));
 			_stateMachine.AddState(new EnemyAttackState(gameObject));
+			_stateMachine.AddState(new EnemyDeadState(gameObject));
 			
 
 		}
@@ -47,8 +48,10 @@ namespace Enemy
 
 		private void OnDeath(Damagable damagable)
 		{
-			Destroy(this.gameObject);
+			_stateMachine.SwapState(EnemyState.Dead);
+			
 		}
+		
 
 	}
 
