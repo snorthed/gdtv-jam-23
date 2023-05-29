@@ -2,6 +2,7 @@
 using Enemy.States;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
@@ -14,6 +15,8 @@ namespace Enemy
 		private EnemyMover _mover;
 
 		private SliderDisplay _hpBar;
+        public float lookDistance = 30f;
+		public float lookAngle = 60f;
 
 		protected override void Awake()
 		{
@@ -35,6 +38,7 @@ namespace Enemy
 			DamageTaken += _stateMachine.DamageTaken;
 			_stateMachine.AddState(new EnemyIdleState(gameObject));
 			_stateMachine.AddState(new EnemyAttackState(gameObject));
+			_stateMachine.AddState(new EnemyAlertState(gameObject));
 			_stateMachine.AddState(new EnemyDeadState(gameObject));
 			
 

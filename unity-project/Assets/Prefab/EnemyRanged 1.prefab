@@ -286,6 +286,8 @@ MonoBehaviour:
   <MaxHP>k__BackingField: 10
   <CurrentHP>k__BackingField: 10
   enemyAnimator: {fileID: 4314377535437611945}
+  lookDistance: 30
+  lookAngle: 120
 --- !u!114 &7368701470866120978
 MonoBehaviour:
   m_ObjectHideFlags: 0

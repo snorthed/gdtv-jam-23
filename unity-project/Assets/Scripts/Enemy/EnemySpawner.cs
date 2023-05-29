@@ -1,8 +1,10 @@
 using System.Collections;
 using CommonComponents;
 using Enemy;
+using Enemy.States;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyStateMachine))]
 public class EnemySpawner : Damagable
 {
 	[SerializeField] private EnemyManager spawnObject;
