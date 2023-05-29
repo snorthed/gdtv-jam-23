@@ -1,6 +1,4 @@
-using CommonComponents;
 using CommonComponents.Interfaces;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -18,6 +16,10 @@ namespace CommonComponents
         {
             yield return new WaitForSeconds(_timeToLive);
             EndBullet();
+        }
+        public override void OnTriggerEnter(Collider other)
+        {
+            Debug.Log(other.name);
         }
     }
 }

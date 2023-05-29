@@ -4,6 +4,7 @@ using System.Linq;
 using CommonComponents.Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CommonComponents
 {
@@ -35,7 +36,7 @@ namespace CommonComponents
 			T item;
 			while (_pool.Count < MaxNumber)
 			{
-				item = MonoBehaviour.Instantiate(_obj);
+				item = Object.Instantiate(_obj);
 				item.SetPool(this);
 				item.gameObject.SetActive(false);
 				_pool.Add(item);

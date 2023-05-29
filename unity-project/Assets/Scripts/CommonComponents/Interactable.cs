@@ -1,7 +1,5 @@
-﻿using System;
-using CommonComponents.Interfaces;
+﻿using CommonComponents.Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CommonComponents
 {

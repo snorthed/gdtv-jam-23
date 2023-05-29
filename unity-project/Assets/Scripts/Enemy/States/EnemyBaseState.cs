@@ -1,5 +1,4 @@
 ﻿using CommonComponents.StateMachine;
-using Player;
 using UnityEngine;
 
 namespace Enemy.States

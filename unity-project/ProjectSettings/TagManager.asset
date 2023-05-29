@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Traps
   layers:
   - Default
   - TransparentFX
@@ -18,13 +19,11 @@ TagManager:
   - Obstacles
   - Interactables
   - Traps
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Hacking
+  - HackingEnemyProjectiles
+  - HackingPlayerProjectiles
+  - HackingPlayer
+  - HackingEnemy
   - 
   - 
   - 

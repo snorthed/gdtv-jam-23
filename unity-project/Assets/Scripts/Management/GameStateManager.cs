@@ -1,13 +1,24 @@
-﻿using System;
-using CommonComponents.Interfaces;
+﻿using CommonComponents.Interfaces;
 
 namespace Management
 {
 	public class GameStateManager
 	{
-		private static readonly Lazy<GameStateManager> LazyManager = new Lazy<GameStateManager>();
-		public static GameStateManager Instance => LazyManager.Value;
-		private event GameStateChange StateChangeEvent;
+		private static GameStateManager _instance = null;
+        public static GameStateManager Instance
+        {
+            get
+            {
+				if (_instance == null)
+				{
+					_instance = new GameStateManager();
+				}
+
+				return _instance;
+			}
+        }
+
+        private event GameStateChange StateChangeEvent;
 
 		public GameState CurrentState { get; private set; } = GameState.Running;
 

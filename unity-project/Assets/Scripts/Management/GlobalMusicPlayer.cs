@@ -5,13 +5,12 @@ namespace Management
 {
     public class GlobalMusicPlayer : MonoBehaviour
     {
-        public AudioSource mainAudioSource;
-        public AudioSource interuptTrack;
+		public AudioSource mainAudioSource;
+		public AudioSource interuptSource;
 
-        public float defaultFadeSeconds = 5;
-        public bool defaultFade;
+		public float defaultFadeSeconds = 5;
 
-        [SerializeField]
+		[SerializeField]
         protected AudioClip currentClip;
 
         public AudioClip CurrentPlayingTrack
@@ -21,11 +20,9 @@ namespace Management
         }
 
         protected AudioClip _nextClip;
-        protected AudioClip _interuptClip;
 
-        protected float _nextTrackFadeSeconds;
-        protected bool _nextTrackCrossfade;
-        protected float _trackVolume;
+		protected float _nextTrackFadeSeconds;
+		protected float _trackVolume;
 
         public void Start()
         {
@@ -34,14 +31,13 @@ namespace Management
         }
 
 
-        public void PlayNewAudio(AudioClip clip, bool fade = true, float fadeSeconds = 5f, bool crossfade = true)
+        public void PlayNewAudio(AudioClip clip, bool fade = true, float fadeSeconds = 2f)
         {
             if (fade)
             {
                 _nextClip = clip;
                 _nextTrackFadeSeconds = fadeSeconds;
-                _nextTrackCrossfade = crossfade;
-                _trackVolume = mainAudioSource.volume;
+				_trackVolume = mainAudioSource.volume;
 
                 StartCoroutine(FadingHelperFunction.StartFade(mainAudioSource, fadeSeconds, 0f, FadeoutFinishedEvent));
             }
@@ -70,18 +66,35 @@ namespace Management
             }
         }
 
-        public void Pause() => mainAudioSource.Pause();
+		public void Pause() => Pause(mainAudioSource);
+        public void Pause(AudioSource source) => source.Pause();
 
-        public void Play()
+		public void Play() => Play(mainAudioSource);
+        public void Play(AudioSource source)
         {
-            if (mainAudioSource.time > 0f)
+            if (source.time > 0f)
             {
-                mainAudioSource.UnPause();
+				source.UnPause();
             }
             else
             {
-                mainAudioSource.Play();
+				source.Play();
             }
         }
-    }
+
+		public void ActivateAltTrack(AudioClip track)
+		{
+			Pause(mainAudioSource);
+			Play(interuptSource);
+		}
+
+		public void DeactivateAltTrack(AudioClip track)
+		{
+			Pause(interuptSource);
+			Play(mainAudioSource);
+		}
+
+
+		public void PlayOneShot(AudioClip clip) => mainAudioSource.PlayOneShot(clip);
+	}
 }

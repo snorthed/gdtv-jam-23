@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using Random = UnityEngine.Random;
 
 namespace Player
@@ -52,11 +52,19 @@ namespace Player
             {
                 playerAnimator.SetTrigger("primaryRangedShot");
                 
+                playerAnimator.SetBool("isShooting", true);
+                
+                
             }
             else
             {
+                if (context.interaction is HoldInteraction)
+                {
+                    playerAnimator.SetBool("isPunching",true);
+                }
                 playerAnimator.SetInteger("primaryMeleePunchVaration", Random.Range(1, 3));
                 playerAnimator.SetTrigger("primaryMeleePunch");
+                
             }
         }
 
@@ -91,6 +99,8 @@ namespace Player
 			playerAnimator.ResetTrigger(playerController._currentWeapon == playerController.weapons[0]
 											? "primaryRangedShot"
 											: "primaryMeleePunch");
+            playerAnimator.SetBool("isShooting", false);
+            playerAnimator.SetBool("isPunching", false);
 		}
         public void OnSecondaryCancel(InputAction.CallbackContext obj)
         {
@@ -126,7 +136,12 @@ namespace Player
             playerAnimator.SetFloat("moveY", directionCurrentMove.y);
             
         }
-
+        public void OnDeath(Damagable damagable)
+        {
+            playerAnimator.SetTrigger("isDead");
+            playerAnimator.SetLayerWeight(1, 0f);
+            playerAnimator.SetLayerWeight(2, 0f);
+        }
 
 		private void OnEnable()
 		{

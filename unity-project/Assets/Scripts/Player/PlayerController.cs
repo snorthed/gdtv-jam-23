@@ -53,12 +53,14 @@ namespace Player
 			_actor = GetComponent<InteractableActor>();
 
 			CacheControls();
-
+			
 			base.Awake();
 			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
 			hpSlider.MaxValue = MaxHP;
 			hpSlider.SetToMax();
             HPChangedEvent += hpSlider.SetValues;
+			HPEmpty += OnDeath;
+			HPEmpty += AnimControlScript.OnDeath;
 			_currentWeapon = weapons[0];
 		}
 
@@ -185,7 +187,7 @@ namespace Player
 
 			//transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
 			var mouseRay = _camera.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
-			if (Physics.Raycast(mouseRay, out var mouseRayHit, Mathf.Infinity))
+			if (Physics.Raycast(mouseRay, out var mouseRayHit, Mathf.Infinity, LayerMask.GetMask("Terrain")))
 			{
 				mouseToGroundPoint = mouseRayHit.point;
 				playerAimTarget.transform.position = new Vector3(mouseToGroundPoint.x,this.transform.position.y,mouseToGroundPoint.z);
@@ -246,7 +248,10 @@ namespace Player
 				StartCoroutine(DodgeCoolingDown());
 			}
 		}
-
+		private void OnDeath(Damagable obj)
+        {
+			_controls.Disable();
+        }
         
     }
 }

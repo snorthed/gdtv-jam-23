@@ -1,8 +1,5 @@
-using System;
-using CommonComponents;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace Enemy
 {
@@ -10,6 +7,7 @@ namespace Enemy
 	public class EnemyMover : MonoBehaviour
 	{
 		protected NavMeshAgent _navMeshAgent;
+		[SerializeField] protected Transform lookTarget;
 		[SerializeField] protected float targetPositionUpdateFrequency = 2.0f;
 		public Transform Target
 		{
@@ -38,6 +36,10 @@ namespace Enemy
 		// Update is called once per frame
 		protected virtual void Update()
 		{
+			if (target != null && target.gameObject.activeInHierarchy)
+			{
+				this.transform.rotation = Quaternion.LookRotation(target.position - this.transform.position);
+			}
 			_moveAdjustmentTimer -= Time.deltaTime;
 			if (_moveAdjustmentTimer < 0f && hasTarget && target.gameObject.activeInHierarchy)
 			{
@@ -51,6 +53,11 @@ namespace Enemy
 			_moveAdjustmentTimer = targetPositionUpdateFrequency;
 		}
 
+		public void StopMoving()
+        {
+			_navMeshAgent.isStopped= true;
+			target = null;
+        }
 		public void OnEnable()
 		{
 			_navMeshAgent.enabled = true;

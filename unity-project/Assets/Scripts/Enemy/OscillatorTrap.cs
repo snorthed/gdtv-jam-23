@@ -1,5 +1,4 @@
 using CommonComponents.Interfaces;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CommonComponents;
@@ -15,6 +14,7 @@ public class OscillatorTrap : MonoBehaviour , IDamageDealer
 	//[SerializeField] private List<Damagable> keyEnemies;
 	[SerializeField] private bool requireAllConditions;
 	private bool _locked;
+	[field: SerializeField] public float Damage { get; set; }
 	//private int startNumEnemies;
 
 	float movementFactor;
@@ -77,6 +77,6 @@ public class OscillatorTrap : MonoBehaviour , IDamageDealer
 		//keyEnemies.Remove(health);
 		OnKeyChange();
 	}
-
-	[field: SerializeField]public float Damage { get; set; }
+    
+    
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using CommonComponents.StateMachine;
-using Player;
-using UnityEngine;
+﻿using CommonComponents.StateMachine;
 
 namespace Enemy.States
 {
@@ -21,22 +18,15 @@ namespace Enemy.States
         protected EnemyBaseState GetCurrentState => CurrentState as EnemyBaseState;
 
 
-		protected override void Awake()
+		protected void Start()
 		{
 			_context = new EnemyStateContext()
-			{
+					   {
 				
 						   EnemyManager = GetComponent<EnemyManager>(),
 						   PlayerCache = SingletonRepo.PlayerObject,
 						   Mover = GetComponent<EnemyMover>(),
-			};
-
-			base.Awake();
-		}
-
-		protected void Start()
-		{
-			_context.PlayerCache = SingletonRepo.PlayerObject;
+					   };
 		}
 
 		public override bool AddState(EnemyBaseState newState)
@@ -47,7 +37,7 @@ namespace Enemy.States
 
 		}
 
-		protected override EnemyBaseState SwapState(EnemyState newStateEnum)
+		public override EnemyBaseState SwapState(EnemyState newStateEnum)
 		{
 			var oldState = GetCurrentState;
 			oldState?.Deactivate();

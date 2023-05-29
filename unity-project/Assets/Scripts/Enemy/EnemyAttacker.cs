@@ -38,6 +38,7 @@ namespace Enemy
 				var position = transform.position;
 				bullet.Initialize(position, weaponSetup.speed, weaponSetup.timeToLive, weaponSetup.damage);
 				animator = GetComponent<EnemyManager>().enemyAnimator;
+				animator.SetInteger("meleeAttackVaration", Random.Range(0, 2));
 				animator.SetTrigger("isShooting");
 				bullet.Fire((Target.position - position).normalized);
 				_shotCooldown = weaponSetup.cooldown;
