@@ -1,28 +1,41 @@
-using System;
+using Management;
 using Player;
 using UnityEngine;
 
 public class SingletonRepo
 {
-	private static readonly Lazy<SingletonRepo> LazyRepo = new Lazy<SingletonRepo>();
+	private static SingletonRepo _instance = null;
+	private PlayerController _playerObject;
 
-	public static SingletonRepo Instance => LazyRepo.Value;
-
-	public PlayerUIManager PlayerUI
+	public static SingletonRepo Instance
 	{
 		get
 		{
-			if (_playerUI == null)
+			if (_instance == null)
 			{
-				_playerUI = PlayerUIManager.Instance;
+				_instance = new SingletonRepo();
+			}
+			return _instance;
+		}
+	}
+
+	public static PlayerUIManager PlayerUI
+	{
+		get
+		{
+			if (Instance._playerUI == null)
+			{
+				Instance._playerUI = PlayerUIManager.Instance;
 			}
 
-			return _playerUI;
+			return Instance._playerUI;
 		}
 	}
 
 	private PlayerUIManager _playerUI = null;
 
-	public PlayerController PlayerObject { get; set; }
+	public static PlayerController PlayerObject { get => Instance._playerObject; set => Instance._playerObject = value; }
+
+	public static GameStateManager StateManager => GameStateManager.Instance;
 }
 

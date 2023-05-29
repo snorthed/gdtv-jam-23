@@ -1,8 +1,4 @@
-﻿using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
-
-using System;
-using Player.Weapons;
+﻿using Player.Weapons;
 using UnityEngine;
 
 namespace CommonComponents.Interfaces
@@ -18,8 +14,8 @@ namespace CommonComponents.Interfaces
 
 		public void Awake()
 		{
-			PrimaryShotPool = new ObjectCachePool<Projectile>((Projectile)weaponsSetup.primary.projectile, 30);
-			SecondaryShotPool = new ObjectCachePool<Projectile>((Projectile)weaponsSetup.secondary.projectile, 30);
+			PrimaryShotPool = new ObjectCachePool<Projectile>(weaponsSetup.primary.projectile, 30);
+			SecondaryShotPool = new ObjectCachePool<Projectile>(weaponsSetup.secondary.projectile, 30);
 		}
 
 		private void OnDestroy()
@@ -36,7 +32,7 @@ namespace CommonComponents.Interfaces
 		public Projectile GetNextBullet(WeaponMode mode , ObjectCachePool<Projectile> objectCachePool)
 		{
 			var shot = objectCachePool.PullObject();
-			shot.Initialize(transform.position, mode.speed, mode.range, mode.damage);
+			shot.Initialize(transform.position, mode.speed, mode.timeToLive, mode.damage);
 			return shot;
 		}
 	}

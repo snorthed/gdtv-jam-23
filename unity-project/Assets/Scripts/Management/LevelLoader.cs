@@ -12,7 +12,7 @@ namespace Management
         }
 
         public static void GoToMainGame()
-        {
+		{
             SceneManager.LoadScene("Scenes/SampleScene", new LoadSceneParameters(LoadSceneMode.Single, LocalPhysicsMode.Physics3D));
         }
 

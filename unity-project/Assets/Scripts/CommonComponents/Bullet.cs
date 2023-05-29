@@ -1,5 +1,4 @@
 using CommonComponents.Interfaces;
-using UnityEngine;
 
 namespace CommonComponents
 {

@@ -14,16 +14,20 @@ namespace Player
 	{
 
 		private CharacterController _characterController;
+		AnimControlScript AnimControlScript;
+		private InteractableActor _actor;
+
 
 		private Vector2 _currentLookPosition;
 		private Vector2 _currentMoveInputVector = Vector2.zero;
 		private float _playerGrav;
 
 		#region Serialisation
-
-		[SerializeField] BaseWeapon _currentWeapon;
+		public BaseWeapon[] weapons;
+		public BaseWeapon _currentWeapon;
 		[SerializeField] private float moveSpeed;
 		[SerializeField] private float gravityValue;
+		Vector3 mouseToGroundPoint;
 		private Camera _camera;
 		private Vector3 _lookDir;
 		private InputAction _primaryAction;
@@ -33,45 +37,62 @@ namespace Player
 		[SerializeField] private bool dodging;
 		[SerializeField] private float dodgingDuration;
 		[SerializeField] private float dodgeDuration;
-
-        #endregion
+		[SerializeField] GameObject playerAimTarget;
+		[SerializeField] GameObject playerMoveTarget;
+		#endregion
 
         // Start is called before the first frame update
 		protected override void Awake()
 		{
-			var repo = SingletonRepo.Instance;
-			repo.PlayerObject = this;
+			AnimControlScript = GetComponent<AnimControlScript>();
+			SingletonRepo.PlayerObject = this;
 			_camera = Camera.main;
-			GetComponent<Collider>();
-			GetComponent<Rigidbody>();
 			_characterController = GetComponent<CharacterController>();
 
-			CacheControls();
 
+			_actor = GetComponent<InteractableActor>();
+
+			CacheControls();
+			
 			base.Awake();
 			var hpSlider = PlayerUIManager.Instance.PlayerHPSlider;
 			hpSlider.MaxValue = MaxHP;
 			hpSlider.SetToMax();
-			HPChanged += hpSlider.SetValues;
+            HPChangedEvent += hpSlider.SetValues;
+			HPEmpty += OnDeath;
+			HPEmpty += AnimControlScript.OnDeath;
+			_currentWeapon = weapons[0];
 		}
 
 
 		#region InputSetup
-		private PlayerInput _controls;
+        private PlayerInput _controls;
 		private InputAction _moveAction;
 		private InputAction _lookAction;
 		private InputAction _dodgeAction;
+		private InputAction _swapWeaponsAction;
 		private InputAction _secondaryAction;
+		private InputAction _activateAction;
 
 		private void CacheControls()
 		{
+			
 			_controls = new PlayerInput();
 			_moveAction = _controls.Player.Move;
 			_lookAction = _controls.Player.Look;
 			_primaryAction = _controls.Player.Primary;
 			_dodgeAction = _controls.Player.Dodge;
 			_secondaryAction = _controls.Player.Secondary;
-			
+			_swapWeaponsAction = _controls.Player.SwapWeapon;
+			_activateAction = _controls.Player.Action;
+
+			_moveAction.performed += AnimControlScript.OnMove;
+			_lookAction.performed += AnimControlScript.OnLook;
+			_primaryAction.started += AnimControlScript.OnPrimary;
+			_primaryAction.canceled += AnimControlScript.OnPrimaryCancel;
+			_secondaryAction.started += AnimControlScript.OnSecondary;
+			_secondaryAction.canceled += AnimControlScript.OnSecondaryCancel;
+			_dodgeAction.performed += AnimControlScript.OnDodge;
 			_dodgeAction.performed += OnDodge;
 			_moveAction.performed += OnMove;
 			_lookAction.performed += OnLook;
@@ -79,16 +100,35 @@ namespace Player
 			_primaryAction.canceled += OnPrimaryCancel;
 			_secondaryAction.started += OnSecondary;
 			_secondaryAction.canceled += OnSecondaryCancel;
-			
+			_swapWeaponsAction.started += OnSwapWeapon;
+			_activateAction.performed += OnAction;
 		}
 
-		private void OnEnable() { EnableControls(); }
+		private void OnEnable()
+		{
+			EnableControls();
+			_characterController.enabled = true;
+		}
+
+		private void OnDisable()
+		{
+			EnableControls();
+			_characterController.enabled = false;
+		}
 		private void EnableControls()
 		{
 			_controls.Enable();
 			_controls.Player.Enable();
 			_canDodge = true;
 		}
+
+		private void DisableControls()
+		{
+			_controls.Disable();
+			_controls.Player.Disable();
+			_canDodge = false;
+		}
+
 
 		#endregion
 
@@ -98,6 +138,7 @@ namespace Player
 			PlayerDodge();
 			PlayerMove();
 			UpdateLookDir();
+			
 			
 		}
 
@@ -130,11 +171,11 @@ namespace Player
 		private void PlayerMove()
 		{
 			var temp = _currentMoveInputVector.normalized.ToVector3TopDown() * (Time.deltaTime * moveSpeed);
-
+			
 			_playerGrav = _characterController.isGrounded ? 0f : gravityValue * Time.deltaTime;
 
 			temp.y = _playerGrav;
-
+			//playerMoveTarget.transform.position = this.transform.position+_currentMoveInputVector.ToVector3TopDown()*(Time.deltaTime*moveSpeed);
 			_characterController.Move(temp);
 		}
 
@@ -146,9 +187,10 @@ namespace Player
 
 			//transform.rotation = Quaternion.AngleAxis(lookAngle, Vector3.up);
 			var mouseRay = _camera.ScreenPointToRay(new Vector3(_currentLookPosition.x, _currentLookPosition.y, 50));
-			if (Physics.Raycast(mouseRay, out var mouseRayHit, Mathf.Infinity))
+			if (Physics.Raycast(mouseRay, out var mouseRayHit, Mathf.Infinity, LayerMask.GetMask("Terrain")))
 			{
-				var mouseToGroundPoint = mouseRayHit.point;
+				mouseToGroundPoint = mouseRayHit.point;
+				playerAimTarget.transform.position = new Vector3(mouseToGroundPoint.x,this.transform.position.y,mouseToGroundPoint.z);
 				var dir = transform.position - mouseToGroundPoint;
 				dir.y = 0;
 				_lookDir = -dir;
@@ -158,6 +200,16 @@ namespace Player
 				_currentWeapon.FireDirection = _lookDir;
 
 			}
+		}
+
+		public void OnSwapWeapon(InputAction.CallbackContext context)
+		{
+			_currentWeapon = _currentWeapon == weapons[0] ? weapons[1] : weapons[0];
+		}
+
+		public void OnAction(InputAction.CallbackContext context)
+		{
+			_actor.ActionCurrent();
 		}
 
 		public void OnMove(InputAction.CallbackContext context)
@@ -174,7 +226,7 @@ namespace Player
 
 		public void OnPrimary(InputAction.CallbackContext context) { _currentWeapon.BeginPrimaryAttack(_lookDir); }
 
-		private void OnPrimaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelPrimaryAttack(_lookDir); }
+		public void OnPrimaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelPrimaryAttack(_lookDir); }
 		
 
 		public void OnSecondary(InputAction.CallbackContext context) {
@@ -187,7 +239,7 @@ namespace Player
          
 		}
 
-		private void OnSecondaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelSecondaryAttack(_lookDir); }
+		public void OnSecondaryCancel(InputAction.CallbackContext obj) { _currentWeapon.CancelSecondaryAttack(_lookDir); }
 		public void OnDodge(InputAction.CallbackContext context)
 		{
 			if (_canDodge)
@@ -196,5 +248,10 @@ namespace Player
 				StartCoroutine(DodgeCoolingDown());
 			}
 		}
-	}
+		private void OnDeath(Damagable obj)
+        {
+			_controls.Disable();
+        }
+        
+    }
 }

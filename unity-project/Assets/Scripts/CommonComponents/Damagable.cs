@@ -1,12 +1,16 @@
-﻿using System;
-using CommonComponents.Interfaces;
+﻿using CommonComponents.Interfaces;
 using UnityEngine;
 
 namespace CommonComponents
 {
 	public delegate void DamageTaken(float amount);
-	public class Damagable : MonoBehaviour, IHealth
+	public class Damagable : MonoBehaviour
 	{
+
+		
+		public delegate void HPChanged(float changeBy, float newHP) ;
+		public delegate void Death(Damagable obj);
+		private bool isDead = false;
 		protected virtual void Awake()
 		{
 			DamageTaken += OnDamageTaken;
@@ -17,11 +21,12 @@ namespace CommonComponents
 			CurrentHP -= amount;
 			if (CurrentHP > 0.0f)
 			{
-				HPChanged?.Invoke(amount, CurrentHP);
+				HPChangedEvent?.Invoke(amount, CurrentHP);
 			}
-			else
+			else if (!isDead)
 			{
-				HPEmpty?.Invoke();
+				HPEmpty?.Invoke(this);
+				isDead = true;
 			}
 		}
 
@@ -34,10 +39,26 @@ namespace CommonComponents
 				DamageTaken?.Invoke(damage.Damage);
 			}
 		}
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.TryGetComponent<IDamageDealer>(out var damage)&& other.gameObject.CompareTag("Traps"))
+            {
+				DamageTaken?.Invoke(damage.Damage);
+            }
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+			if (collision.gameObject.TryGetComponent<IDamageDealer>(out var damage))
+			{
+				DamageTaken?.Invoke(damage.Damage);
+			}
+		}
 
-		[field: SerializeField] public float MaxHP { get; set; }
+
+
+        [field: SerializeField] public float MaxHP { get; set; }
 		[field: SerializeField]public float CurrentHP { get; set; }
-		public event HPChanged HPChanged;
+		public event HPChanged HPChangedEvent;
 		public event Death HPEmpty;
 	}
 }

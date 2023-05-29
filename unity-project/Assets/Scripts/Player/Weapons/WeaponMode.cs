@@ -1,5 +1,4 @@
 using CommonComponents;
-using CommonComponents.Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,7 +9,7 @@ namespace Player.Weapons
 	public class WeaponMode : ScriptableObject
 	{
 		public int damage;
-		public float range;
+		[FormerlySerializedAs("range")] public float timeToLive;
 		public float speed;
 		public float cooldown;
 		public Projectile projectile;

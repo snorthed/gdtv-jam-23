@@ -179,3 +179,5 @@ unity-project/ProjectSettings/Packages/com.unity.probuilder/Settings.json
 unity-project/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 unity-project/ProjectSettings/ShaderGraphSettings.asset
 unity-project/unity-project.sln
+/Build
+/unity-project/Assembly-CSharp.Player.csproj

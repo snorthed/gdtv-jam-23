@@ -1,3 +1,4 @@
+using CommonComponents.Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,29 +8,41 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseScreen;
 
     private bool isPaused;
+	private GameState _cachedState;
 
-    public static PauseMenuManager Instance => _instance;
+	public static PauseMenuManager Instance => _instance;
 
     void Start()
     {
         _instance = this;
-        Resume();
+		pauseScreen.SetActive(false);
     }
 
     public void OpenPauseMenu()
-    {
-        Time.timeScale = 0f;
-        pauseScreen.SetActive(true);
-        isPaused = true;
-    }
+	{
+		_cachedState = SingletonRepo.StateManager.CurrentState;
+
+        SingletonRepo.StateManager.SetState(GameState.Paused);
+		isPaused = true;
+	}
     public void Resume()
     {
-        Time.timeScale = 1.0f;
-        isPaused = false;
-        pauseScreen.SetActive(false);
+		SingletonRepo.StateManager.SetState(_cachedState);
+		isPaused = false;
 
-    }
-    public void QuitApplication()
+	}
+
+	public void OnEnable()
+	{
+        pauseScreen.SetActive(true);
+	}
+
+	public void OnDisable()
+	{
+		pauseScreen.SetActive(false);
+	}
+
+	public void QuitApplication()
     {
         Application.Quit();
         Debug.Log("Escaping");
