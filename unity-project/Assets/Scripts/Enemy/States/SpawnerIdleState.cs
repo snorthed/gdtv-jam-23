@@ -3,18 +3,17 @@ using UnityEngine;
 
 namespace Enemy.States
 {
-    public class EnemyIdleState : EnemyBaseState
+    public class SpawnerIdleState : EnemyBaseState
     {
-		public EnemyIdleState(GameObject obj, EnemyState state = EnemyState.Idle) : base(obj, state)
+		public SpawnerIdleState(GameObject obj, EnemyState state = EnemyState.Idle) : base(obj, state)
 		{
 
 		}
 
         public override EnemyState Tick()
 		{
-			var canSeePlayer = CanSeePlayer();
 
-			return canSeePlayer ? EnemyState.Alert : EnemyState.Idle;
+			return  EnemyState.Idle;
 		}
 
 		public override void Activate()

@@ -1,65 +1,76 @@
 using System.Collections;
 using CommonComponents;
-using Enemy;
+using Enemy.States;
 using UnityEngine;
 
-public class EnemySpawner : Damagable
+namespace Enemy
 {
-	[SerializeField] private EnemyManager spawnObject;
-	[SerializeField] private Transform spawnPoint;
-
-	[SerializeField]private int spawnNumber = -1;
-	[SerializeField]private float spawnDelay;
-
-	private bool _isSpawning = false;
-
-	private Transform _attackTarget;
-
-	protected override void Awake()
+	[RequireComponent(typeof(EnemyStateMachine))]
+	public class EnemySpawner : Damagable
 	{
-		if (spawnPoint == null)
+		[SerializeField] private EnemyManager spawnObject;
+		[SerializeField] private Transform spawnPoint;
+
+		[SerializeField]private int spawnNumber = -1;
+		[SerializeField]private float spawnDelay;
+
+		private bool _isSpawning = false;
+
+		private Transform _attackTarget;
+		private EnemyStateMachine _stateMachine;
+
+		protected override void Awake()
 		{
-			spawnPoint = transform;
+			if (spawnPoint == null)
+			{
+				spawnPoint = transform;
+			}
+
+
+			base.Awake();
 		}
 
-		HPEmpty += OnHPEmpty;
+		private void OnHPEmpty(Damagable damagable) => Destroy(this.gameObject);
 
-		base.Awake();
-	}
+		private void Start()
+		{
+			_stateMachine = GetComponent<EnemyStateMachine>();
+			_stateMachine.AddState(new SpawnerIdleState(this.gameObject));
+			_stateMachine.AddState(new SpawnerAlertState(this.gameObject));
+			_stateMachine.AddState(new SpawnerAttackState(this.gameObject));
+			HPEmpty += OnHPEmpty;
+			DamageTaken += _stateMachine.DamageTaken;
 
-    private void OnHPEmpty(Damagable damagable) => Destroy(this.gameObject);
-
-    private void Start()
-	{
-		StartSpawn();
-		_attackTarget = SingletonRepo.PlayerObject.transform;
-
-	}
+			_attackTarget = SingletonRepo.PlayerObject.transform;
+		}
 	
-	public void StartSpawn() => StartSpawn(spawnNumber == -1 ? null : spawnNumber, spawnDelay);
+		public void StartSpawn() => StartSpawn(spawnNumber == -1 ? null : spawnNumber, spawnDelay);
 
-	public void StartSpawn(int? num, float delay)
-	{
-		if (!_isSpawning)
+		public void StartSpawn(int? num, float delay)
 		{
-			StartCoroutine(DoSpawn(num, delay));
+			if (!_isSpawning)
+			{
+				StartCoroutine(DoSpawn(num, delay));
+			}
 		}
-	}
 
-	public void StopSpawn() => _isSpawning = false;
+		public void StopSpawn() => _isSpawning = false;
 
-	// ReSharper disable Unity.PerformanceAnalysis
-	private IEnumerator DoSpawn(int? number, float delay)
-	{
-		_isSpawning = true;
-		while (_isSpawning && (!number.HasValue || number.Value > 0))
+		// ReSharper disable Unity.PerformanceAnalysis
+		private IEnumerator DoSpawn(int? number, float delay)
 		{
-			yield return new WaitForSeconds(delay);
+			_isSpawning = true;
+			yield return new WaitForSeconds(delay/2);
 
-			var newEnemy = Instantiate<EnemyManager>(spawnObject, spawnPoint.position, Quaternion.identity);
-			newEnemy.SetTarget(_attackTarget);
-			if(number.HasValue) number--;
+			while (_isSpawning && (!number.HasValue || number.Value > 0))
+			{
+				var newEnemy = Instantiate<EnemyManager>(spawnObject, spawnPoint.position, Quaternion.identity);
+				newEnemy.ImmediateAttack(_attackTarget);
+				if(number.HasValue) number--;
+				yield return new WaitForSeconds(delay);
+
+			}
+			_isSpawning = false;
 		}
-		_isSpawning = false;
 	}
 }

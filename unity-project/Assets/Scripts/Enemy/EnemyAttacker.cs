@@ -12,6 +12,8 @@ namespace Enemy
 		[SerializeField] private bool StopMovingAtRange;
 		[SerializeField] private bool FireIfNotInRange;
 
+		public bool StartShooting { get; set; } = true;
+
 		private float _shotCooldown;
 
 		private ObjectCachePool<Projectile> _bulletPool;
@@ -32,7 +34,9 @@ namespace Enemy
 
 			bool inRange = Vector3.Distance(transform.position, Target.position) < takeShotRange;
 
-			if (_shotCooldown < 0f && (inRange || FireIfNotInRange))
+			this.transform.rotation = Quaternion.LookRotation(Target.position - this.transform.position);
+
+			if (StartShooting && _shotCooldown < 0f && (inRange || FireIfNotInRange))
 			{
 				var bullet = _bulletPool.PullObject();
 				var position = transform.position;
@@ -44,10 +48,10 @@ namespace Enemy
 				_shotCooldown = weaponSetup.cooldown;
 			}
 
-			if (_moveAdjustmentTimer < 0f && (!inRange || !StopMovingAtRange) )
+			if (moveTo && _moveAdjustmentTimer < 0f && (!inRange || !StopMovingAtRange) )
 			{
-				var test = Vector3.ClampMagnitude(transform.position - Target.position, takeShotRange);
-				SetNavDestination(transform.position - test);
+				SetNavDestination(Target.position);
+				_navMeshAgent.stoppingDistance = StopMovingAtRange ? takeShotRange : 0;
 			}
 
 			

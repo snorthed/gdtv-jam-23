@@ -21,10 +21,14 @@ namespace Enemy
 
 		public Vector3 WalkPosition { get; set; }
 
+		public bool MoveToTarget { get; set; } = true;
+
 		protected float _moveAdjustmentTimer = 2.0f;
 
 		[SerializeField] private Transform target;
 		protected bool hasTarget;
+		public bool moveTo { get; set; } = true;
+
 
 
 		protected virtual void Awake()
@@ -36,15 +40,19 @@ namespace Enemy
 		// Update is called once per frame
 		protected virtual void Update()
 		{
+			_moveAdjustmentTimer -= Time.deltaTime;
+
 			if (target != null && target.gameObject.activeInHierarchy)
 			{
 				this.transform.rotation = Quaternion.LookRotation(target.position - this.transform.position);
+
+
+				if (_moveAdjustmentTimer < 0f && moveTo )
+				{
+					SetNavDestination(target.position);
+				}
 			}
-			_moveAdjustmentTimer -= Time.deltaTime;
-			if (_moveAdjustmentTimer < 0f && hasTarget && target.gameObject.activeInHierarchy)
-			{
-				SetNavDestination(target.position);
-			}
+
 		}
 
 		protected void SetNavDestination(Vector3 targetPosition)
@@ -68,5 +76,6 @@ namespace Enemy
 			_navMeshAgent.enabled = false;
 		}
 
+		public void SetPosition(Vector3 position) => SetNavDestination(position);
 	}
 }

@@ -25,12 +25,12 @@ namespace Enemy.States
 		{
 			Context.animator.SetTrigger("isDead");
 			
-			Context.Mover.StopMoving();
+			Context.Attacker.StopMoving();
 		}
 
 		public override void Deactivate()
 		{
-			Context.Mover.Target = null;
+			Context.Attacker.Target = null;
 		}
 	}
 }
