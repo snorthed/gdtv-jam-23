@@ -17,6 +17,7 @@ namespace Enemy
 		private SliderDisplay _hpBar;
         public float lookDistance = 30f;
 		public float lookAngle = 60f;
+		private bool _attackImmediate = false;
 
 		protected override void Awake()
 		{
@@ -40,14 +41,17 @@ namespace Enemy
 			_stateMachine.AddState(new EnemyAttackState(gameObject));
 			_stateMachine.AddState(new EnemyAlertState(gameObject));
 			_stateMachine.AddState(new EnemyDeadState(gameObject));
-			
 
+			if (_attackImmediate)
+			{
+				_stateMachine.TrySwapState(EnemyState.Attack);
+			}
 		}
 
-        public void SetTarget(Transform newPos)
+		public void ImmediateAttack(Transform newPos)
 		{
 			_mover.Target = newPos;
-
+			_attackImmediate = true;
 		}
 
 		private void OnDeath(Damagable damagable)
